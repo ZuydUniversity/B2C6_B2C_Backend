@@ -3,5 +3,5 @@ from .models import Person
 
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Person
-        fields = '__all__'
+        model = Person # The model we want to use
+        fields = '__all__' # The variables we want to store

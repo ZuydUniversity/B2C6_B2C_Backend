@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# Project paths
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('BackEndApi.urls'))
+    path('api/', include('BackEndApi.urls')) # Path to backendapi app
 ]
