@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'BackEndApi',
-    'corsheaders',
+    'BackEndApi',   # Your custom app
+    'corsheaders',  # CORS (Cross-Origin Resource Sharing) support
 ]
 
 MIDDLEWARE = [
@@ -52,10 +52,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True # Allow all origins for CORS requests (for development purposes)
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000', 
+    'http://localhost:3000', # Allowed origin for CORS requests (e.g., for React frontend)
 ]
 
 ROOT_URLCONF = 'MyBackEndProject.urls'
@@ -83,12 +83,12 @@ WSGI_APPLICATION = 'MyBackEndProject.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'MyTestDatabase',
-        'USER': 'root',
-        'PASSWORD': 'ENTER_YOUR_PASSWORD_HERE',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.mysql',  # Database engine (MySQL for MariaDB)
+        'NAME': 'MyTestDatabase',              # Database name
+        'USER': 'root',                        # Database user
+        'PASSWORD': 'ENTER_YOUR_PASSWORD_HERE',  # Database password (replace with actual password)
+        'HOST': 'localhost',                   # Database host
+        'PORT': '3306',                        # Database port
     }
 }
 
@@ -133,6 +133,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Configures Django for rest framework using JSON
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',

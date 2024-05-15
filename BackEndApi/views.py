@@ -2,7 +2,13 @@ from rest_framework import viewsets
 from .models import Person
 from .serializers import PersonSerializer
 
-# The view of the person model
+# ViewSet for CRUD operations on person data
 class PersonViewSet(viewsets.ModelViewSet):
-    queryset = Person.objects.all() # The dataset we want to query when calling this view
-    serializer_class = PersonSerializer # The serializer this view needs to use
+    """
+    ViewSet for CRUD operations on person data.
+
+    This ViewSet provides endpoints for creating, retrieving,
+    updating, and deleting person records.
+    """
+    queryset = Person.objects.all()  # Queryset of all Person records
+    serializer_class = PersonSerializer  # Specify the serializer to use for serialization

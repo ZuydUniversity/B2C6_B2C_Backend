@@ -1,7 +1,8 @@
+# models.py - Database models for BackEndApi app
 from django.db import models
 
-# Model containing the data which we want to store and use
+# Define the Person model for storing person data
 class Person(models.Model):
-    FirstName = models.CharField(max_length=100) # First name of person with a max character length of 100 characters
-    LastName = models.CharField(max_length=100) # Last name of person with a max character length of 100 characters
-    Age = models.IntegerField() # Age of person of type integer
+    FirstName = models.CharField(max_length=100)  # Field to store the first name (max 100 characters)
+    LastName = models.CharField(max_length=100)   # Field to store the last name (max 100 characters)
+    Age = models.IntegerField()                   # Field to store the age (integer)
