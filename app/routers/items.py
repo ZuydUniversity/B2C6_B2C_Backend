@@ -1,5 +1,4 @@
 from fastapi import APIRouter
-from typing import Union
 
 fake_db = {
     "foo": {"id": "foo", "title": "Foo", "description": "There goes my hero"},
