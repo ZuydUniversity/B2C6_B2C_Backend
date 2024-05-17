@@ -18,7 +18,7 @@ class Person(BaseModel):
 router = APIRouter(prefix="/people", tags=["people"],responses={404: {"description": "Not found"}})
 
 @router.get("/{name}", response_model=List[Person])
-async def read_person(name: str):
+async def read_person(name: str) -> List[Person]:
     # Establish a connection
     connection= mariadb.connect(**conn_params)
 
@@ -35,6 +35,6 @@ async def read_person(name: str):
 
     people = []
     for person in result:
-        people.append({"id": person[0], "name": person[1], "age": person[2]})
+        people.append(Person(id=person[0], name=person[1], age=person[2]))
 
     return people
