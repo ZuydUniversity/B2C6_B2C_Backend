@@ -1,5 +1,5 @@
-from fastapi import APIRouter
-import mariadb
+from fastapi import APIRouter, HTTPException
+import mariadb, re
 from pydantic import BaseModel
 from typing import List
 
@@ -15,26 +15,34 @@ class Person(BaseModel):
     name: str
     age: int
 
-router = APIRouter(prefix="/people", tags=["people"],responses={404: {"description": "Not found"}})
+router = APIRouter(prefix="/people", tags=["people"], responses={404: {"description": "Not found"}, 400: {"detail": "Invalid name. Only letters are allowed."}, 500: {"detail": "Internal Server Error"}})
 
 @router.get("/{name}", response_model=List[Person])
 async def read_person(name: str) -> List[Person]:
+    if not re.match("^[A-Za-z]*$", name):
+        raise HTTPException(status_code=400, detail="Invalid name. Only letters are allowed.")
+
     # Establish a connection
     connection= mariadb.connect(**conn_params)
 
     cursor= connection.cursor()
 
-    query = f"SELECT * FROM people WHERE name LIKE \"{name}%\""
+    # Parameterized query to prevent SQL injection
+    query = "SELECT * FROM people WHERE name LIKE ?"
 
-    cursor.execute(query)
+    try:
+        cursor.execute(query, (f"{name}%",))
 
-    result = cursor.fetchall()
+        result = cursor.fetchall()
 
-    cursor.close()
-    connection.close()
+        cursor.close()
+        connection.close()
 
-    people = []
-    for person in result:
-        people.append(Person(id=person[0], name=person[1], age=person[2]))
+        people = []
+        for person in result:
+            people.append(Person(id=person[0], name=person[1], age=person[2]))
 
-    return people
+        return people
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Internal Server Error") from e
