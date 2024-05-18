@@ -1,5 +1,4 @@
 import os
-import dj_database_url
 from .settings import *
 from .settings import BASE_DIR
 
@@ -20,8 +19,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+#CORS_ALLOWED_ORIGINS = [
+#]
+
 STORAGES = {
-    "default": {
+    "default":{
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
@@ -29,9 +31,14 @@ STORAGES = {
     },
 }
 
-CONNECTION = os.environ['AZURE_MYSQL_CONNECTIONSTRING']
 DATABASES = {
-    'default': dj_database_url.parse(CONNECTION, conn_max_age=600)
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': os.environ['AZURE_MYSQL_NAME'],
+        'HOST': os.environ['AZURE_MYSQL_HOST'],
+        'USER': os.environ['AZURE_MYSQL_USER'], 
+        'PASSWORD': os.environ['AZURE_MYSQL_PASSWORD'],
+    }
 }
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR/'staticfiles'
