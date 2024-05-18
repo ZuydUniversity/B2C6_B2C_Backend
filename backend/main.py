@@ -1,13 +1,12 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
 from database import SessionLocal, engine, Base
 from models import Patient
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:3000",  # React's default port
-]
+origins = ["*"] # allow any connection for now
 
 app.add_middleware(
     CORSMiddleware,
@@ -17,30 +16,34 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Dependency
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
 
 @app.post("/patients/")
-async def create_patient(request: Request):
+async def create_patient(request: Request, db: Session = Depends(get_db)):
     data = await request.json()
     print(f"Received a request: {data}")
     name = data.get('name')
     age = data.get('age')
     gender = data.get('gender')
-    db = SessionLocal()
     patient = Patient(name=name, age=age, gender=gender)
     db.add(patient)
     db.commit()
     db.refresh(patient)
-    db.close()
     return patient
 
 @app.get("/patients/")
-async def read_patients():
-    db = SessionLocal()
+async def read_patients(db: Session = Depends(get_db)):
     patients = db.query(Patient).all()
-    db.close()
     return patients
 
 Base.metadata.create_all(bind=engine)
