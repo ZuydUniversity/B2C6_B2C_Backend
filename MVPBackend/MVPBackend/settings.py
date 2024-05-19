@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import environ
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$y9xj$*fz-$v^1*z%_lq!1zx$g=nyb*2voik317o%vqil2hr34'
+SECRET_KEY = 'django-insecure-$y9xj$fz-$v^1z%_lq!1zx$g=nyb*2voik317o%vqil2hr34'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -45,6 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,7 +52,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ORIGIN_ALLOW_ALL = True # Allow all origins for CORS requests (for development purposes)
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000', # Allowed origin for CORS requests (e.g., for React frontend)
 ]
 
 ROOT_URLCONF = 'MVPBackend.urls'
@@ -78,26 +83,16 @@ WSGI_APPLICATION = 'MVPBackend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-env = environ.Env() #initalize environment variables
-
-
-SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('AZURE_MYSQL_NAME'),
-        'USER': env('AZURE_MYSQL_USER'),
-        'PASSWORD': env('AZURE_MYSQL_PASSWORD'),
-        'HOST': env('AZURE_MYSQL_HOST'),
-        'PORT': env('AZURE_MYSQL_PORT'),
+        'ENGINE': 'django.db.backends.mysql',  # Database engine (MySQL for MariaDB)
+        'NAME': 'MyTestDatabase',              # Database name
+        'USER': 'root',                        # Database user
+        'PASSWORD': 'ENTER_YOUR_PASSWORD_HERE',  # Database password (replace with actual password)
+        'HOST': 'localhost',                   # Database host
+        'PORT': '3306',                        # Database port
     }
 }
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -140,12 +135,12 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Configures Django for rest framework using JSON
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
-    ]
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
 }
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-]
