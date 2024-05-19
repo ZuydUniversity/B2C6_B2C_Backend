@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'MVPBackend.BackendApp',
+    'BackendApp',
     'corsheaders',
 ]
 
@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'MVPBackend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # Database engine (MySQL for MariaDB)
-        'NAME': 'MyTestDatabase',              # Database name
+        'NAME': 'mvp-g4-rachel-db',              # Database name
         'USER': 'root',                        # Database user
-        'PASSWORD': 'ENTER_YOUR_PASSWORD_HERE',  # Database password (replace with actual password)
+        'PASSWORD': 'admin',  # Database password (replace with actual password)
         'HOST': 'localhost',                   # Database host
         'PORT': '3306',                        # Database port
     }
