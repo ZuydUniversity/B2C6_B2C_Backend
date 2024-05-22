@@ -30,15 +30,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Installeer MariaDB client
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libmariadbclient-dev
-
       - name: Installeer Python dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install -r requirements.txt
     
       - name: Laat alle files zien in de workspace
         run: |
