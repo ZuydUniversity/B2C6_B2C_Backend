@@ -2,8 +2,7 @@ name: CI Pipeline
 run-name: ${{ github.repository }} ${{ github.ref_name }} build
 
 on:
-  push:
-    branches: ["*"]
+  workflow_dispatch:
   pull_request:
     branches: ["main"]
 
@@ -14,8 +13,8 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     strategy:
-        matrix:
-          python-version: ["3.9", "3.10"]
+      matrix:
+        python-version: ["3.9", "3.10"]
     steps:
       - name: Haal de code uit de repository op
         uses: actions/checkout@v4
