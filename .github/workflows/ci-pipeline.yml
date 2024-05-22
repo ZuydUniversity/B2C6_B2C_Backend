@@ -1,8 +1,7 @@
 name: CI Pipeline
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: ${{ github.repository }} ${{ github.ref_name }} build
 
 on:
-  workflow_dispatch: # Dit maakt handmatig starten mogelijk
   push:
     branches: ["*"]
   pull_request:
@@ -18,10 +17,6 @@ jobs:
         matrix:
           python-version: ["3.9", "3.10"]
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-
       - name: Haal de code uit de repository op
         uses: actions/checkout@v4
 
@@ -36,13 +31,8 @@ jobs:
           sudo apt-get install -y libmariadb-dev
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-    
-      - name: Laat alle files zien in de workspace
-        run: |
-          ls ${{ github.workspace }}
 
       - name: Test met pytest
         run: |
           python -m pip install pytest
           pytest
-
