@@ -1,13 +1,18 @@
 from fastapi import APIRouter, HTTPException
-import mariadb, re
+import mariadb, re, os
 from pydantic import BaseModel
 from typing import List
 
+os.environ['DB_USER'] = "databaseuser"
+os.environ['DB_PASSWORD'] = "$uperVe1ligWachtWoord"
+os.environ['DB_HOST'] = "20.86.139.126"
+os.environ['DB_NAME'] = "mvp"
+
 conn_params= {
-    "user" : "databaseuser",
-    "password" : "$uperVe1ligWachtWoord",
-    "host" : "20.86.139.126",
-    "database" : "mvp"
+    "user" : os.environ['DB_USER'],
+    "password" : os.environ['DB_PASSWORD'],
+    "host" : os.environ['DB_HOST'],
+    "database" : os.environ['DB_NAME']
 }
 
 class Person(BaseModel):

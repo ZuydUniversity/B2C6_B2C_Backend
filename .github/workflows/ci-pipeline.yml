@@ -1,0 +1,46 @@
+name: CI Pipeline
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
+on:
+  workflow_dispatch: # Dit maakt handmatig starten mogelijk
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    strategy:
+        matrix:
+          python-version: ["3.9"]
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+
+      - name: Haal de code uit de repository op
+        uses: actions/checkout@v4
+
+      - name: Zet Python ${{ matrix.python-version }} op
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Installeer dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    
+      - name: Laat alle files zien in de workspace
+        run: |
+          ls ${{ github.workspace }}
+
+      - name: Test met pytest
+        run: |
+          python -m pip install pytest
+          pytest
+
