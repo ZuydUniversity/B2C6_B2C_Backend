@@ -2,7 +2,7 @@ name: CI Pipeline
 run-name: ${{ github.repository }} ${{ github.ref_name }} build
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
   pull_request:
     branches: ["main"]
 
