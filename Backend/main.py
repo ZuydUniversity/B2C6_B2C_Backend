@@ -1,6 +1,8 @@
 from fastapi import FastAPI
-from .routers import items, people
 from fastapi.middleware.cors import CORSMiddleware
+
+from Routers import HomeRouter, TemplateRouter
+routers = [HomeRouter, TemplateRouter]
 
 app = FastAPI()
 
@@ -12,9 +14,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(people.router)
-app.include_router(items.router)
+for i in routers:
+    app.include_router(i.router)
 
-@app.get("/")
-async def read_root():
-    return {"Hello": "World"}
+app.debug = True

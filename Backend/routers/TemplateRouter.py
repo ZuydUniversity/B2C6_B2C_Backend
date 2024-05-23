@@ -1,11 +1,13 @@
-from fastapi import APIRouter, HTTPException
-import mariadb, re, os
-from pydantic import BaseModel
-from typing import List
+from fastapi import APIRouter, Response
+from Models.TemplateModel import TemplateModel
+
+## Prefix is to make the path, make sure API is always at the beginning of this.
+## The responses are premade for you to use. I recommend to don't toutch when you don't know what you are doing.
+router = APIRouter(prefix="/api/template", tags=["template"],responses={404: {"description": "Not found"}, 200: {"description": "OK"}, 400: {"description": "Bad Request"}, 500: {"description": "Internal Server Error"}})
 
 
-router = APIRouter(prefix="/api", tags=["API"], responses={404: {"description": "Not found"}, 400: {"detail": "Invalid name. Only letters are allowed."}, 500: {"detail": "Internal Server Error"}})
-
-@app.get("/")
-async def read_root():
-    return "Hello World!"
+## Basic get request.
+@router.get("/")
+async def get_template():
+    models = ["Models is working"]
+    return models
