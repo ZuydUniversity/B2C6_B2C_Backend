@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Response
+from fastapi import APIRouter
+
+## Make sure to import your model, otherwise you will get an error that your model is not found.
 from Models.TemplateModel import TemplateModel
 
 ## Prefix is to make the path, make sure API is always at the beginning of this.
@@ -9,5 +11,5 @@ router = APIRouter(prefix="/api/template", tags=["template"],responses={404: {"d
 ## Basic get request.
 @router.get("/")
 async def get_template():
-    models = ["Models is working"]
+    models = {1, "Homoerectus", "USA"}
     return models
