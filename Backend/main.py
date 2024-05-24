@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .Routers import HomeRouter, TemplateRouter
+from .routers import homerouter, templaterouter
 
-routers = [HomeRouter, TemplateRouter]
+routers = [homerouter, templaterouter]
 
 app = FastAPI()
 

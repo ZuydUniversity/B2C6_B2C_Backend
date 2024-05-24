@@ -9,7 +9,8 @@ router = APIRouter(prefix="/api/template", tags=["template"],responses={404: {"d
 
 
 ## Basic get request.
-@router.get("/")
+## Don't forget to change the response_model to your model so the changes reflect properly inside the interactive docs.
+@router.get("/",  response_model=TemplateModel)
 async def get_template():
-    models = {1, "Homoerectus", "USA"}
+    models = TemplateModel(id=1, name="Homoerectus", address="USA")
     return models
