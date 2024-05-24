@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 ## Make sure to import your model, otherwise you will get an error that your model is not found.
-from Models.TemplateModel import TemplateModel
+from ..models.templatemodel import TemplateModel
 
 ## Prefix is to make the path, make sure API is always at the beginning of this.
 ## The responses are premade for you to use. I recommend to don't toutch when you don't know what you are doing.

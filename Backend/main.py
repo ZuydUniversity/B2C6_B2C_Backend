@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from Routers import HomeRouter, TemplateRouter
+from .Routers import HomeRouter, TemplateRouter
+
 routers = [HomeRouter, TemplateRouter]
 
 app = FastAPI()
