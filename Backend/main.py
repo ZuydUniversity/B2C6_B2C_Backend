@@ -1,3 +1,6 @@
+'''
+Entry file of fastapi project
+'''
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
