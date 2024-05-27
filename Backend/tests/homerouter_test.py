@@ -10,6 +10,6 @@ def test_homeurl():
     '''
     Tests if the api home url if available
     '''
-    response = client.get("/api/")  # Makes the request to the API url.
-    assert response.status_code == 200  # Checks if the status code is 200.
-    assert response.json() == {"true": "API is working!"}  # Checks if the response from the url is correct.
+    response = client.get("/api/")
+    assert response.status_code == 200
+    assert response.json() == {"true": "API is working!"}
