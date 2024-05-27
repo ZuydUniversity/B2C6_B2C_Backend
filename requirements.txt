@@ -1,1 +1,6 @@
+aiomysql==0.2.0
+databases==0.9.0
+fastapi==0.111.0
+SQLAlchemy==2.0.30
+uvicorn==0.29.0
 fastapi==0.111.0
