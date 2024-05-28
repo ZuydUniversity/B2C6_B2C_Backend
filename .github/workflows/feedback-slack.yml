@@ -4,6 +4,7 @@ on:
     workflows: ["CI Pipeline"]
     types:
       - completed
+  workflow_dispatch:
 
 jobs:
   NotifyOnFailure:
