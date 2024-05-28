@@ -4,7 +4,7 @@ on:
     workflows: ["CI Pipeline"]
     types:
       - completed
-  commit:
+  push:
     branches: ["53-feedback-pipeline-naar-slack"]
   workflow_dispatch:
 
