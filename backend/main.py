@@ -22,3 +22,4 @@ for i in routers:
     app.include_router(i.router)
 
 app.debug = True
+
