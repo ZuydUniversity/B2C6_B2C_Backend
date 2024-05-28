@@ -16,3 +16,14 @@ class TemplateModel(BaseModel):
     id: int
     name: str
     address: str
+
+class TestModel(BaseModel):
+    '''
+    This is a test model
+
+    attributes:
+    id (int): Id of model
+    name (string): Name of model
+    '''
+    id: int
+    name: str
