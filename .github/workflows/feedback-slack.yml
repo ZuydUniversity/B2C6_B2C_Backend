@@ -1,10 +1,12 @@
 name: Slack Notification on CI Pipeline Failure
-
 on:
   workflow_run:
     workflows: ["CI Pipeline"]
     types:
       - completed
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
