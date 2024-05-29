@@ -34,3 +34,10 @@ jobs:
         run: |
           python -m pip install pytest
           pytest backend/tests/
+  NotifyOnFailure:
+    needs: Build
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+    steps: 
+      - name: notification
+        uses: ./.github/worklows/feedback-slack.yml
