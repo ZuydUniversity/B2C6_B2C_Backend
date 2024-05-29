@@ -5,11 +5,6 @@ jobs:
   NotifyOnFailure:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Debug GitHub context
-        run: echo '${{ toJson(github) }}'
-
       - name: Haal de code uit de repository op
         uses: actions/checkout@v4
 
