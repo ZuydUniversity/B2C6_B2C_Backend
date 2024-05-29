@@ -40,4 +40,4 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: notification
-        uses: .github/workflows/feedback-slack.yml@main
+        uses: workflows/feedback-slack.yml@main
