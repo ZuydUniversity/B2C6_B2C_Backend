@@ -7,6 +7,9 @@ jobs:
     steps:
       - name: Debug GitHub context
         run: echo '${{ toJson(github) }}'
+        
+      - name: Haal de code uit de repository op
+        uses: actions/checkout@v4
 
       - name: Send Slack notification
         uses: slackapi/slack-github-action@v1.26.0
