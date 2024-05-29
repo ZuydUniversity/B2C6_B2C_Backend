@@ -1,4 +1,5 @@
 name: CI Pipeline
+id: CI
 run-name: ${{ github.repository }} ${{ github.ref_name }} build
 
 on:
