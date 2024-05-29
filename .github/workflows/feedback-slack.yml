@@ -17,6 +17,14 @@ jobs:
         uses: slackapi/slack-github-action@v1.26.0
         with:
           channel-id: 'C07624WJDS4' # Update with your Slack channel ID
-          slack-message: "CI Pipeline failed for ${{ github.repository }} ${{ github.ref_name }}\nPull Request: ${{ github.event.workflow_run.head_branch }}"
+          slack-message: |
+            :x: CI Pipeline failed for repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            Workflow: ${{ github.event.workflow_run.name }}
+            Commit: ${{ github.event.workflow_run.head_commit.message }}
+            Author: ${{ github.event.workflow_run.head_commit.author.name }}
+            Pull Request: ${{ github.event.workflow_run.head_branch }}
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        continue-on-error: true
+        
