@@ -11,7 +11,7 @@ on:
 
 jobs:
   NotifyOnCIFailure:
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
       - name: Set CI Failure Message
@@ -28,7 +28,7 @@ jobs:
         continue-on-error: true
 
   NotifyOnMergeFailure:
-    if: ${{ github.event.workflow_run.conclusion == 'cancelled' }}
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
       - name: Set Merge Failure Message
