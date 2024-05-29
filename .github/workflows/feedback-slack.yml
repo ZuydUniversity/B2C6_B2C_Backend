@@ -15,6 +15,14 @@ on:
   workflow_dispatch:
 
 jobs:
+  DebugEventPayload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub Context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
   NotifyOnCIFailure:
     if: ${{ always() }}
     runs-on: ubuntu-latest
