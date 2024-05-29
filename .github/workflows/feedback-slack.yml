@@ -16,7 +16,7 @@ jobs:
       - name: Send Slack notification
         uses: slackapi/slack-github-action@v1.26.0
         with:
-          channel-id: 'C07624WJDS4' # Update with your Slack channel ID
+          channel-id: 'C072GCMNXND' # Update with your Slack channel ID
           slack-message: "CI Pipeline failed for ${{ github.repository }} ${{ github.ref_name }}\nPull Request: ${{ github.event.workflow_run.head_branch }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
