@@ -22,7 +22,13 @@ jobs:
       - name: Set CI Failure Message
         id: message
         run: |
-          echo "::set-output name=msg::CI Pipeline failed for repository: ${{ github.repository }}%0ABranch: ${{ github.ref_name }}%0AWorkflow: ${{ github.event.workflow_run.name }}%0ACommit: ${{ github.event.workflow_run.head_commit.message }}%0AAuthor: ${{ github.event.workflow_run.head_commit.author.name }}%0APull Request: ${{ github.event.workflow_run.head_branch }}%0A[View Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }})"
+          echo "::set-output name=msg::CI Pipeline failed for repository: ${{ github.repository }}%0A\
+          Branch: ${{ github.ref_name }}%0A\
+          Workflow: ${{ github.event.workflow_run.name || 'N/A' }}%0A\
+          Commit: ${{ github.event.workflow_run.head_commit.message || 'N/A' }}%0A\
+          Author: ${{ github.event.workflow_run.head_commit.author.name || 'N/A' }}%0A\
+          Pull Request: ${{ github.event.workflow_run.head_branch || 'N/A' }}%0A\
+          [View Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }})"
       - name: Notify Slack on CI Failure
         uses: slackapi/slack-github-action@v1.26.0
         with:
@@ -39,7 +45,13 @@ jobs:
       - name: Set Merge Failure Message
         id: message
         run: |
-          echo "::set-output name=msg::Merge conflict detected in repository: ${{ github.repository }}%0ABranch: ${{ github.ref_name }}%0AWorkflow: ${{ github.event.workflow_run.name }}%0ACommit: ${{ github.event.workflow_run.head_commit.message }}%0AAuthor: ${{ github.event.workflow_run.head_commit.author.name }}%0APull Request: ${{ github.event.workflow_run.head_branch }}%0A[View Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }})"
+          echo "::set-output name=msg::Merge conflict detected in repository: ${{ github.repository }}%0A\
+          Branch: ${{ github.ref_name }}%0A\
+          Workflow: ${{ github.event.workflow_run.name || 'N/A' }}%0A\
+          Commit: ${{ github.event.workflow_run.head_commit.message || 'N/A' }}%0A\
+          Author: ${{ github.event.workflow_run.head_commit.author.name || 'N/A' }}%0A\
+          Pull Request: ${{ github.event.workflow_run.head_branch || 'N/A' }}%0A\
+          [View Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }})"
       - name: Notify Slack on Merge Failure
         uses: slackapi/slack-github-action@v1.26.0
         with:
