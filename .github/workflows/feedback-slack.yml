@@ -10,7 +10,7 @@ on:
 
 jobs:
   NotifyOnFailure:
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    if: ${{ always() }} #${{ github.event.workflow_run.conclusion == 'failure' }} 
     runs-on: ubuntu-latest
     steps:
       - name: Send Slack notification
