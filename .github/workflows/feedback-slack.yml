@@ -4,6 +4,8 @@ on:
     secrets:
       SLACK_BOT_TOKEN:
         required: true
+      SLACK_CHANNEL_ID:
+        required: true
 jobs:
   SendSlackNotificationOnFailure:
     runs-on: ubuntu-latest
@@ -14,7 +16,7 @@ jobs:
       - name: Send Slack notification
         uses: slackapi/slack-github-action@v1.26.0
         with:
-          channel-id: "C07624WJDS4" # Update with your Slack channel ID
+          channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
           slack-message: |
             :x: CI Pipeline failed for ${{ github.repository }} on branch ${{ github.ref_name }}
             Actor: ${{ github.event.pull_request.user.login }}
