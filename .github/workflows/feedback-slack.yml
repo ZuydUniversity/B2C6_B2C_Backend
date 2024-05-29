@@ -4,7 +4,7 @@ on:
     workflows: ["CI Pipeline"]
     types:
       - completed
-  push:     # This is for testing in own branch
+  push:     # This is for testing in own branch 1
     branches: ["53-feedback-pipeline-naar-slack"]
   pull_request:
     branches:
