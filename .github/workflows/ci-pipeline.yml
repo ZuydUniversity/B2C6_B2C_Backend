@@ -9,8 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  CI:
-    id: ci-job
+  Build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
