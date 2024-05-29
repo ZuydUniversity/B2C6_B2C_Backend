@@ -43,4 +43,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: notification
-        uses: ./.github/workflows/feedback-slack.yml
+        uses: ./.github/workflows/feedback-slack
