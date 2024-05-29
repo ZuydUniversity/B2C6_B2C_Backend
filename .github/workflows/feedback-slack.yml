@@ -1,4 +1,5 @@
-name: Slack Notification on CI Pipeline Failure
+name: Slack Notification on CI Pipeline and Merge Failures
+
 on:
   workflow_run:
     workflows: ["CI Pipeline"]
@@ -9,11 +10,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  NotifyOnFailure:
-    if: ${{ always() }} #${{ github.event.workflow_run.conclusion == 'failure' }} 
+  NotifyOnCIFailure:
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
-      - name: Send Slack notification
+      - name: Notify Slack on CI Failure
         uses: slackapi/slack-github-action@v1.26.0
         with:
           channel-id: 'C07624WJDS4' # Update with your Slack channel ID
@@ -27,4 +28,22 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         continue-on-error: true
-        
+
+  NotifyOnMergeFailure:
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Slack on Merge Failure
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: 'C07624WJDS4' # Update with your Slack channel ID
+          slack-message: |
+            :x: Merge conflict detected in repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            Workflow: ${{ github.event.workflow_run.name }}
+            Commit: ${{ github.event.workflow_run.head_commit.message }}
+            Author: ${{ github.event.workflow_run.head_commit.author.name }}
+            Pull Request: ${{ github.event.workflow_run.head_branch }}
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        continue-on-error: true
