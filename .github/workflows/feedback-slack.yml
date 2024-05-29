@@ -6,7 +6,10 @@ on:
     types:
       - completed
   push:
-    branches: ["53-feedback-pipeline-naar-slack"]
+    branches: 
+      - main
+      - "53-feedback-pipeline-naar-slack"
+
   workflow_dispatch:
 
 jobs:
