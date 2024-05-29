@@ -11,8 +11,9 @@ on:
 
 jobs:
   NotifyOnFailure:
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     runs-on: ubuntu-latest
+    needs: CI
+    if: ${{ needs.CI.outputs.ci-status == 'failure' }}
     steps:
       - name: Debug GitHub context
         run: echo '${{ toJson(github) }}'
