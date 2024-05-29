@@ -1,5 +1,4 @@
 name: CI Pipeline
-id: CI
 run-name: ${{ github.repository }} ${{ github.ref_name }} build
 
 on:
@@ -10,13 +9,12 @@ permissions:
   contents: read
 
 jobs:
-  Build:
+  CI:
+    id: ci-job
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ["3.9", "3.10"]
-    outputs:
-      ci-status: ${{ steps.test.outcome }}
     steps:
       - name: Haal de code uit de repository op
         uses: actions/checkout@v4
