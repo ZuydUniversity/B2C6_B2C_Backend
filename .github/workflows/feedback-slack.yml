@@ -11,39 +11,35 @@ on:
 
 jobs:
   NotifyOnCIFailure:
-    if: ${{ always() }}
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     runs-on: ubuntu-latest
     steps:
+      - name: Set CI Failure Message
+        id: message
+        run: |
+          echo "::set-output name=msg::CI Pipeline failed for repository: ${{ github.repository }}%0ABranch: ${{ github.ref_name }}%0AWorkflow: ${{ github.event.workflow_run.name }}%0ACommit: ${{ github.event.workflow_run.head_commit.message }}%0AAuthor: ${{ github.event.workflow_run.head_commit.author.name }}%0APull Request: ${{ github.event.workflow_run.head_branch }}%0A[View Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }})"
       - name: Notify Slack on CI Failure
         uses: slackapi/slack-github-action@v1.26.0
         with:
           channel-id: 'C07624WJDS4' # Update with your Slack channel ID
-          slack-message: |
-            :x: CI Pipeline failed for repository: ${{ github.repository }}
-            Branch: ${{ github.ref_name }}
-            Workflow: ${{ github.event.workflow_run.name }}
-            Commit: ${{ github.event.workflow_run.head_commit.message }}
-            Author: ${{ github.event.workflow_run.head_commit.author.name }}
-            Pull Request: ${{ github.event.workflow_run.head_branch }}
+          slack-message: ${{ steps.message.outputs.msg }}
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         continue-on-error: true
 
   NotifyOnMergeFailure:
-    if: ${{ always() }}
+    if: ${{ github.event.workflow_run.conclusion == 'cancelled' }}
     runs-on: ubuntu-latest
     steps:
+      - name: Set Merge Failure Message
+        id: message
+        run: |
+          echo "::set-output name=msg::Merge conflict detected in repository: ${{ github.repository }}%0ABranch: ${{ github.ref_name }}%0AWorkflow: ${{ github.event.workflow_run.name }}%0ACommit: ${{ github.event.workflow_run.head_commit.message }}%0AAuthor: ${{ github.event.workflow_run.head_commit.author.name }}%0APull Request: ${{ github.event.workflow_run.head_branch }}%0A[View Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }})"
       - name: Notify Slack on Merge Failure
         uses: slackapi/slack-github-action@v1.26.0
         with:
           channel-id: 'C07624WJDS4' # Update with your Slack channel ID
-          slack-message: |
-            :x: Merge conflict detected in repository: ${{ github.repository }}
-            Branch: ${{ github.ref_name }}
-            Workflow: ${{ github.event.workflow_run.name }}
-            Commit: ${{ github.event.workflow_run.head_commit.message }}
-            Author: ${{ github.event.workflow_run.head_commit.author.name }}
-            Pull Request: ${{ github.event.workflow_run.head_branch }}
+          slack-message: ${{ steps.message.outputs.msg }}
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         continue-on-error: true
