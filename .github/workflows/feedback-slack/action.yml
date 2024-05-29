@@ -5,16 +5,18 @@ jobs:
   NotifyOnFailure:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: Debug GitHub context
         run: echo '${{ toJson(github) }}'
-        
+
       - name: Haal de code uit de repository op
         uses: actions/checkout@v4
 
       - name: Send Slack notification
         uses: slackapi/slack-github-action@v1.26.0
         with:
-          channel-id: 'C07624WJDS4' # Update with your Slack channel ID
+          channel-id: "C07624WJDS4" # Update with your Slack channel ID
           slack-message: |
             :x: CI Pipeline failed for ${{ github.repository }} on branch ${{ github.ref_name }}
             Actor: ${{ github.event.pull_request.user.login }}
