@@ -4,16 +4,11 @@ on:
     workflows: ["CI Pipeline"]
     types:
       - completed
-  push:     # This is for testing in own branch 1
-    branches: ["53-feedback-pipeline-naar-slack"]
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
   NotifyOnFailure:
-    if: ${{ always() }} #${{ github.event.workflow_run.conclusion == 'failure' }}
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     runs-on: ubuntu-latest
     steps:
       - name: Debug GitHub context
@@ -24,8 +19,8 @@ jobs:
         with:
           channel-id: 'C07624WJDS4' # Update with your Slack channel ID
           slack-message: |
-            CI Pipeline failed for ${{ github.repository }} on branch ${{ github.ref_name }}
+            :x: CI Pipeline failed for ${{ github.repository }} on branch ${{ github.ref_name }}
             Actor: ${{ github.event.pull_request.user.login }}
-            Commit: <${{ github.event.pull_request.html_url }}|${{ github.event.pull_request.title }}>
+            Pull-Request: <${{ github.event.pull_request.html_url }}|${{ github.event.pull_request.title }}>
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
