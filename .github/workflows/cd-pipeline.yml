@@ -26,10 +26,11 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/my-backend:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/b2cbackend:latest
           file: ./Dockerfile
           context: .
 
       - name: Deploy to Docker container
         run: |
-          docker run -d --name my-backend-container -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/my-backend:latest
+          docker stop b2cbackend-container || true && docker rm b2cbackend-container || true
+          docker run -d --name b2cbackend-container -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/b2cbackend:latest
