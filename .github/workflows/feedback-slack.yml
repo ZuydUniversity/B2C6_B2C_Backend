@@ -1,8 +1,11 @@
 name: Slack Notification on CI Pipeline Failure
 on:
   workflow_call:
+    secrets:
+      SLACK_BOT_TOKEN:
+        required: true
 jobs:
-  NotifyOnFailure:
+  SendSlackNotificationOnFailure:
     runs-on: ubuntu-latest
     steps:
       - name: Haal de code uit de repository op

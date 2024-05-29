@@ -38,3 +38,5 @@ jobs:
     needs: Build
     if: ${{ failure() }}
     uses: ./.github/workflows/feedback-slack.yml
+    secrets:
+      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
