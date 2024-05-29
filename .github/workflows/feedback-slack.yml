@@ -25,7 +25,7 @@ jobs:
           channel-id: 'C07624WJDS4' # Update with your Slack channel ID
           slack-message: |
             CI Pipeline failed for ${{ github.repository }} on branch ${{ github.ref_name }}
-            Actor: ${{ github.commits.author.name }}
-            Commit: <${{ github.event.head_commit.url }}|${{ github.event.head_commit.message }}>
+            Actor: ${{ github.event.pull_request.user.login }}
+            Commit: <${{ github.event.pull_request.html.href }}|${{ github.event.pull_request.title }}>
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
