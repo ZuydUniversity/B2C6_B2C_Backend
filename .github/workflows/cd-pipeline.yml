@@ -30,7 +30,7 @@ jobs:
           file: ./Dockerfile
           context: .
 
-      - name: Deploy to Docker container
-        run: |
-          docker stop b2cbackend-container || true && docker rm b2cbackend-container || true
-          docker run -d --name b2cbackend-container -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/b2cbackend:latest
+      #- name: Deploy to Docker container
+      #run: |
+      #docker stop b2cbackend-container || true && docker rm b2cbackend-container || true
+      #docker run -d --name b2cbackend-container -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/b2cbackend:latest
