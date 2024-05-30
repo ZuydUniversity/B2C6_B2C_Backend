@@ -34,3 +34,10 @@ jobs:
         run: |
           python -m pip install pytest
           pytest backend/tests/
+  NotifyOnFailure:
+    needs: Build
+    if: ${{ failure() }}
+    uses: ./.github/workflows/feedback-slack.yml
+    secrets:
+      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
