@@ -16,13 +16,13 @@ jobs:
       - name: Log in to DockerHub
         uses: docker/login-action@v1
         with:
-          username: ${{ secrets.ichishihoness }}
-          password: ${{ secrets.pingpangpongpung9 }}
+          username: ichishihoness
+          password: pingpangpongpung9
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.ichishihoness }}/my-backend:latest
+          tags: ichishihoness /my-backend:latest
           file: ./Dockerfile
           context: .
