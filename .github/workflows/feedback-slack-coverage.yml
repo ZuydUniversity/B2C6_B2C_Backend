@@ -1,28 +1,21 @@
-name: Slack Notification on CI Pipeline Failure
+name: Slack Notification on Coverage Pipeline Failure
 on:
-  workflow_call:
-    secrets:
-      SLACK_BOT_TOKEN:
-        required: true
-      SLACK_CHANNEL_ID:
-        required: true
+  workflow_run:
+    workflows: ["Test coverage"]
+    types:
+      - completed
 jobs:
   SendSlackNotificationOnFailure:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Haal de code uit de repository op
-        uses: actions/checkout@v4
-
-      - name: github debug context
-        run: echo "${{ toJson(github) }}"
-
       - name: Send Slack notification
         uses: slackapi/slack-github-action@v1.26.0
         with:
           channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
           slack-message: |
-            :x: CI Pipeline failed for ${{ github.repository }} on branch ${{ github.ref_name }}
-            Actor: ${{ github.event.comitter }}
-            Pull-Request: <${{ github.event.commits }}|${{ github.event.commits.message }}>
+            :x: CI Pipeline failed for ${{ github.event.workflow_run.repository.full_name }} on branch ${{ github.event.workflow_run.head_branch }}
+            Actor: ${{ github.event.workflow_run.head_commit.author.name }}
+            Commit: <${{ github.event.workflow_run.head_commit.url }}|${{ github.event.workflow_run.head_commit.message }}>
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
