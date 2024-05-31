@@ -22,5 +22,7 @@ jobs:
           channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
           slack-message: |
             :x: Coverage Pipeline failed for ${{ github.repository }} on branch ${{ github.ref_name }}
+            Commit: ${{ github.event.head_commit.message }}
+            URL: ${{ github.event.head_commit.url }}
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
