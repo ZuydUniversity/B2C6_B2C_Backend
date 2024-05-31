@@ -30,6 +30,3 @@ jobs:
           file: ./Dockerfile
           context: .
 
-      - name: Deploy to Docker container
-        run: |
-          docker run -d --name my-backend-container -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/my-backend:latest
