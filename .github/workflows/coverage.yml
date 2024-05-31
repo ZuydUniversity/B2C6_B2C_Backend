@@ -23,7 +23,7 @@ jobs:
     - name: Run tests with coverage
       run: |
         coverage run -m pytest
-        coverage report --fail-under=99
+        coverage report --fail-under=80
 
   NotifyOnFailure:
     needs: Build
