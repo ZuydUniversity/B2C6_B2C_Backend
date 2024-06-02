@@ -37,7 +37,7 @@ jobs:
   NotifyOnFailure:
     needs: Build
     if: ${{ failure() }}
-    uses: ./.github/workflows/feedback-slack.yml
+    uses: ./.github/workflows/feedback-slack-ci.yml
     secrets:
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}

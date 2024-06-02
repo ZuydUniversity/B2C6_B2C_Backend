@@ -23,4 +23,12 @@ jobs:
     - name: Run tests with coverage
       run: |
         coverage run -m pytest
-        coverage report
+        coverage report --fail-under=80
+
+  NotifyOnFailure:
+    needs: Build
+    if: ${{ failure() }}
+    uses: ./.github/workflows/feedback-slack-coverage.yml
+    secrets:
+      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
