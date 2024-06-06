@@ -2,7 +2,7 @@
 Contains router for template api
 '''
 from fastapi import APIRouter
-from ..Models.templatemodel import TemplateModel
+from ..models.templatemodel import TemplateModel
 
 router = APIRouter(prefix="/api/template",
                    tags=["template"],
