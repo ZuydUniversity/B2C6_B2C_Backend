@@ -1,6 +1,7 @@
 '''
 Contains models that store data
 '''
+from typing import List
 from pydantic import BaseModel
 from . import specialistmodel, notemodel, appointmentmodel, medicationmodel
 
@@ -17,7 +18,7 @@ class Patient(BaseModel):
     LastNameContact: str
     EMailContact: str
     PhoneNumberContact: str
-    Specialists: list[specialistmodel.Specialist]
-    Notes: list[notemodel.Note]
-    Medications: list[medicationmodel.Medication]
-    Appointments: list[appointmentmodel.Appointment]
+    Specialists: List[specialistmodel.Specialist]
+    Notes: List[notemodel.Note]
+    Medications: List[medicationmodel.Medication]
+    Appointments: List[appointmentmodel.Appointment]
