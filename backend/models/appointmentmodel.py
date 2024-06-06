@@ -2,6 +2,8 @@
 Contains models that store data
 '''
 from pydantic import BaseModel
+from ..Models import sessionmodel, patientmodel, specialistmodel
+import datetime
 
 class Appointment(BaseModel):
     '''
@@ -13,6 +15,10 @@ class Appointment(BaseModel):
     address (string): Address of model
 
     '''
-    id: int
-    name: str
-    address: str
+    Id: int
+    Name: str
+    StartDate: datetime.datetime
+    EndDate: datetime.datetime
+    Session: sessionmodel.Session
+    Patient: patientmodel.Patient
+    Specialist: specialistmodel.Specialist
