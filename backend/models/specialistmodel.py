@@ -1,9 +1,9 @@
 '''
 Contains models that store data
 '''
-from pydantic import BaseModel
+from ..Models import usermodel, patientmodel, notemodel, sessionmodel, appointmentmodel
 
-class Specialist(BaseModel):
+class Specialist(usermodel.User):
     '''
     Template model, this is just a basic model
     
@@ -13,6 +13,7 @@ class Specialist(BaseModel):
     address (string): Address of model
 
     '''
-    id: int
-    name: str
-    address: str
+    Patients: list[patientmodel.Patient]
+    Notes: list[notemodel.Note]
+    Sessions: list[sessionmodel.Session]
+    Appointments: list[appointmentmodel.Appointment]

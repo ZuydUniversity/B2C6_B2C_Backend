@@ -1,9 +1,9 @@
 '''
 Contains models that store data
 '''
+import datetime
 from pydantic import BaseModel
 from ..Models import patientmodel, specialistmodel, appointmentmodel, notemodel
-import datetime
 
 class Session(BaseModel):
     '''
