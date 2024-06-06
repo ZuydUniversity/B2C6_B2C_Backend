@@ -1,6 +1,7 @@
 '''
 Contains models that store data
 '''
+from typing import List
 from pydantic import BaseModel
 
 class User(BaseModel):
@@ -10,4 +11,4 @@ class User(BaseModel):
     LastName: str
     Email: set
     PhoneNumber: str
-    Settings: list[bool]
+    Settings: List[bool]
