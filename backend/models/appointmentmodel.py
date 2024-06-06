@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from ..Models import sessionmodel, patientmodel, specialistmodel
 
 class Appointment(BaseModel):
+    ''' Class for the appointment.'''
     Id: int
     Name: str
     StartDate: datetime.datetime

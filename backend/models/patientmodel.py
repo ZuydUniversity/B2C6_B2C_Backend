@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from ..Models import specialistmodel, notemodel, appointmentmodel, medicationmodel
 
 class Patient(BaseModel):
+    '''Class for the patients.'''
     Id: int
     FirstName: str
     LastName: str
