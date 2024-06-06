@@ -4,15 +4,6 @@ Contains models that store data
 from pydantic import BaseModel
 
 class Medication(BaseModel):
-    '''
-    Template model, this is just a basic model
-    
-    attributes:
-    id (int): Id of model
-    name (string): Name of model
-    address (string): Address of model
-
-    '''
     Id: int
     Name: str
     Dossage: str
