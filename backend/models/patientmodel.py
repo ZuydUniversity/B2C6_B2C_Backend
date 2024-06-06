@@ -20,6 +20,7 @@ class Patient(BaseModel):
     EMail: str
     Age: int
     PhoneNumber: str
+    Gender: bool
     FirstNameContact: str
     LastNameContact: str
     EMailContact: str
