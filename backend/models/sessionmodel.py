@@ -3,7 +3,7 @@ Contains models that store data
 '''
 import datetime
 from pydantic import BaseModel
-from ..Models import patientmodel, specialistmodel, appointmentmodel, notemodel
+from Backend.Models import patientmodel, specialistmodel, appointmentmodel, notemodel
 
 class Session(BaseModel):
     '''Class for the sessions.'''

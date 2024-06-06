@@ -2,7 +2,7 @@
 Contains models that store data
 '''
 from pydantic import BaseModel
-from ..Models import specialistmodel, notemodel, appointmentmodel, medicationmodel
+from Backend.Models import specialistmodel, notemodel, appointmentmodel, medicationmodel
 
 class Patient(BaseModel):
     '''Class for the patients.'''
