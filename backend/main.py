@@ -4,7 +4,7 @@ Entry file of fastapi project
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from Backend.routers import homerouter, templaterouter
+from .routers import homerouter, templaterouter
 
 routers = [homerouter, templaterouter]
 
