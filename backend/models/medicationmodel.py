@@ -13,6 +13,6 @@ class Medication(BaseModel):
     address (string): Address of model
 
     '''
-    id: int
-    name: str
-    address: str
+    Id: int
+    Name: str
+    Dossage: str
