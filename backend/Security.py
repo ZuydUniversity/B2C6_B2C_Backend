@@ -1,13 +1,16 @@
 from passlib.context import CryptContext
 from jose import jwt
 from datetime import datetime, timedelta, timezone
+from fastapi.security import OAuth2PasswordBearer
 import secrets
+from pydantic import BaseModel
 
 SECRET_KEY = secrets.token_hex(32)
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/user/login")
 
 fake_users_db = {
     "johndoe@example.com": {
@@ -60,3 +63,14 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
     return encoded_jwt
+
+class UserCredentials(BaseModel):
+    '''
+    User credentials for login
+
+    attributes:
+    email (String): email of user
+    password (String): Password of user
+    '''
+    email: str
+    password: str
