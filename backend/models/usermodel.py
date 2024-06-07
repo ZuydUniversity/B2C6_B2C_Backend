@@ -9,6 +9,7 @@ class User(BaseModel):
     Id: int
     FirstName: str
     LastName: str
-    Email: set
+    Email: str
+    Password: str
     PhoneNumber: str
     Settings: List[bool]
