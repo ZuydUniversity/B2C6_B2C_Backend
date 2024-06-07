@@ -1,10 +1,11 @@
+# pragma: no cover
 '''
 Contains models that store data
 '''
-from pydantic import BaseModel
 from typing import List
+from pydantic import BaseModel
 
-class Medication(BaseModel): # pragma: no cover
+class Medication(BaseModel):
     '''
     Class for the medication.
     

@@ -1,10 +1,11 @@
+# pragma: no cover
 '''
 Contains models that store data
 '''
 from typing import List
 from . import usermodel
 
-class Specialist(usermodel.User): # pragma: no cover
+class Specialist(usermodel.User):
     '''
     Class for the specialists. This is an Inherits from Usermodel
     

@@ -1,9 +1,10 @@
+# pragma: no cover
 '''
 Contains models that store data
 '''
 from pydantic import BaseModel
 
-class Note(BaseModel): # pragma: no cover
+class Note(BaseModel):
     '''
     Class for the notes.
     

@@ -1,10 +1,11 @@
+# pragma: no cover
 '''
 Contains models that store data
 '''
 import datetime
 from pydantic import BaseModel
 
-class Appointment(BaseModel): # pragma: no cover
+class Appointment(BaseModel):
     '''
     Class for the appointment.
     

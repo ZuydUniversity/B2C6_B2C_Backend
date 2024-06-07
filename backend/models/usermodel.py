@@ -1,10 +1,11 @@
+# pragma: no cover
 '''
 Contains models that store data
 '''
 from typing import List
 from pydantic import BaseModel
 
-class User(BaseModel): # pragma: no cover
+class User(BaseModel):
     '''
     Class for the User.
     

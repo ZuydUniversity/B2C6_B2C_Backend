@@ -1,3 +1,4 @@
+# pragma: no cover
 '''
 Contains models that store data
 '''
@@ -5,7 +6,7 @@ import datetime
 from pydantic import BaseModel
 from . import patientmodel, notemodel
 
-class Session(BaseModel): # pragma: no cover
+class Session(BaseModel):
     '''
     Class for the sessions.
     
