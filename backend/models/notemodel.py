@@ -1,4 +1,3 @@
-# pragma: no cover
 '''
 Contains models that store data
 '''

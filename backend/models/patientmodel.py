@@ -1,4 +1,3 @@
-# pragma: no cover
 '''
 Contains models that store data
 '''
@@ -6,7 +5,7 @@ from typing import List
 from pydantic import BaseModel
 from . import specialistmodel, notemodel, appointmentmodel, medicationmodel
 
-class Patient(BaseModel): # pragma: no cover
+class Patient(BaseModel):
     '''
     Class for the patients.
 
