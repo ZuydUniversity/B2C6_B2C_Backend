@@ -4,8 +4,7 @@ The router for the user which allows the user to register, login, logout and for
 from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, status
 from jose import jwt, JWTError
-from ..models.usermodel import User
-from ..Security import authenticate_user, create_access_token, oauth2_scheme, SECRET_KEY, ALGORITHM, fake_users_db, UserCredentials
+from ..security import authenticate_user, create_access_token, oauth2_scheme, SECRET_KEY, ALGORITHM, fake_users_db, UserCredentials
 
 router = APIRouter(prefix="/api", tags=["API"],
                    responses={404: {"description": "Not found"},

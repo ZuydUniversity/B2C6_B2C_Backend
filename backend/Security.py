@@ -1,9 +1,12 @@
-from passlib.context import CryptContext
-from jose import jwt
-from datetime import datetime, timedelta, timezone
-from fastapi.security import OAuth2PasswordBearer
+'''
+Contains functions and variables related to logging in and security
+'''
 import secrets
+from datetime import datetime, timedelta, timezone
+from jose import jwt
 from pydantic import BaseModel
+from passlib.context import CryptContext
+from fastapi.security import OAuth2PasswordBearer
 
 SECRET_KEY = secrets.token_hex(32)
 ALGORITHM = "HS256"
@@ -12,6 +15,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/user/login")
 
+# TEMP TEST DATABASE
 fake_users_db = {
     "johndoe@example.com": {
         "email": "johndoe@example.com",
@@ -68,9 +72,9 @@ class UserCredentials(BaseModel):
     '''
     User credentials for login
 
-    attributes:
-    email (String): email of user
-    password (String): Password of user
+    Attributes:
+        email (String): email of user
+        password (String): Password of user
     '''
     email: str
     password: str
