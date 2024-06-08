@@ -2,7 +2,7 @@
 The router for the user which allows the user to register, login, logout and forgotpassword functionalities
 '''
 from typing import Annotated
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import Depends, HTTPException, status
 from jose import jwt, JWTError
 from ..security import authenticate_user, create_access_token, oauth2_scheme, SECRET_KEY, ALGORITHM, fake_users_db, UserCredentials
 from ..common import create_router
@@ -44,8 +44,8 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
         if email is None:
             raise credentials_exception
     
-    except JWTError:
-        raise credentials_exception
+    except JWTError as exc:
+        raise credentials_exception from exc
 
     user = fake_users_db.get(email)
     if user is None:

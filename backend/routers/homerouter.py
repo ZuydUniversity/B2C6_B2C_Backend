@@ -1,7 +1,6 @@
 '''
 Countains home router for api
 '''
-from fastapi import APIRouter
 from ..common import create_router
 
 router = create_router()
