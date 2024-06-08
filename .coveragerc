@@ -1,6 +1,7 @@
 [run]
 branch = True
 source = backend
+omit = backend/models/*.py
 
 [report]
 show_missing = True

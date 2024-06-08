@@ -26,7 +26,7 @@ jobs:
         coverage report --fail-under=80
 
   NotifyOnFailure:
-    needs: Build
+    needs: build
     if: ${{ failure() }}
     uses: ./.github/workflows/feedback-slack-coverage.yml
     secrets:

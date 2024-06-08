@@ -1,13 +1,9 @@
 '''
 Countains home router for api
 '''
-from fastapi import APIRouter
+from ..common import create_router
 
-router = APIRouter(prefix="/api", tags=["API"],
-                   responses={404: {"description": "Not found"},
-                   200: {"description": "OK"},
-                   400: {"description": "Bad Request"},
-                   500: {"description": "Internal Server Error"}})
+router = create_router()
 
 @router.get("/")
 async def homeurl():
