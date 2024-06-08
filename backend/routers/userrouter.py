@@ -5,12 +5,9 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, status
 from jose import jwt, JWTError
 from ..security import authenticate_user, create_access_token, oauth2_scheme, SECRET_KEY, ALGORITHM, fake_users_db, UserCredentials
+from ..common import create_router
 
-router = APIRouter(prefix="/api", tags=["API"],
-                   responses={404: {"description": "Not found"},
-                   200: {"description": "OK"},
-                   400: {"description": "Bad Request"},
-                   500: {"description": "Internal Server Error"}})
+router = create_router()
 
 @router.post("/user/login")
 async def login_access_token(credentials: UserCredentials):
