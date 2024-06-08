@@ -2,7 +2,6 @@
 The router for the user which allows the user to register, 
 login, logout and forgotpassword functionalities
 '''
-from typing import Annotated
 from fastapi import Depends, HTTPException, status
 from jose import jwt, JWTError
 from ..security import authenticate_user, create_access_token, \
@@ -28,7 +27,7 @@ async def login_access_token(credentials: UserCredentials):
     return {"access_token": access_token, "token_type": "bearer"}
 
 @router.post("/user")
-async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
+async def get_current_user(token: str = Depends(oauth2_scheme)):
     '''
     Returns current logged in user
     '''
