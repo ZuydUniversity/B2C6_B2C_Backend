@@ -31,7 +31,10 @@ def test_login_access_token_invalid_credentials():
     '''
     Test if you won't loggin when wrong credentials are entered
     '''
-    response = client.post("api/user/login", json={"email": "wrong@example.com", "password": "wrongpassword"})
+    response = client.post("api/user/login", json={
+        "email": "wrong@example.com",
+        "password": "wrongpassword"
+    })
     assert response.status_code == 401
     assert response.json() == {"detail": "Incorrect email or password"}
 
