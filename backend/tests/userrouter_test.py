@@ -33,7 +33,7 @@ def test_login_access_token_invalid_credentials():
     '''
     response = client.post("api/user/login", json={"email": "wrong@example.com", "password": "wrongpassword"})
     assert response.status_code == 401
-    assert response.json() == {"detail", "Incorrect email or password"}
+    assert response.json() == {"detail": "Incorrect email or password"}
 
 def test_get_current_user():
     '''
