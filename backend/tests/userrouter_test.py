@@ -15,7 +15,7 @@ test_user = {
 
 fake_users_db[test_user["email"]] = {
     "email": test_user["email"],
-    "password": pwd_context.hash(test_user["password"])
+    "hashed_password": pwd_context.hash(test_user["password"])
 }
 
 def test_login_access_token():
