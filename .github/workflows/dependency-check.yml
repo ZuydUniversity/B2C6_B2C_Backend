@@ -32,7 +32,7 @@ jobs:
         wget https://github.com/jeremylong/DependencyCheck/releases/download/v9.2.0/dependency-check-9.2.0-release.zip
         unzip dependency-check-9.2.0-release.zip
         mkdir -p dependency-reports
-        ./dependency-check/bin/dependency-check.sh --project "FastAPI Backend" --scan . --out ./dependency-reports/dependency-check-report
+        ./dependency-check/bin/dependency-check.sh --data ~/.owasp/dependency-check/data --project "FastAPI Backend" --scan . --out ./dependency-reports/dependency-check-report
 
     - name: Upload dependency-check report
       uses: actions/upload-artifact@v4
