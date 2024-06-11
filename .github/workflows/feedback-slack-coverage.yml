@@ -26,4 +26,5 @@ jobs:
             Committer: ${{ github.event.head_commit.committer.name }}
             URL: ${{ github.event.head_commit.url }}
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          # SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_BOT_TOKEN: 897dd843fd3eba2b94636f7e9666f864
