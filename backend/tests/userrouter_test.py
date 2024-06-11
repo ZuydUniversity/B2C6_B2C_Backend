@@ -6,7 +6,7 @@ from backend.main import app
 from backend.security import pwd_context, fake_users_db, create_access_token
 
 client = TestClient(app)
-key = AKIAIOSFODNN7EXAMPLE
+key = AKIAIOSFODNN7
 
 # Test data
 test_user = {
