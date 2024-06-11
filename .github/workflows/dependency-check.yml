@@ -37,5 +37,5 @@ jobs:
     - name: Upload dependency-check report
       uses: actions/upload-artifact@v4
       with:
-        name: dependency-check-report
+        name: dependency-check-report-${{ matrix.python-version }}
         path: ./dependency-reports/dependency-check-report
