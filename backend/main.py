@@ -23,4 +23,4 @@ for i in routers:
 
 app.debug = True
 
-key = "a0b819bb-8074-4b7e-bbec-ee4b64859ee4" # test key for the secret
+KEY = "a0b819bb-8074-4b7e-bbec-ee4b64859ee4"  #test key for the secret
