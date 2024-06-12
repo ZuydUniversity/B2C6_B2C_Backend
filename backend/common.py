@@ -6,6 +6,7 @@ from fastapi import APIRouter
 def create_router():
     '''
     Creates a api router.
+    12345678-abcd-1234-abcd-12345678abcd
 
     Return:
         returns new APIRouter.
