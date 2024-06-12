@@ -23,7 +23,12 @@ jobs:
     - name: Run tests with coverage
       run: |
         coverage run -m pytest
+        coverage xml
         coverage report --fail-under=80
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        file: ./coverage.xml 
 
   NotifyOnFailure:
     needs: build
