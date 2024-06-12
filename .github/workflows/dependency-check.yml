@@ -1,0 +1,44 @@
+name: Dependency check
+
+# every sunday at 12 GMT+2
+on:
+  schedule:
+    - cron: '0 10 * * 0'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 720
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Cache NVD data
+      uses: actions/cache@v3
+      with:
+        path: ~/.owasp/dependency-check/data
+        key: ${{ runner.os }}-nvd-data
+
+    - name: Run OWASP Dependency-Check
+      run: |
+        wget https://github.com/jeremylong/DependencyCheck/releases/download/v9.2.0/dependency-check-9.2.0-release.zip
+        unzip dependency-check-9.2.0-release.zip
+        mkdir -p dependency-reports
+        ./dependency-check/bin/dependency-check.sh --data ~/.owasp/dependency-check/data --project "FastAPI Backend" --scan . --out ./dependency-reports/dependency-check-report
+
+    - name: Upload dependency-check report
+      uses: actions/upload-artifact@v4
+      with:
+        name: dependency-check-report-${{ matrix.python-version }}
+        path: ./dependency-reports/dependency-check-report
