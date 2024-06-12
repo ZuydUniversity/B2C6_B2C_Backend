@@ -1,6 +1,9 @@
 name: Dependency check
 
-on: push
+# every sunday at 12 GMT+2
+on:
+  schedule:
+    - cron: '0 10 * * 0'
 
 jobs:
   build:
