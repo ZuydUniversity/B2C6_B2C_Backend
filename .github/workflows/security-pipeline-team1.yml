@@ -1,0 +1,29 @@
+name: OWASP ZAP Scan
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Start OWASP ZAP
+        run: docker run -u zap -p 8080:8080 -d owasp/zap2docker-stable zap.sh -daemon -port 8080 -host 0.0.0.0 -config api.disablekey=true
+
+      - name: Wait for ZAP to start
+        run: sleep 30
+
+      - name: Run ZAP baseline scan
+        run: docker exec $(docker ps -q -f ancestor=owasp/zap2docker-stable) zap-baseline.py -t http://developmentvm1-klasb2c.westeurope.cloudapp.azure.com -r zap_report.html
+
+      - name: Upload ZAP Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: zap-report
+          path: zap_report.html
