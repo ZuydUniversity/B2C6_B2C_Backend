@@ -15,9 +15,12 @@ test_note = {
     "specialistId": 1,
     "debug": True
 }
-async def create_note():
+async def create_note_test():
     '''
-    Test if logging in works 
+    Test if the creating of the notes works.
+    It doesn't write to the database however, 
+    It takes the variables out of the JSON then creates an class for it. 
+    Then it returns that class as an JSON.
     '''
     response = client.post("/api/notes", json=test_note)
     assert response.status_code == 200
