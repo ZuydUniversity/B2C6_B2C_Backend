@@ -18,7 +18,10 @@ async def create_note(request: Request):
     session_id = data.get('sessionId')
     patient_id = data.get('patientId')
     specialist_id = data.get('specialistId')
-    debug = data.get('debug')
+    if data.get('debug') is None or data.get('debug') is False:
+        debug = False
+    else:
+        debug = True
 
     note = Note(Name=name, SessionId=session_id, PatientId=patient_id, SpecialistId=specialist_id)
     if debug is not True:
