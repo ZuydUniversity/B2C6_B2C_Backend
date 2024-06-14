@@ -6,7 +6,7 @@ from ..common import create_router
 
 router = create_router()
 
-@router.post("/note/create")
+@router.post("/notes/create")
 async def create_note():
     '''
     Creates a note
