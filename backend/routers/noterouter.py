@@ -21,3 +21,18 @@ async def create_note(request: Request):
 
     Note(Name=name, SessionId=session_id, PatientId=patient_id, SpecialistId=specialist_id)
     # Here the rest of the code is placed to save to the database.
+
+@router.patch("/notes/{note_id}")
+async def patch_note(request: Request, note_id: int):
+    '''
+    Patches a note
+    '''
+    data = await request.json()
+    ## Get right model from database with the note_id
+    print(note_id) # This is temporary to satisfy PyLint
+    note = Note()
+    note.Name = data.get('name')
+    note.SessionId = data.get('sessionId')
+    note.PatientId = data.get('patientId')
+    note.SpecialistId = data.get('specialistId')
+    # Here the rest of the code is placed to save to the database.
