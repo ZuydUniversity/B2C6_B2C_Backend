@@ -18,9 +18,13 @@ async def create_note(request: Request):
     session_id = data.get('sessionId')
     patient_id = data.get('patientId')
     specialist_id = data.get('specialistId')
+    debug = data.get('debug')
 
-    Note(Name=name, SessionId=session_id, PatientId=patient_id, SpecialistId=specialist_id)
-    # Here the rest of the code is placed to save to the database.
+    note = Note(Name=name, SessionId=session_id, PatientId=patient_id, SpecialistId=specialist_id)
+    if debug is not True:
+        # Here the rest of the code is placed to save to the database.
+        pass
+    return note
 
 @router.patch("/notes/{note_id}")
 async def patch_note(request: Request, note_id: int):
