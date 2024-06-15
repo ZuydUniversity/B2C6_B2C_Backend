@@ -12,14 +12,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
       - name: Log in to DockerHub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build application Docker image
+        run: |
+          docker build -t ZAP-image:latest .
+
+      - name: Run application container
+        run: |
+          docker run -d --name ZAP-image -p 8081:8080 ZAP-image:latest
 
       - name: Pull OWASP ZAP image
         run: docker pull ghcr.io/zaproxy/zaproxy:stable
@@ -31,10 +36,13 @@ jobs:
         run: sleep 30
 
       - name: Run ZAP baseline scan
-        run: docker exec zap zap-baseline.py -t http://developmentvm1-klasb2c.westeurope.cloudapp.azure.com -r zap_report.html
+        run: docker exec zap zap-baseline.py -t http://localhost:8081 -r /zap/wrk/zap_report.html
+
+      - name: List files in /zap/wrk
+        run: docker exec zap ls -l /zap/wrk
 
       - name: Upload ZAP Report
         uses: actions/upload-artifact@v2
         with:
           name: zap-report
-          path: zap_report.html
+          path: /zap/wrk/zap_report.html
