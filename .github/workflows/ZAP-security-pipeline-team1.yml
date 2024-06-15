@@ -1,11 +1,12 @@
-name: OWASP ZAP Scan
+name: ZAP Scan Workflow
+
 on:
   push:
     branches:
       - main
 
 jobs:
-  zap_scan:
+  zap_scan_job:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,31 +19,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build application Docker image
-        run: |
-          docker build -t zap-image:latest .
-
-      - name: Run application container
-        run: |
-          docker run -d --name zap-image -p 8081:8080 zap-image:latest
-
-      - name: Pull OWASP ZAP image
-        run: docker pull ghcr.io/zaproxy/zaproxy:stable
-
-      - name: Start OWASP ZAP
-        run: docker run -u zap -p 8080:8080 -d --name zap ghcr.io/zaproxy/zaproxy:stable zap.sh -daemon -port 8080 -host 0.0.0.0 -config api.disablekey=true
-
-      - name: Wait for ZAP to start
-        run: sleep 30
-
-      - name: Run ZAP baseline scan
-        run: docker exec zap zap-baseline.py -t http://developmentvm1-klasb2c.westeurope.cloudapp.azure.com/ -r /zap/wrk/zap_report.html
-
-      - name: List files in /zap/wrk
-        run: docker exec zap ls -l /zap/wrk
-
-      - name: Upload ZAP Report
-        uses: actions/upload-artifact@v2
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.12.0
         with:
-          name: zap-report
-          path: /zap/wrk/zap_report.html
+          target: "http://developmentvm1-klasb2c.westeurope.cloudapp.azure.com"
