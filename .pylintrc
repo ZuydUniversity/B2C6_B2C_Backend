@@ -1,2 +1,5 @@
 [pylint]
 ignored-modules=fastapi
+
+[MESSAGES CONTROL]
+disable=C0412
