@@ -5,8 +5,9 @@ login, logout and forgotpassword functionalities
 from typing import Optional
 from fastapi import Depends, Response, HTTPException, status, Cookie
 from jose import jwt, JWTError
+from fastapi.security import OAuth2PasswordRequestForm
 from ..security import authenticate_user, create_access_token, \
-    oauth2_scheme, SECRET_KEY, ALGORITHM, fake_users_db, OAuth2PasswordRequestForm
+    oauth2_scheme, SECRET_KEY, ALGORITHM, fake_users_db
 from ..common import create_router
 
 router = create_router()

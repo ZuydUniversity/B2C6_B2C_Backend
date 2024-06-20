@@ -5,7 +5,7 @@ import secrets
 from datetime import datetime, timedelta, timezone
 from jose import jwt
 from passlib.context import CryptContext
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.security import OAuth2PasswordBearer
 
 SECRET_KEY = secrets.token_hex(32)
 ALGORITHM = "HS256"
