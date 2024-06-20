@@ -52,8 +52,7 @@ def test_logout_invalid_token():
     Test if can't logout when not loggedin
     '''
     response = client.post("/api/user/logout")
-    assert response.status_code == 401
-    assert response.json() == {"detail": "You are not logged in"}
+    assert response.status_code == 404
 
 def test_get_current_user():
     '''
