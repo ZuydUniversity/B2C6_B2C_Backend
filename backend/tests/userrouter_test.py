@@ -14,7 +14,7 @@ test_user = {
 }
 
 fake_users_db[test_user["email"]] = {
-    "email": test_user["email"],
+    "email": test_user["username"],
     "hashed_password": pwd_context.hash(test_user["password"])
 }
 
@@ -33,7 +33,7 @@ def test_login_incorrect_credentials():
     Test if you won't loggin when wrong credentials are entered
     '''
     response = client.post("api/user/login", data={
-        "email": "wrong@example.com",
+        "username": "wrong@example.com",
         "password": "wrongpassword"
     })
 
