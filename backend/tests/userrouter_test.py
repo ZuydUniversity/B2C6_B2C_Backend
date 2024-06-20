@@ -38,6 +38,23 @@ def test_login_access_token_invalid_credentials():
     assert response.status_code == 401
     assert response.json() == {"detail": "Incorrect email or password"}
 
+def test_logout():
+    '''
+    Test if you logout when logged in
+    '''
+    client.post("/api/user/login", json=test_user)
+    response = client.post("/api/user/logout")
+    assert response.status_code == 200
+    assert response.json() == {"message": "Logged out"}
+
+def test_logout_invalid_token():
+    '''
+    Test if can't logout when not loggedin
+    '''
+    response = client.post("/api/user/logout")
+    assert response.status_code == 401
+    assert response.json() == {"detail": "You are not logged in"}
+
 def test_get_current_user():
     '''
     Test if can get current user when logged in

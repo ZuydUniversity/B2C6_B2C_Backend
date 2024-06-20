@@ -2,20 +2,21 @@
 The router for the user which allows the user to register, 
 login, logout and forgotpassword functionalities
 '''
-from fastapi import Depends, HTTPException, status
+from typing import Optional
+from fastapi import Depends, Response, HTTPException, status, Cookie
 from jose import jwt, JWTError
 from ..security import authenticate_user, create_access_token, \
-    oauth2_scheme, SECRET_KEY, ALGORITHM, fake_users_db, UserCredentials
+    oauth2_scheme, SECRET_KEY, ALGORITHM, fake_users_db, OAuth2PasswordRequestForm
 from ..common import create_router
 
 router = create_router()
 
 @router.post("/user/login")
-async def login_access_token(credentials: UserCredentials):
+async def login_access_token(response: Response, credentials: OAuth2PasswordRequestForm = Depends()):
     '''
     Returns session token after user logged in
     '''
-    authentication_user = authenticate_user(credentials.email, credentials.password)
+    authentication_user = authenticate_user(credentials.username, credentials.password)
 
     if not authentication_user:
         raise HTTPException(
@@ -24,7 +25,20 @@ async def login_access_token(credentials: UserCredentials):
             headers={"WWW-authenticate": "bearer"},)
 
     access_token = create_access_token(data={"sub": credentials.email})
-    return {"access_token": access_token, "token_type": "bearer"}
+    response.set_cookie(key="session_token", value=access_token, httponly=True, max_age=1800)
+
+    return {"message": "Successfully logged in"}
+
+@router.post("/logout")
+async def logout(response: Response, session_token: Optional[str] = Cookie(None)):
+    '''
+    Logs out user from current session
+    '''
+    if session_token:
+        response.delete_cookie(key="session_token")
+        return {"message": "Logged out"}
+    
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="You are not logged in")
 
 @router.post("/user")
 async def get_current_user(token: str = Depends(oauth2_scheme)):
