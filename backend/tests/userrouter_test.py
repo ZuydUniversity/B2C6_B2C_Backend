@@ -9,7 +9,7 @@ client = TestClient(app)
 
 # Test data
 test_user = {
-    "email": "test@example.com",
+    "username": "test@example.com",
     "password": "testpassword"
 }
 
@@ -18,25 +18,37 @@ fake_users_db[test_user["email"]] = {
     "hashed_password": pwd_context.hash(test_user["password"])
 }
 
-def test_login_access_token():
+def test_login_successful():
     '''
     Test if logging in works 
     '''
-    response = client.post("/api/user/login", json=test_user)
-    assert response.status_code == 200
-    assert "access_token" in response.json()
-    assert response.json()["token_type"] == "bearer"
+    response = client.post("/api/user/login", data=test_user)
 
-def test_login_access_token_invalid_credentials():
+    assert response.status_code == 200
+    assert "access_token" in response.cookies
+    assert response.json() == {"message": "Successfully logged in"}
+
+def test_login_incorrect_credentials():
     '''
     Test if you won't loggin when wrong credentials are entered
     '''
-    response = client.post("api/user/login", json={
+    response = client.post("api/user/login", data={
         "email": "wrong@example.com",
         "password": "wrongpassword"
     })
+    
     assert response.status_code == 401
+    assert "session_token" not in response.cookies
     assert response.json() == {"detail": "Incorrect email or password"}
+
+def test_login_missing_credentials():
+    '''
+    Test login without credentials
+    '''
+    response = client.post("/api/user/login")
+    
+    assert response.status_code == 422
+    assert "session_token" not in response.cookies
 
 def test_logout():
     '''
