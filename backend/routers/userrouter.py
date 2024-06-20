@@ -12,7 +12,7 @@ from ..common import create_router
 router = create_router()
 
 @router.post("/user/login")
-async def login_access_token(response: Response, credentials: OAuth2PasswordRequestForm = Depends()):
+async def login(response: Response, credentials: OAuth2PasswordRequestForm = Depends()):
     '''
     Returns session token after user logged in
     '''
@@ -37,7 +37,7 @@ async def logout(response: Response, session_token: Optional[str] = Cookie(None)
     if session_token:
         response.delete_cookie(key="session_token")
         return {"message": "Logged out"}
-    
+
     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="You are not logged in")
 
 @router.post("/user")
