@@ -36,7 +36,7 @@ def test_login_incorrect_credentials():
         "email": "wrong@example.com",
         "password": "wrongpassword"
     })
-    
+
     assert response.status_code == 401
     assert "session_token" not in response.cookies
     assert response.json() == {"detail": "Incorrect email or password"}
@@ -46,7 +46,7 @@ def test_login_missing_credentials():
     Test login without credentials
     '''
     response = client.post("/api/user/login")
-    
+
     assert response.status_code == 422
     assert "session_token" not in response.cookies
 
