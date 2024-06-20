@@ -70,11 +70,11 @@ def test_get_current_user():
     '''
     Test if can get current user when logged in
     '''
-    token = create_access_token(data={"sub": test_user["email"]})
+    token = create_access_token(data={"sub": test_user["username"]})
     headers = {"Authorization": f"Bearer {token}"}
     response = client.post("/api/user", headers=headers)
     assert response.status_code == 200
-    assert response.json()["email"] == test_user["email"]
+    assert response.json()["username"] == test_user["username"]
 
 def test_get_current_user_invalid_token():
     '''
