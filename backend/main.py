@@ -15,6 +15,9 @@ app = FastAPI()
 ssl_cert = os.getenv('SSL_CERT')
 ssl_key = os.getenv('SSL_KEY')
 
+if ssl_cert is None or ssl_key is None:
+    raise ValueError("SSL certificates not found in environment variables")
+
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 ssl_context.load_cert_chain("cert.pem", keyfile="key.pem")
 
