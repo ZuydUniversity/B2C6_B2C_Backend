@@ -22,23 +22,9 @@ if ssl_cert_b64 is None or ssl_key_b64 is None:
 ssl_cert = base64.b64decode(ssl_cert_b64)
 ssl_key = base64.b64decode(ssl_key_b64)
 
-# Save decoded certificates to temporary files
-CERT_PATH = "/tmp/cert.pem"
-KEY_PATH = "/tmp/key.pem"
-
-with open(CERT_PATH, "wb") as cert_file:
-    cert_file.write(ssl_cert)
-
-with open(KEY_PATH, "wb") as key_file:
-    key_file.write(ssl_key)
-
 # Load certificates into SSL context
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-ssl_context.load_cert_chain(certfile=CERT_PATH, keyfile=KEY_PATH)
-
-# Clean up temporary files
-os.remove(CERT_PATH)
-os.remove(KEY_PATH)
+ssl_context.load_cert_chain(certfile=None, keyfile=None, cert_bytes=ssl_cert, key_bytes=ssl_key)
 
 app.add_middleware(
     CORSMiddleware,
