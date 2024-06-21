@@ -43,3 +43,21 @@ async def patch_note(request: Request, note_id: int):
     note.PatientId = data.get('patientId')
     note.SpecialistId = data.get('specialistId')
     # Here the rest of the code is placed to save to the database.
+
+@router.get('/notes')
+async def get_notes():
+    '''
+    Gets all notes
+    '''
+
+@router.get('/notes/{note_id}')
+async def get_note(note_id: int):
+    '''
+    Gets a note
+    '''
+
+@router.delete('/notes/{note_id}')
+async def delete_note(note_id: int):
+    '''
+    Deletes a note
+    '''
