@@ -3,7 +3,7 @@ Test for user router
 '''
 from fastapi.testclient import TestClient
 from backend.main import app
-from backend.security import pwd_context, fake_users_db, create_access_token
+from backend.security import pwd_context, fake_users_db
 
 client = TestClient(app)
 
