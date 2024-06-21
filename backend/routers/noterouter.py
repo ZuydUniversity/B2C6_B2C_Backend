@@ -49,15 +49,24 @@ async def get_notes():
     '''
     Gets all notes
     '''
+    # Code here that gets all notes
+    note = Note()
+    return note
 
 @router.get('/notes/{note_id}')
 async def get_note(note_id: int):
     '''
     Gets a note
     '''
+    # Code here that gets a note
+    print(note_id) # This is temporary to satisfy PyLint
+    note = Note()
+    return note
 
 @router.delete('/notes/{note_id}')
 async def delete_note(note_id: int):
     '''
     Deletes a note
     '''
+    # Code here that deletes a note
+    print(note_id) # This is temporary to satisfy PyLint
