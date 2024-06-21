@@ -17,7 +17,7 @@ ssl_cert = os.getenv('SSL_CERT')
 ssl_key = os.getenv('SSL_KEY')
 
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-ssl_context.load_cert_chain(certfile=None, keyfile=None, cert_bytes=ssl_cert, key_bytes=ssl_key)
+ssl_context.load_cert_chain(cert_bytes=ssl_cert, key_bytes=ssl_key)
 
 app.add_middleware(
     CORSMiddleware,
