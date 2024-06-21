@@ -20,8 +20,10 @@ ssl_key = os.getenv('SSL_KEY')
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 
 # Write the decoded certificates to temporary files
-with open('/tmp/cert.pem', 'w') as f_cert, open('/tmp/key.pem', 'w') as f_key:
+with open('/tmp/cert.pem', 'w', encoding='utf-8') as f_cert:
     f_cert.write(ssl_cert)
+
+with open('/tmp/key.pem', 'w', encoding='utf-8') as f_key:
     f_key.write(ssl_key)
 
 # Load certificates and keys from temporary files
