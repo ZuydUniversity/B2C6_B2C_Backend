@@ -1,25 +1,48 @@
-import os
 import hvac
 
-# Maak verbinding met Vault
+# Initialize the Vault client
 client = hvac.Client(url='http://vault.myolink.info.gf:8200')
 
-# Verifieer met een methode, bijvoorbeeld met een token
-client.token = os.getenv('VAULT_TOKEN')  # Zorg dat VAULT_TOKEN is ingesteld in je environment variables
+def login_with_userpass(username, password):
+    """
+    Log in to Vault using the Username (userpass) method and set the client token.
+    """
+    try:
+        # Authenticate with Vault using the userpass method
+        login_response = client.auth.userpass.login(
+            username=username,
+            password=password,
+            mount_point='userpass'
+        )
+        
+        # Set the client token to the newly acquired token
+        client.token = login_response['auth']['client_token']
+    except Exception as e:
+        print(f"Error logging in to Vault: {e}")
+        return "null"
+    return login_response['auth']['client_token']
 
-# Lees de database credentials
-read_response = client.secrets.kv.read_secret_version(path='/v1/db/data/credentials')
-credentials = read_response['data']['data']
+# Use the function with your credentials
 
-username = credentials['username']
-password = credentials['password']
-host = 'developmentvm1-klasb2c.westeurope.cloudapp.azure.com'  # Corrected the key for host
-port = '3306'
-database_name = 'db'
+try:
+    token = login_with_userpass("databaseuser", "nzF2Y0Pa1xImII5M3vzkDM")
+    client.token = token
+    print(client.token)
+    secrets_engines_list = client.sys.list_mounted_secrets_engines()['data']
+    print('The following secrets engines are mounted: %s' % ', '.join(sorted(secrets_engines_list.keys())))
+    # Now you can proceed with the rest of your script, using the authenticated client
+    # Read the database credentials
+    read_response = client.secrets.kv.v2.create_or_update_secret(path='db/test', secret=dict(pssst="this is a secret"))
+    credentials = read_response['data']['data']
 
-# Construct the DATABASE_URL for MariaDB
-DATABASE_URL = f"mysql+pymysql://{username}:{password}@{host}:{port}/{database_name}"
+    password = credentials['password']
+    username = credentials['username']
+    host = 'developmentvm1-klasb2c.westeurope.cloudapp.azure.com'
+    port = '3306'
+    database_name = 'myolinkdb'
 
-# Create the SQLAlchemy engine
-from sqlalchemy import create_engine
-engine = create_engine(DATABASE_URL)
+    # Construct the DATABASE_URL for MariaDB
+    database_url = f"mariadb://{username}:{password}@{host}:{port}/{database_name}"
+    print(database_url)
+except Exception as e:
+    print(f"Error reading secret: {e}")
