@@ -15,7 +15,7 @@ ssl_key = os.getenv('SSL_KEY')
 SSL_CONTEXT = None
 if ssl_cert and ssl_key:
     SSL_CONTEXT = ssl.SSLContext(ssl.PROTOCOL_TLS)
-    SSL_CONTEXT.load_cert_chain(certfile=ssl_cert, keyfile=ssl_key)
+    SSL_CONTEXT.load_cert_chain(certfile='/tmp/cert.pem', keyfile='/tmp/key.pem')
 else:
     raise ValueError("SSL certificates not found in environment variables")
 

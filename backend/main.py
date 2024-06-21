@@ -29,10 +29,6 @@ with open('/tmp/key.pem', 'w', encoding='utf-8') as f_key:
 # Load certificates and keys from temporary files
 ssl_context.load_cert_chain(certfile='/tmp/cert.pem', keyfile='/tmp/key.pem')
 
-# Clean up temporary files (optional)
-os.remove('/tmp/cert.pem')
-os.remove('/tmp/key.pem')
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
