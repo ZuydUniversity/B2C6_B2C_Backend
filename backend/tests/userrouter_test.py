@@ -37,7 +37,7 @@ def test_login_successful():
     response = client.post("/api/user/login", data=test_user)
 
     assert response.status_code == 200
-    assert "access_token" in response.cookies
+    assert "session_token" in response.cookies
     assert response.json() == {"message": "Successfully logged in"}
 
 def test_login_incorrect_credentials():
@@ -92,7 +92,7 @@ def test_get_current_user_invalid_token():
     '''
     Test if can't get current user when not loggedin
     '''
-    headers = {"Authorization": "Bearer invalid_token"}
+    headers = {"Authorization": "***"}
     response = client.get("/api/user", headers=headers)
     assert response.status_code == 401
     assert response.json() == {"detail": "Could not validate credentials"}

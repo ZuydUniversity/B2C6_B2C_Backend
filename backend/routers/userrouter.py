@@ -30,7 +30,7 @@ async def login(response: Response, credentials: OAuth2PasswordRequestForm = Dep
 
     return {"message": "Successfully logged in"}
 
-@router.post("/logout")
+@router.post("/user/logout")
 async def logout(response: Response, session_token: Optional[str] = Cookie(None)):
     '''
     Logs out user from current session
@@ -45,7 +45,6 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     '''
     Returns current logged in user
     '''
-
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
