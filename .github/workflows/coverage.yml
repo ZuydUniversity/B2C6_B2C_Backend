@@ -1,5 +1,4 @@
 name: Test coverage
-
 on: push
 
 jobs:
@@ -21,7 +20,12 @@ jobs:
         pip install pytest
         pip install -r requirements.txt
     - name: Run tests with coverage
+      env:
+        SSL_CERT: ${{ secrets.SSL_CERT }}
+        SSL_KEY: ${{ secrets.SSL_KEY }}
       run: |
+        export SSL_CERT="${{ secrets.ssl_cert }}"
+        export SSL_KEY="${{ secrets.ssl_key }}"
         coverage run -m pytest
         coverage report --fail-under=80
 

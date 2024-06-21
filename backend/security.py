@@ -4,13 +4,12 @@ Contains functions and variables related to logging in and security
 import secrets
 from datetime import datetime, timedelta, timezone
 from jose import jwt
-from pydantic import BaseModel
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer
 
 SECRET_KEY = secrets.token_hex(32)
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 15
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/user/login")
@@ -67,14 +66,3 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
     return encoded_jwt
-
-class UserCredentials(BaseModel):
-    '''
-    User credentials for login
-
-    Attributes:
-        email (String): email of user
-        password (String): Password of user
-    '''
-    email: str
-    password: str
