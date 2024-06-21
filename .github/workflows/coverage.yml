@@ -1,5 +1,7 @@
 name: Test coverage
-
+env:
+  SSL_CERT: ${{ secrets.SSL_CERT }}
+  SSL_KEY: ${{ secrets.SSL_KEY }}
 on: push
 
 jobs:
