@@ -84,15 +84,15 @@ def test_get_current_user():
     '''
     token = create_access_token(data={"sub": test_user["username"]})
     headers = {"Authorization": f"Bearer {token}"}
-    response = client.post("/api/user", headers=headers)
+    response = client.get("/api/user", headers=headers)
     assert response.status_code == 200
-    assert response.json()["username"] == test_user["username"]
+    assert response.json()["email"] == test_user["username"]
 
 def test_get_current_user_invalid_token():
     '''
     Test if can't get current user when not loggedin
     '''
     headers = {"Authorization": "Bearer invalid_token"}
-    response = client.post("/api/user", headers=headers)
+    response = client.get("/api/user", headers=headers)
     assert response.status_code == 401
     assert response.json() == {"detail": "Could not validate credentials"}
