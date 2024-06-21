@@ -1,8 +1,8 @@
 '''
 test
 '''
-
 from fastapi.testclient import TestClient
+#import requests as rq
 from backend.main import app
 
 client = TestClient(app)
