@@ -19,7 +19,7 @@ if ssl_cert is None or ssl_key is None:
     raise ValueError("SSL certificates not found in environment variables")
 
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-ssl_context.load_cert_chain("cert.pem", keyfile="key.pem")
+ssl_context.load_cert_chain(ssl_cert, keyfile=ssl_key)
 
 app.add_middleware(
     CORSMiddleware,
