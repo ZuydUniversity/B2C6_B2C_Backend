@@ -3,7 +3,6 @@ Entry file of fastapi project
 '''
 import ssl
 import os
-import base64
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -21,7 +20,7 @@ ssl_key = os.getenv('SSL_KEY')
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 
 # Write the decoded certificates to temporary files
-with open('/tmp/cert.pem', 'wb') as f_cert, open('/tmp/key.pem', 'wb') as f_key:
+with open('/tmp/cert.pem', 'w') as f_cert, open('/tmp/key.pem', 'w') as f_key:
     f_cert.write(ssl_cert)
     f_key.write(ssl_key)
 
