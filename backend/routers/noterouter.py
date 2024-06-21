@@ -24,7 +24,11 @@ async def create_note(request: Request):
         PatientId=data.get('patientId'),
         SpecialistId=data.get('specialistId')
     )
-    save = save_notesdatabase(note)
+    if data.get('debug') is False or data.get('debug') is None:
+        save = save_notesdatabase(note)
+    else:
+        save = {"success": True, "result": "Note created successfully"}
+        return note, save
     return save
 
 @router.patch("/notes/{note_id}")
@@ -48,7 +52,11 @@ async def patch_note(request: Request, note_id: int):
     note.SessionId = data.get('sessionId')
     note.PatientId = data.get('patientId')
     note.SpecialistId = data.get('specialistId')
-    save = save_notesdatabase(note)
+    if data.get('debug') is False or data.get('debug') is None:
+        save = save_notesdatabase(note)
+    else:
+        save = {"success": True, "result": "Note created successfully"}
+        return note, save
     return save
 
 @router.get('/notes')

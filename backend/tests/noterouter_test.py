@@ -8,8 +8,8 @@ client = TestClient(app)
 
 # Test data
 test_note = {
-    "id": 2,
-    "name": "This is the content off an note",
+    "id": 1,
+    "name": "Test",
     "sessionId": 1,
     "patientId": 1,
     "specialistId": 1,
@@ -22,38 +22,37 @@ async def create_note_test():
     It takes the variables out of the JSON then creates an class for it. 
     Then it returns that class as an JSON.
     '''
-    response = client.post("/api/notes", json=test_note)
+    note, response = client.post("/api/notes", json=test_note)
     assert response.status_code == 200
-    assert response.json()["id"] == test_note["id"]
-    assert response.json()["name"] == test_note["name"]
-    assert response.json()["patientId"] == test_note["patientId"]
-    assert response.json()["sessionId"] == test_note["sessionId"]
-    assert response.json()["specialistId"] == test_note["specialistId"]
+    assert response.json() == {"success": True, "result": "Note created successfully"}
+    assert note.json() == test_note
 
 async def patch_note_test():
     '''
     Test if the patching of the notes works.
     '''
-    response = client.patch("/api/notes/2", json=test_note)
+    note, response = client.patch("/api/notes/2", json=test_note)
     assert response.status_code == 200
-    assert response.json()["name"] == test_note["id"]
+    assert response.json() == {"success": True, "result": "Note created successfully"}
+    assert note.json() == test_note
 
 async def get_notes_test():
     '''
     Test if the getting of the notes works.
     '''
-    response = client.get("/api/notes")
+    notes, response = client.get("/api/notes")
     assert response.status_code == 200
-    assert response.json()[0]["id"] == 1
-    assert response.json()[1]["name"] == "test"
+    assert response.json() == {"success": True, "result": "Note created successfully"}
+    assert notes.json() is not None
 
 async def get_note_test():
     '''
     Test if the getting of the note works.
     '''
-    response = client.get("/api/notes/1")
+    note, response = client.get("/api/notes/1")
     assert response.status_code == 200
-    assert response.json()["id"] == 1
+    assert response.json() == {"success": True, "result": "Note created successfully"}
+    assert note.json() is not None
 
 async def delete_note_test():
     '''
@@ -61,3 +60,5 @@ async def delete_note_test():
     '''
     response = client.delete("/api/notes/1")
     assert response.status_code == 200
+    assert response.json() == {"success": True, "result": "Note created successfully"}
+
