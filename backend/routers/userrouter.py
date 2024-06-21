@@ -25,7 +25,7 @@ async def login(response: Response, credentials: OAuth2PasswordRequestForm = Dep
             detail="Incorrect email or password",
             headers={"WWW-authenticate": "bearer"},)
 
-    access_token = create_access_token(data={"sub": credentials.email})
+    access_token = create_access_token(data={"sub": credentials.username})
     response.set_cookie(key="session_token", value=access_token, httponly=True, max_age=1800)
 
     return {"message": "Successfully logged in"}
