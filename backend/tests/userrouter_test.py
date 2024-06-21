@@ -1,23 +1,11 @@
 '''
 Test for user router
 '''
-import os
-import ssl
 from fastapi.testclient import TestClient
 from backend.main import app
 from backend.security import pwd_context, fake_users_db, create_access_token
 
 client = TestClient(app)
-
-ssl_cert = os.getenv('SSL_CERT')
-ssl_key = os.getenv('SSL_KEY')
-
-SSL_CONTEXT = None
-if ssl_cert and ssl_key:
-    SSL_CONTEXT = ssl.SSLContext(ssl.PROTOCOL_TLS)
-    SSL_CONTEXT.load_cert_chain(certfile='/tmp/cert.pem', keyfile='/tmp/key.pem')
-else:
-    raise ValueError("SSL certificates not found in environment variables")
 
 # Test data
 test_user = {
