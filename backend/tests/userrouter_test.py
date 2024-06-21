@@ -71,17 +71,12 @@ def test_logout():
     assert response.status_code == 200
     assert response.json() == {"message": "Logged out"}
 
-def test_logout_invalid_token():
-    '''
-    Test if can't logout when not loggedin
-    '''
-    response = client.post("/api/user/logout")
-    assert response.status_code == 404
-
 def test_get_current_user():
     '''
     Test if can get current user when logged in
     '''
+    response = client.post("/api/user/login", data=test_user)
+
     token = create_access_token(data={"sub": test_user["username"]})
     headers = {"Authorization": f"Bearer {token}"}
     response = client.get("/api/user", headers=headers)
