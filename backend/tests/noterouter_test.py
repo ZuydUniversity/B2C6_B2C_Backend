@@ -15,7 +15,7 @@ test_note = {
     "specialistId": 1,
     "debug": True
 }
-async def create_note_test():
+def create_note_test():
     '''
     Test if the creating of the notes works.
     It doesn't write to the database however, 
@@ -27,7 +27,7 @@ async def create_note_test():
     assert response.json() == {"success": True, "result": "Note created successfully"}
     assert note.json() == test_note
 
-async def patch_note_test():
+def patch_note_test():
     '''
     Test if the patching of the notes works.
     '''
@@ -36,7 +36,7 @@ async def patch_note_test():
     assert response.json() == {"success": True, "result": "Note created successfully"}
     assert note.json() == test_note
 
-async def get_notes_test():
+def get_notes_test():
     '''
     Test if the getting of the notes works.
     '''
@@ -45,7 +45,7 @@ async def get_notes_test():
     assert response.json() == {"success": True, "result": "Note created successfully"}
     assert notes.json() is not None
 
-async def get_note_test():
+def get_note_test():
     '''
     Test if the getting of the note works.
     '''
@@ -54,7 +54,7 @@ async def get_note_test():
     assert response.json() == {"success": True, "result": "Note created successfully"}
     assert note.json() is not None
 
-async def delete_note_test():
+def delete_note_test():
     '''
     Test if the deleting of the notes works.
     '''
