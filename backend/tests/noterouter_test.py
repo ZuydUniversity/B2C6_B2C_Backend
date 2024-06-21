@@ -61,4 +61,3 @@ async def delete_note_test():
     response = client.delete("/api/notes/1")
     assert response.status_code == 200
     assert response.json() == {"success": True, "result": "Note created successfully"}
-
