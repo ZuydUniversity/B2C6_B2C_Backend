@@ -39,30 +39,3 @@ async def logout(response: Response, session_token: Optional[str] = Cookie(None)
         response.delete_cookie(key="session_token")
 
     return {"message": "Logged out"}
-
-@router.post("/user")
-async def get_current_user(token: str = Depends(oauth2_scheme)):
-    '''
-    Returns current logged in user
-    '''
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
-
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str = payload.get("sub")
-
-        if email is None:
-            raise credentials_exception
-
-    except JWTError as exc:
-        raise credentials_exception from exc
-
-    user = fake_users_db.get(email)
-    if user is None:
-        raise credentials_exception
-
-    return user
