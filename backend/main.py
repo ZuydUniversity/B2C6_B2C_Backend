@@ -13,16 +13,9 @@ routers = [homerouter, userrouter]
 
 app = FastAPI()
 
-ssl_cert_b64 = os.getenv('SSL_CERT')
-ssl_key_b64 = os.getenv('SSL_KEY')
+ssl_cert = os.getenv('SSL_CERT')
+ssl_key = os.getenv('SSL_KEY')
 
-if ssl_cert_b64 is None or ssl_key_b64 is None:
-    raise ValueError("SSL certificates not found in environment variables")
-
-ssl_cert = base64.b64decode(ssl_cert_b64)
-ssl_key = base64.b64decode(ssl_key_b64)
-
-# Load certificates into SSL context
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 ssl_context.load_cert_chain(certfile=None, keyfile=None, cert_bytes=ssl_cert, key_bytes=ssl_key)
 
