@@ -1,3 +1,6 @@
+'''
+Entry file of fastapi project
+'''
 import ssl
 import os
 import base64
@@ -16,29 +19,26 @@ ssl_key_b64 = os.getenv('SSL_KEY')
 if ssl_cert_b64 is None or ssl_key_b64 is None:
     raise ValueError("SSL certificates not found in environment variables")
 
-try:
-    ssl_cert = base64.b64decode(ssl_cert_b64)
-    ssl_key = base64.b64decode(ssl_key_b64)
-except base64.binascii.Error as e:
-    raise ValueError("Base64 decoding error:", e)
+ssl_cert = base64.b64decode(ssl_cert_b64)
+ssl_key = base64.b64decode(ssl_key_b64)
 
 # Save decoded certificates to temporary files
-cert_file_path = "/tmp/cert.pem"
-key_file_path = "/tmp/key.pem"
+CERT_PATH = "/tmp/cert.pem"
+KEY_PATH = "/tmp/key.pem"
 
-with open(cert_file_path, "wb") as cert_file:
+with open(CERT_PATH, "wb") as cert_file:
     cert_file.write(ssl_cert)
 
-with open(key_file_path, "wb") as key_file:
+with open(KEY_PATH, "wb") as key_file:
     key_file.write(ssl_key)
 
 # Load certificates into SSL context
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-ssl_context.load_cert_chain(certfile=cert_file_path, keyfile=key_file_path)
+ssl_context.load_cert_chain(certfile=CERT_PATH, keyfile=KEY_PATH)
 
 # Clean up temporary files
-os.remove(cert_file_path)
-os.remove(key_file_path)
+os.remove(CERT_PATH)
+os.remove(KEY_PATH)
 
 app.add_middleware(
     CORSMiddleware,
