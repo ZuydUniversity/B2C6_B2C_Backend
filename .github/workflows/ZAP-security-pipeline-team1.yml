@@ -22,4 +22,4 @@ jobs:
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.12.0
         with:
-          target: "http://developmentvm1-klasb2c.westeurope.cloudapp.azure.com"
+          target: "http://myolink.info.gf/"
