@@ -4,7 +4,9 @@ Module for testing database connection and Vault integration.
 
 import unittest
 from unittest.mock import patch, MagicMock
+import os
 from backend import database  # Adjust the import path to match your project structure
+import sqlalchemy
 
 class TestDatabase(unittest.TestCase):
     """
@@ -61,7 +63,8 @@ class TestDatabase(unittest.TestCase):
         """
         Test secret reading failure.
         """
-        mock_client.secrets.kv.v2.read_secret_version.side_effect = Exception("Read failed")
+        from hvac.exceptions import VaultError
+        mock_client.secrets.kv.v2.read_secret_version.side_effect = VaultError("Read failed")
 
         secret_data = database.read_secret(mock_client, 'credentials', 'db')
         self.assertIsNone(secret_data)
@@ -94,15 +97,101 @@ class TestDatabase(unittest.TestCase):
         self.assertEqual(engine, mock_engine)
         self.assertEqual(session_local, mock_sessionmaker_instance)
 
+    @patch.dict(os.environ, {'VAULT_USERNAME': 'test-username', 'VAULT_PASSWORD': 'test-password'})
     @patch('backend.database.client')
-    def test_read_secret_failure(self, mock_client):
+    @patch('backend.database.create_engine')
+    @patch('backend.database.Base.metadata.create_all')
+    @patch('backend.database.login_with_userpass')
+    @patch('backend.database.read_secret')
+    def test_main_success(self, mock_read_secret, mock_login_with_userpass, mock_create_all, mock_create_engine, MockClient):
         """
-        Test failure in reading a secret.
+        Test main function success scenario.
         """
-        mock_client.secrets.kv.v2.read_secret_version.side_effect = Exception("Read failed")
-        with self.assertRaises(Exception) as context:
-            database.read_secret(mock_client, 'path/to/secret')
-        self.assertTrue('Read failed' in str(context.exception))
+        mock_login_with_userpass.return_value = 'test-token'
+        mock_read_secret.return_value = {'username': 'db-user', 'password': 'db-pass'}
+        mock_client = MockClient.return_value
+
+        with patch('builtins.print') as mocked_print:
+            database.main()
+            mocked_print.assert_any_call("Token:", 'test-token')
+            mocked_print.assert_any_call("Successfully retrieved secret:", {'username': 'db-user', 'password': 'db-pass'})
+            mocked_print.assert_any_call("DATABASE_URL:", "mysql+pymysql://db-user:db-pass@developmentvm1-klasb2c.westeurope.cloudapp.azure.com:3306/myolinkdb")
+            mocked_print.assert_any_call("SQLAlchemy engine and sessionmaker created successfully")
+            mocked_print.assert_any_call("Tables created successfully")
+
+    @patch.dict(os.environ, {'VAULT_USERNAME': 'test-username', 'VAULT_PASSWORD': 'test-password'})
+    @patch('backend.database.client')
+    @patch('backend.database.login_with_userpass')
+    def test_main_login_failure(self, mock_login_with_userpass, MockClient):
+        """
+        Test main function with login failure.
+        """
+        mock_login_with_userpass.return_value = None
+
+        with patch('builtins.print') as mocked_print:
+            database.main()
+            mocked_print.assert_any_call("Failed to authenticate to Vault")
+
+    @patch.dict(os.environ, {'VAULT_USERNAME': 'test-username', 'VAULT_PASSWORD': 'test-password'})
+    @patch('backend.database.client')
+    @patch('backend.database.login_with_userpass')
+    @patch('backend.database.read_secret')
+    def test_main_read_secret_failure(self, mock_read_secret, mock_login_with_userpass, MockClient):
+        """
+        Test main function with secret read failure.
+        """
+        mock_login_with_userpass.return_value = 'test-token'
+        mock_read_secret.return_value = None
+
+        with patch('builtins.print') as mocked_print:
+            database.main()
+            mocked_print.assert_any_call("Failed to retrieve secret data")
+
+    @patch.dict(os.environ, {'VAULT_USERNAME': '', 'VAULT_PASSWORD': ''})
+    def test_main_missing_env_vars(self):
+        """
+        Test main function with missing environment variables.
+        """
+        with patch('builtins.print') as mocked_print:
+            database.main()
+            mocked_print.assert_any_call("Vault username or password not set in environment variables")
+
+    @patch.dict(os.environ, {'VAULT_USERNAME': 'test-username', 'VAULT_PASSWORD': 'test-password'})
+    @patch('backend.database.client')
+    @patch('backend.database.create_database_session')
+    @patch('backend.database.login_with_userpass')
+    @patch('backend.database.read_secret')
+    def test_main_create_database_session_failure(self, mock_read_secret, mock_login_with_userpass, mock_create_database_session, MockClient):
+        """
+        Test main function with database session creation failure.
+        """
+        mock_login_with_userpass.return_value = 'test-token'
+        mock_read_secret.return_value = {'username': 'db-user', 'password': 'db-pass'}
+        mock_create_database_session.side_effect = sqlalchemy.exc.SQLAlchemyError("Connection failed")
+
+        with patch('builtins.print') as mocked_print:
+            database.main()
+            mocked_print.assert_any_call("Error creating database session: Connection failed")
+
+    @patch.dict(os.environ, {'VAULT_USERNAME': 'test-username', 'VAULT_PASSWORD': 'test-password'})
+    @patch('backend.database.client')
+    @patch('backend.database.create_database_session')
+    @patch('backend.database.Base.metadata.create_all')
+    @patch('backend.database.login_with_userpass')
+    @patch('backend.database.read_secret')
+    def test_main_create_tables_failure(self, mock_read_secret, mock_login_with_userpass, mock_create_all, mock_create_database_session, MockClient):
+        """
+        Test main function with table creation failure.
+        """
+        mock_login_with_userpass.return_value = 'test-token'
+        mock_read_secret.return_value = {'username': 'db-user', 'password': 'db-pass'}
+        mock_create_database_session.return_value = (MagicMock(), MagicMock())
+        mock_create_all.side_effect = sqlalchemy.exc.SQLAlchemyError("Table creation failed")
+
+        with patch('builtins.print') as mocked_print:
+            database.main()
+            mocked_print.assert_any_call("Error creating tables: Table creation failed")
+
 
 if __name__ == "__main__":
     unittest.main()
