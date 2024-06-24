@@ -2,6 +2,7 @@ import hvac
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+print(__file__)
 
 # Initialize the Vault client
 client = hvac.Client(url='http://vault.myolink.info.gf:8200')
