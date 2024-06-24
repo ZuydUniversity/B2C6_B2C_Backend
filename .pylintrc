@@ -3,3 +3,9 @@ ignored-modules=fastapi
 
 [MESSAGES CONTROL]
 disable=C0412
+
+[FORMAT]
+max-line-length=150
+
+[DESIGN]
+min-public-methods=0
