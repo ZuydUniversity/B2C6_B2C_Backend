@@ -28,7 +28,6 @@ async def create_note(request: Request):
         save = save_notesdatabase(note)
     else:
         save = {"success": True, "result": "Note created successfully"}
-        return note, save
     return save
 
 @router.patch("/notes/{note_id}")

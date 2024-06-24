@@ -15,17 +15,16 @@ test_note = {
     "specialistId": 1,
     "debug": True
 }
-def create_note_test():
+def test_create_note_test():
     '''
     Test if the creating of the notes works.
     It doesn't write to the database however, 
     It takes the variables out of the JSON then creates an class for it. 
     Then it returns that class as an JSON.
     '''
-    note, response = client.post("/api/notes", json=test_note)
+    response = client.post("/api/notes", json=test_note)
     assert response.status_code == 200
     assert response.json() == {"success": True, "result": "Note created successfully"}
-    assert note.json() == test_note
 
 def patch_note_test():
     '''
