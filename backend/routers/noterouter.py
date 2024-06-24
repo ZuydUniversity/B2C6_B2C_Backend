@@ -1,15 +1,16 @@
 '''
 The router for the notes wich allows the user to create, read, update and delete notes
 '''
-from requests import Request
+from fastapi import Request
 from sqlalchemy.exc import IntegrityError, OperationalError, DataError, DatabaseError
 from ..common import create_router
 from ..models.notemodel import Note
+from typing import Dict
 
 
 router = create_router()
 
-@router.post("/notes")
+@router.post("/notes", response_model=Dict[str, str])
 async def create_note(request: Request):
     '''
     Create router, call it with "api/notes" and with an JSON file with all the data.
