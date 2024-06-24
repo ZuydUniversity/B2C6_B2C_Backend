@@ -10,7 +10,7 @@ from typing import Dict
 
 router = create_router()
 
-@router.post("/notes", response_model=Dict[str, str])
+@router.post("/notes")
 async def create_note(request: Request):
     '''
     Create router, call it with "api/notes" and with an JSON file with all the data.
@@ -20,15 +20,17 @@ async def create_note(request: Request):
     '''
     data = await request.json()
     note = Note(
+        Id=data.get('id'),
         Name=data.get('name'),
         SessionId=data.get('sessionId'),
         PatientId=data.get('patientId'),
         SpecialistId=data.get('specialistId')
     )
-    if data.get('debug') is False or data.get('debug') is None:
-        save = save_notesdatabase(note)
+    if bool(data.get('debug')) is False or bool(data.get('debug')) is None:
+        print("idk")
+        #save = save_notesdatabase(note)
     else:
-        save = {"success": True, "result": "Note created successfully"}
+        save = {"success": "True", "result": "Note created successfully", "note": note}
     return save
 
 @router.patch("/notes/{note_id}")

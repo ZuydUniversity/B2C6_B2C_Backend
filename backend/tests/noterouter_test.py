@@ -6,30 +6,40 @@ from backend.main import app
 
 client = TestClient(app)
 
-# Test data
-test_note = {
-    "id": 1,
-    "name": "Test",
-    "sessionId": 1,
-    "patientId": 1,
-    "specialistId": 1,
-    "debug": True
-}
-def test_create_note_test():
+def test_create_note():
     '''
     Test if the creating of the notes works.
     It doesn't write to the database however, 
     It takes the variables out of the JSON then creates an class for it. 
     Then it returns that class as an JSON.
     '''
+    test_note = {
+        "id": "1",
+        "name": "Test Note",
+        "sessionId": "1",
+        "patientId": "1",
+        "specialistId": "1",
+        "debug": "True"
+    }
+
     response = client.post("/api/notes", json=test_note)
     assert response.status_code == 200
-    assert response.json() == {"success": True, "result": "Note created successfully"}
+    response_json = response.json()
+    assert response_json["success"] == "True"
+    assert response_json["result"] == "Note created successfully"
+    assert response_json["note"]["Name"] == "Test Note"
 
-def test_patch_note_test():
+def test_patch_note():
     '''
     Test if the patching of the notes works.
     '''
+    test_note = {
+        "name": "Test Note",
+        "sessionId": "session123",
+        "patientId": "patient456",
+        "specialistId": "specialist789",
+        "debug": True
+    }
     note, response = client.patch("/api/notes/2", json=test_note)
     assert response.status_code == 200
     assert response.json() == {"success": True, "result": "Note created successfully"}
