@@ -51,5 +51,27 @@ class TestDatabase(unittest.TestCase):
         self.assertEqual(engine, mock_engine)
         self.assertEqual(SessionLocal, mock_sessionmaker_instance)
 
+    @patch('backend.database.client')
+    def test_read_secret(self, mock_client):
+        # Mock response structure from Vault's KV Version 2 secrets engine
+        mock_response = {
+            'data': {
+                'data': {
+                    'username': 'testuser2',  # Different username for this test
+                    'password': 'testpass2'   # Different password for this test
+                }
+            }
+        }
+        mock_client.secrets.kv.v2.read_secret_version.return_value = mock_response
+
+        # Expected secret data to be returned by read_secret
+        expected_secret_data = {'username': 'testuser2', 'password': 'testpass2'}
+
+        # Call the function with the mock client
+        secret_data = database.read_secret(mock_client, 'path/to/secret')
+
+        # Assert the returned secret data matches the expected data
+        self.assertEqual(secret_data, expected_secret_data)
+
 if __name__ == "__main__":
     unittest.main()
