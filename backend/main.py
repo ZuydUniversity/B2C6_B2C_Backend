@@ -4,9 +4,9 @@ Entry file of fastapi project
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .routers import homerouter, userrouter
+from .routers import homerouter, userrouter, noterouter
 
-routers = [homerouter, userrouter]
+routers = [homerouter, userrouter, noterouter]
 
 app = FastAPI()
 
