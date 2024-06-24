@@ -2,11 +2,13 @@
 Module for database connection and Vault integration.
 """
 
+import sys
 import os
 import hvac
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 # Initialize the Vault client
 client = hvac.Client(url='http://vault.myolink.info.gf:8200')
@@ -33,16 +35,16 @@ def login_with_userpass(username, password):
         )
         client.token = login_response['auth']['client_token']
         return client.token
-    except Exception as e:
+    except hvac.exceptions.VaultError as e:
         print(f"Error logging in to Vault: {e}")
         return None
 
-def read_secret(client, path, mount_point='db'):
+def read_secret(vault_client, path, mount_point='db'):
     """
     Read a secret from the KV Version 2 secrets engine.
 
     Args:
-        client (hvac.Client): The Vault client.
+        vault_client (hvac.Client): The Vault client.
         path (str): The path to the secret.
         mount_point (str): The mount point of the secrets engine.
 
@@ -50,12 +52,12 @@ def read_secret(client, path, mount_point='db'):
         dict: The secret data if read is successful, None otherwise.
     """
     try:
-        read_response = client.secrets.kv.v2.read_secret_version(
+        read_response = vault_client.secrets.kv.v2.read_secret_version(
             path=path,
             mount_point=mount_point
         )
         return read_response['data']['data']
-    except Exception as e:
+    except hvac.exceptions.VaultError as e:
         print(f"Error reading secret from Vault: {e}")
         return None
 
@@ -126,5 +128,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
