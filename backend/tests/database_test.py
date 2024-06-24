@@ -1,11 +1,21 @@
+"""
+Module for testing database connection and Vault integration.
+"""
+
 import unittest
 from unittest.mock import patch, MagicMock
 from backend import database  # Adjust the import path to match your project structure
 
 class TestDatabase(unittest.TestCase):
+    """
+    Test case for the database module.
+    """
 
     @patch('backend.database.client')
     def test_login_with_userpass_success(self, mock_client):
+        """
+        Test successful login with userpass.
+        """
         mock_login_response = {'auth': {'client_token': 'test-token'}}
         mock_client.auth.userpass.login.return_value = mock_login_response
 
@@ -15,6 +25,9 @@ class TestDatabase(unittest.TestCase):
 
     @patch('backend.database.client')
     def test_login_with_userpass_failure(self, mock_client):
+        """
+        Test login failure with userpass.
+        """
         mock_client.auth.userpass.login.side_effect = Exception("Login failed")
 
         token = database.login_with_userpass('testuser', 'testpass')
@@ -22,6 +35,9 @@ class TestDatabase(unittest.TestCase):
 
     @patch('backend.database.client')
     def test_login_with_userpass_invalid_credentials(self, mock_client):
+        """
+        Test login with invalid credentials.
+        """
         mock_client.auth.userpass.login.return_value = {}  # Simulate empty response
 
         token = database.login_with_userpass('invaliduser', 'invalidpass')
@@ -29,7 +45,12 @@ class TestDatabase(unittest.TestCase):
 
     @patch('backend.database.client')
     def test_read_secret_success(self, mock_client):
-        mock_read_response = {'data': {'data': {'username': 'testuser', 'password': 'testpass'}}}
+        """
+        Test successful secret reading.
+        """
+        mock_read_response = {
+            'data': {'data': {'username': 'testuser', 'password': 'testpass'}}
+        }
         mock_client.secrets.kv.v2.read_secret_version.return_value = mock_read_response
 
         secret_data = database.read_secret(mock_client, 'credentials', 'db')
@@ -37,6 +58,9 @@ class TestDatabase(unittest.TestCase):
 
     @patch('backend.database.client')
     def test_read_secret_failure(self, mock_client):
+        """
+        Test secret reading failure.
+        """
         mock_client.secrets.kv.v2.read_secret_version.side_effect = Exception("Read failed")
 
         secret_data = database.read_secret(mock_client, 'credentials', 'db')
@@ -44,6 +68,9 @@ class TestDatabase(unittest.TestCase):
 
     @patch('backend.database.client')
     def test_read_secret_empty_response(self, mock_client):
+        """
+        Test secret reading with empty response.
+        """
         mock_client.secrets.kv.v2.read_secret_version.return_value = {}
 
         secret_data = database.read_secret(mock_client, 'credentials', 'db')
@@ -52,6 +79,9 @@ class TestDatabase(unittest.TestCase):
     @patch('backend.database.create_engine')
     @patch('backend.database.sessionmaker')
     def test_create_database_session(self, mock_sessionmaker, mock_create_engine):
+        """
+        Test successful database session creation.
+        """
         mock_engine = MagicMock()
         mock_create_engine.return_value = mock_engine
 
@@ -59,14 +89,17 @@ class TestDatabase(unittest.TestCase):
         mock_sessionmaker.return_value = mock_sessionmaker_instance
 
         database_url = 'mysql+pymysql://user:pass@localhost/db'
-        engine, SessionLocal = database.create_database_session(database_url)
+        engine, session_local = database.create_database_session(database_url)
 
-        mock_create_engine.assert_called_once_with(database_url)
+        mock_create_engine.assert_called_once_with(database_url, pool_pre_ping=True)
         self.assertEqual(engine, mock_engine)
-        self.assertEqual(SessionLocal, mock_sessionmaker_instance)
+        self.assertEqual(session_local, mock_sessionmaker_instance)
 
     @patch('backend.database.client')
     def test_create_database_session_invalid_url(self, mock_client):
+        """
+        Test database session creation with an invalid URL.
+        """
         database_url = 'invalid_database_url'
 
         with self.assertRaises(Exception):

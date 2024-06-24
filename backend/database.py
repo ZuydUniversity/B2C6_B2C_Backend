@@ -1,22 +1,36 @@
-import hvac
+"""
+Module for database connection and Vault integration.
+"""
+
 import os
+import hvac
 from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-print(__file__)
 
 # Initialize the Vault client
 client = hvac.Client(url='http://vault.myolink.info.gf:8200')
 
+# SQLAlchemy setup
+Base = declarative_base()
+
 def login_with_userpass(username, password):
-    #Log in to Vault using the Username (userpass) method and set the client token.
+    """
+    Log in to Vault using the Username (userpass) method and set the client token.
+
+    Args:
+        username (str): The Vault username.
+        password (str): The Vault password.
+
+    Returns:
+        str: The client token if login is successful, None otherwise.
+    """
     try:
-        # Authenticate with Vault using the userpass method
         login_response = client.auth.userpass.login(
             username=username,
             password=password,
             mount_point='userpass'
         )
-        # Set the client token to the newly acquired token
         client.token = login_response['auth']['client_token']
         return client.token
     except Exception as e:
@@ -24,25 +38,46 @@ def login_with_userpass(username, password):
         return None
 
 def read_secret(client, path, mount_point='db'):
-    #Read a secret from the KV Version 2 secrets engine.
+    """
+    Read a secret from the KV Version 2 secrets engine.
+
+    Args:
+        client (hvac.Client): The Vault client.
+        path (str): The path to the secret.
+        mount_point (str): The mount point of the secrets engine.
+
+    Returns:
+        dict: The secret data if read is successful, None otherwise.
+    """
     try:
         read_response = client.secrets.kv.v2.read_secret_version(
             path=path,
             mount_point=mount_point
         )
-        return read_response['data']['data']  # The secret data is nested under 'data' key twice for KV V2
+        return read_response['data']['data']
     except Exception as e:
         print(f"Error reading secret from Vault: {e}")
         return None
 
 def create_database_session(database_url):
-    # Create a SQLAlchemy engine and sessionmaker.
-    engine = create_engine(database_url)
-    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    return engine, SessionLocal
+    """
+    Create a SQLAlchemy engine and sessionmaker.
+
+    Args:
+        database_url (str): The database URL.
+
+    Returns:
+        tuple: A tuple containing the SQLAlchemy engine and sessionmaker.
+    """
+    print("Connecting to database with URL:", database_url)
+    engine = create_engine(database_url, pool_pre_ping=True)
+    session_local = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    return engine, session_local
 
 def main():
-    # Get the Vault login credentials from environment variables
+    """
+    Main function to authenticate to Vault, retrieve secrets, and create the database session.
+    """
     vault_username = os.getenv('VAULT_USERNAME')
     vault_password = os.getenv('VAULT_PASSWORD')
 
@@ -50,7 +85,6 @@ def main():
         print("Vault username or password not set in environment variables")
         return
 
-    # Use the function with your credentials
     token = login_with_userpass(vault_username, vault_password)
     if token:
         client.token = token
@@ -65,21 +99,24 @@ def main():
                 host = 'developmentvm1-klasb2c.westeurope.cloudapp.azure.com'
                 port = '3306'
                 database_name = 'myolinkdb'
-                # Construct the DATABASE_URL for MariaDB using PyMySQL driver
-                database_url = f"mysql+pymysql://{username}:{password}@{host}:{port}/{database_name}"
+                database_url = (
+                    f"mysql+pymysql://{username}:{password}@{host}:{port}/{database_name}"
+                )
                 print("DATABASE_URL:", database_url)
                 
-                # Create the SQLAlchemy engine and sessionmaker
-                engine, SessionLocal = create_database_session(database_url)
-                print("SQLAlchemy engine and sessionmaker created successfully")
-                
-                # Example usage of session
-                session = SessionLocal()
                 try:
-                    # Add your database operations here
-                    pass
-                finally:
-                    session.close()
+                    engine, session_local = create_database_session(database_url)
+                    print("SQLAlchemy engine and sessionmaker created successfully")
+                except Exception as e:
+                    print(f"Error creating database session: {e}")
+                    return
+
+                try:
+                    Base.metadata.create_all(engine)
+                    print("Tables created successfully")
+                except Exception as e:
+                    print(f"Error creating tables: {e}")
+                    return
             else:
                 print("Username or password not found in secret data")
         else:
@@ -89,3 +126,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
