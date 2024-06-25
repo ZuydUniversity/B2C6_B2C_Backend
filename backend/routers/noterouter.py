@@ -102,7 +102,7 @@ async def delete_note(note_id: int):
     It returns an message with success or failure.
     '''
     save = deletefrom_notesdatabase(note_id)
-    return save
+    return {"message": save}
 
 async def save_notesdatabase(data):
     '''

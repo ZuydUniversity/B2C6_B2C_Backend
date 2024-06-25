@@ -50,22 +50,20 @@ def test_get_notes():
     '''
     response = client.get("/api/notes")
     assert response.status_code == 200
-    assert response.json() == {"success": True, "result": "Note created successfully"}
-    assert response.json() is not None
+    assert response.json()["message"] == {"success": True, "result": "Note retrieved successfully"}
 
-def test_get_note_test():
+def test_get_note():
     '''
     Test if the getting of the note works.
     '''
-    note, response = client.get("/api/notes/1")
+    response = client.get("/api/notes/1")
     assert response.status_code == 200
-    assert response.json() == {"success": True, "result": "Note created successfully"}
-    assert note.json() is not None
+    assert response.json()["message"] == {"success": True, "result": "Note retrieved successfully"}
 
-def test_delete_note_test():
+def test_delete_note():
     '''
     Test if the deleting of the notes works.
     '''
     response = client.delete("/api/notes/1")
     assert response.status_code == 200
-    assert response.json() == {"success": True, "result": "Note created successfully"}
+    assert response.json()["message"] == {"success": True, "result": "Note deleted successfully"}
