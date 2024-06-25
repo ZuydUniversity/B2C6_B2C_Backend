@@ -2,13 +2,11 @@
 Module for database connection and Vault integration.
 """
 
-import sys
 import os
 import hvac
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 # Initialize the Vault client
 client = hvac.Client(url='http://vault.myolink.info.gf:8200')
@@ -76,55 +74,43 @@ def create_database_session(database_url):
     session_local = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     return engine, session_local
 
+def setup_database_connection():
+    """
+    Set up the database connection by authenticating to Vault, retrieving secrets,
+    and creating the database session.
+    """
+    db_user = os.getenv('DB_USER')
+    db_password = os.getenv('DB_PASSWORD')
+
+    if not db_user or not db_password:
+        print("Database credentials not set in environment variables")
+        return None, None
+
+    # You may authenticate to Vault here if required for other secrets
+
+    # Constructing the database URL
+    database_url = f"mysql+pymysql://{db_user}:{db_password}@developmentvm1-klasb2c.westeurope.cloudapp.azure.com:3306/myolinkdb"
+
+    try:
+        engine, session_local = create_database_session(database_url)
+        print("SQLAlchemy engine and sessionmaker created successfully")
+
+        try:
+            Base.metadata.create_all(engine)
+            print("Tables created successfully")
+            return engine, session_local
+        except Exception as e:
+            print(f"Error creating tables: {e}")
+            return None, None
+    except Exception as e:
+        print(f"Error creating database session: {e}")
+        return None, None
+
 def main():
     """
-    Main function to authenticate to Vault, retrieve secrets, and create the database session.
+    Main function to run when the script is executed directly.
     """
-    vault_username = os.getenv('VAULT_USERNAME')
-    vault_password = os.getenv('VAULT_PASSWORD')
-
-    if not vault_username or not vault_password:
-        print("Vault username or password not set in environment variables")
-        return
-
-    token = login_with_userpass(vault_username, vault_password)
-    if token:
-        client.token = token
-        print("Token:", client.token)
-        
-        secret_data = read_secret(client, path='credentials', mount_point='db')
-        if secret_data:
-            print("Successfully retrieved secret:", secret_data)
-            username = secret_data.get('username')
-            password = secret_data.get('password')
-            if username and password:
-                host = 'developmentvm1-klasb2c.westeurope.cloudapp.azure.com'
-                port = '3306'
-                database_name = 'myolinkdb'
-                database_url = (
-                    f"mysql+pymysql://{username}:{password}@{host}:{port}/{database_name}"
-                )
-                print("DATABASE_URL:", database_url)
-                
-                try:
-                    engine, session_local = create_database_session(database_url)
-                    print("SQLAlchemy engine and sessionmaker created successfully")
-                except Exception as e:
-                    print(f"Error creating database session: {e}")
-                    return
-
-                try:
-                    Base.metadata.create_all(engine)
-                    print("Tables created successfully")
-                except Exception as e:
-                    print(f"Error creating tables: {e}")
-                    return
-            else:
-                print("Username or password not found in secret data")
-        else:
-            print("Failed to retrieve secret data")
-    else:
-        print("Failed to authenticate to Vault")
+    setup_database_connection()
 
 if __name__ == "__main__":
     main()
