@@ -36,3 +36,5 @@ patient_medication_association = Table('patient_medication_association', Base.me
 medication = relationship("Medication", secondary=patient_medication_association, back_populates="patients")
 
 appointments = relationship("Appointment", back_populates="patient")
+
+sessions = relationship("Session", back_populates="patient")
