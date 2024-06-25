@@ -7,7 +7,7 @@ from backend.database import Base
 
 class Patient(Base):
     '''
-    Why is pylint like this?
+    Pylint nono
     '''
     __tablename__ = "patients"
 
