@@ -27,10 +27,9 @@ async def create_note(request: Request):
         SpecialistId=data.get('specialistId')
     )
     if bool(data.get('debug')) is False or bool(data.get('debug')) is None:
-        print("idk")
-        #save = save_notesdatabase(note)
+        save = save_notesdatabase(note)
     else:
-        save = {"success": "True", "result": "Note created successfully", "note": note}
+        save = {"message": {"success": "True", "result": "Note created successfully"}, "note": note}
     return save
 
 @router.patch("/notes/{note_id}")
@@ -43,7 +42,9 @@ async def patch_note(request: Request, note_id: int):
     '''
     # This is temporary to satisfy PyLint
     data = await request.json()
-    note, message =  get_specificnotedatabase(note_id)
+    response =  get_specificnotedatabase(note_id)
+    message = response['message']
+    note = response['note']	
     succes_message = {"success": True, "result": "Note created successfully"}
     if message is not succes_message or note is not type(Note):
         if message is succes_message:
@@ -58,8 +59,7 @@ async def patch_note(request: Request, note_id: int):
         save = save_notesdatabase(note)
     else:
         save = {"success": True, "result": "Note created successfully"}
-        return note, save
-    return save
+    return {"note": note, "message": save}
 
 @router.get('/notes')
 async def get_notes():
@@ -70,8 +70,8 @@ async def get_notes():
     It returns an message with success or failure.
     '''
     # Code here that gets all notes
-    notes, message = get_notesdatabase()
-    return notes, message
+    response = get_notesdatabase()
+    return {"notes": response['notes'], "message": response['message']}
 
 @router.get('/notes/{note_id}')
 async def get_note(note_id: int):
@@ -81,7 +81,9 @@ async def get_note(note_id: int):
     Then it gets a note from the database
     It returns an message with success or failure.
     '''
-    note, message =  get_specificnotedatabase(note_id)
+    response =  get_specificnotedatabase(note_id)
+    message = response['message']
+    note = response['note']
     succes_message = {"success": True, "result": "Note created successfully"}
     if message is not succes_message or note is not type(Note):
         if message is succes_message:
@@ -89,7 +91,7 @@ async def get_note(note_id: int):
         else:
             return message
     save = save_notesdatabase(note)
-    return note, save
+    return {"note": note, "message": save}
 
 @router.delete('/notes/{note_id}')
 async def delete_note(note_id: int):
@@ -140,7 +142,7 @@ async def get_notesdatabase():
         message = {"success": False, "error": "DataError: " + str(e)}
     except DatabaseError as e:
         message = {"success": False, "error": "DatabaseError: " + str(e)}
-    return notes, message
+    return {"notes": notes, "message": message}
 
 async def get_specificnotedatabase(note_id):
     '''
@@ -161,7 +163,7 @@ async def get_specificnotedatabase(note_id):
         message = {"success": False, "error": "DataError: " + str(e)}
     except DatabaseError as e:
         message = {"success": False, "error": "DatabaseError: " + str(e)}
-    return note, message
+    return {"note": note, "message": message}
 
 async def deletefrom_notesdatabase(note_id):
     '''

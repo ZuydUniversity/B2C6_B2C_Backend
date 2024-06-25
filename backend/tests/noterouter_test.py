@@ -14,19 +14,18 @@ def test_create_note():
     Then it returns that class as an JSON.
     '''
     test_note = {
-        "id": "1",
+        "id": 1,
         "name": "Test Note",
-        "sessionId": "1",
-        "patientId": "1",
-        "specialistId": "1",
-        "debug": "True"
+        "sessionId": 1,
+        "patientId": 1,
+        "specialistId": 1,
+        "debug": True
     }
 
     response = client.post("/api/notes", json=test_note)
     assert response.status_code == 200
     response_json = response.json()
-    assert response_json["success"] == "True"
-    assert response_json["result"] == "Note created successfully"
+    assert response_json["message"] == {"success": True, "result": "Note created successfully"}
     assert response_json["note"]["Name"] == "Test Note"
 
 def test_patch_note():
@@ -40,10 +39,10 @@ def test_patch_note():
         "specialistId": "specialist789",
         "debug": True
     }
-    note, response = client.patch("/api/notes/2", json=test_note)
+    response = client.patch("/api/notes/2", json=test_note)
     assert response.status_code == 200
-    assert response.json() == {"success": True, "result": "Note created successfully"}
-    assert note.json() == test_note
+    assert response.json()['message'] == {"success": True, "result": "Note created successfully"}
+    assert response.json()['note'] == test_note
 
 def test_get_notes_test():
     '''
