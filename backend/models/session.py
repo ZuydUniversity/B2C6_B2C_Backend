@@ -1,13 +1,13 @@
 '''
 This module contains the Session model for the database.
 '''
-from sqlalchemy import Column, ForeignKey, Integer, String, Table, DateTime
+from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 from backend.database import Base
 
 class Session(Base):
     '''
-    Pylint nono
+    This is a parent class.
     '''
     __tablename__ = "sessions"
 
