@@ -1,11 +1,9 @@
 '''
 This module contains the Patient model for the database.
 '''
-from sqlalchemy.ext.declarative import declarative_base # This should go in database.py once its made.
 from sqlalchemy import Column, ForeignKey, Integer, String, Table
 from sqlalchemy.orm import relationship
-
-Base = declarative_base() # This should go in database.py once its made.
+from backend.database import Base
 
 class Patient(Base):
     __tablename__ = "patients"
