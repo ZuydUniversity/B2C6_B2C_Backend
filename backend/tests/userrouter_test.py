@@ -9,11 +9,13 @@ client = TestClient(app)
 
 # Test data
 test_user = {
+    "personel_number": "1234567890",
     "username": "test@example.com",
     "password": "testpassword"
 }
 
 fake_users_db[test_user["username"]] = {
+    "personel_number": test_user["personel_number"],
     "email": test_user["username"],
     "hashed_password": pwd_context.hash(test_user["password"])
 }
