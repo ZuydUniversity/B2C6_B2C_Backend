@@ -43,14 +43,7 @@ def setup_database_connection():
     try:
         engine, session_local = create_database_session(database_url)
         print("SQLAlchemy engine and sessionmaker created successfully")
-
-        try:
-            Base.metadata.create_all(engine)
-            print("Tables created successfully")
-            return engine, session_local
-        except Exception as e:
-            print(f"Error creating tables: {e}")
-            return None, None
+        return engine, session_local
     except Exception as e:
         print(f"Error creating database session: {e}")
         return None, None
