@@ -1,6 +1,9 @@
 name: Test coverage
 
-on: push
+on:
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch: 
 
 jobs:
   build:
@@ -21,14 +24,11 @@ jobs:
         pip install pytest
         pip install -r requirements.txt
     - name: Run tests with coverage
+      env:
+        SSL_CERT: ${{ secrets.SSL_CERT }}
+        SSL_KEY: ${{ secrets.SSL_KEY }}
       run: |
+        export SSL_CERT="${{ secrets.ssl_cert }}"
+        export SSL_KEY="${{ secrets.ssl_key }}"
         coverage run -m pytest
         coverage report --fail-under=80
-
-  NotifyOnFailure:
-    needs: build
-    if: ${{ failure() }}
-    uses: ./.github/workflows/feedback-slack-coverage.yml
-    secrets:
-      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-      SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}

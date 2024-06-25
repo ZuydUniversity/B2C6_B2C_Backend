@@ -1,6 +1,7 @@
-# For more information, please refer to https://aka.ms/vscode-docker-python
+# Start from the official Python image
 FROM python:3-slim
 
+# Expose port 8000
 EXPOSE 8000
 
 # Keeps Python from generating .pyc files in the container
@@ -13,13 +14,16 @@ ENV PYTHONUNBUFFERED=1
 COPY requirements.txt .
 RUN python -m pip install -r requirements.txt
 
+# Create directories for certificates and copy them
+RUN mkdir -p /app/certificates
+COPY cert.pem /app/certificates/
+COPY key.pem /app/certificates/
+
+# Set working directory
 WORKDIR /app
-COPY . /app
 
-# Creates a non-root user with an explicit UID and adds permission to access the /app folder
-# For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
-RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
-USER appuser
+# Copy the rest of your application code
+COPY . .
 
-# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["fastapi", "run", "backend/main.py", "--port", "8000"]
+# During debugging, this entry point will be overridden
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000", "--ssl-keyfile", "/app/certificates/key.pem", "--ssl-certfile", "/app/certificates/cert.pem"]
