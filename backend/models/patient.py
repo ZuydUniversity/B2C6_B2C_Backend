@@ -6,6 +6,9 @@ from sqlalchemy.orm import relationship
 from backend.database import Base
 
 class Patient(Base):
+    '''
+    Why is pylint like this?
+    '''
     __tablename__ = "patients"
 
     id = Column(Integer, primary_key=True)
@@ -18,14 +21,13 @@ class Patient(Base):
     contactpersonEmail = Column(String(100))
     contactpersonPhonenumber = Column(Integer)
 
-# The relationships will be defined here. Models yet to be added so the relationships are commented out.
 patient_specialist_association = Table('patient_specialist_association', Base.metadata,
     Column('patient_id', Integer, ForeignKey('patients.id'), primary_key=True),
     Column('specialist_id', Integer, ForeignKey('specialists.id'), primary_key=True)
 )
 specialists = relationship("Specialist", secondary=patient_specialist_association, back_populates="patients")
 
-notes = relationship("Note", backref="patient")
+notes = relationship("Note", back_populates="patient")
 
 patient_medication_association = Table('patient_medication_association', Base.metadata,
     Column('patient_id', Integer, ForeignKey('patients.id'), primary_key=True),
@@ -33,4 +35,4 @@ patient_medication_association = Table('patient_medication_association', Base.me
 )
 medication = relationship("Medication", secondary=patient_medication_association, back_populates="patients")
 
-appointments = relationship("Appointment", backref="patient")
+appointments = relationship("Appointment", back_populates="patient")
