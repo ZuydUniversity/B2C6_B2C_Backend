@@ -41,17 +41,17 @@ def test_patch_note():
     }
     response = client.patch("/api/notes/2", json=test_note)
     assert response.status_code == 200
-    assert response.json()['message'] == {"success": True, "result": "Note created successfully"}
+    assert response.json()['message'] == {"success": True, "result": "Note patched successfully"}
     assert response.json()['note'] == test_note
 
-def test_get_notes_test():
+def test_get_notes():
     '''
     Test if the getting of the notes works.
     '''
-    notes, response = client.get("/api/notes")
+    response = client.get("/api/notes")
     assert response.status_code == 200
     assert response.json() == {"success": True, "result": "Note created successfully"}
-    assert notes.json() is not None
+    assert response.json() is not None
 
 def test_get_note_test():
     '''

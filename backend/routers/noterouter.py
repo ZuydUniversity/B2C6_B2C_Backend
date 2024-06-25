@@ -45,7 +45,7 @@ async def patch_note(request: Request, note_id: int):
     response =  get_specificnotedatabase(note_id)
     message = response['message']
     note = response['note']	
-    succes_message = {"success": True, "result": "Note created successfully"}
+    succes_message = {"success": True, "result": "Note retrieved successfully"}
     if message is not succes_message or note is not type(Note):
         if message is succes_message:
             return {"success": False, "result": "note is not type Note"}
@@ -58,7 +58,7 @@ async def patch_note(request: Request, note_id: int):
     if data.get('debug') is False or data.get('debug') is None:
         save = save_notesdatabase(note)
     else:
-        save = {"success": True, "result": "Note created successfully"}
+        save = {"success": True, "result": "Note patched successfully"}
     return {"note": note, "message": save}
 
 @router.get('/notes')
@@ -84,7 +84,7 @@ async def get_note(note_id: int):
     response =  get_specificnotedatabase(note_id)
     message = response['message']
     note = response['note']
-    succes_message = {"success": True, "result": "Note created successfully"}
+    succes_message = {"success": True, "result": "Note retrieved successfully"}
     if message is not succes_message or note is not type(Note):
         if message is succes_message:
             return {"success": False, "result": "note is not type Note"}
@@ -112,7 +112,7 @@ async def save_notesdatabase(data):
     try:
         # Functie die notes opslaat naar de database
         print(data) # This is temporary to satisfy PyLint
-        message = {"success": True, "result": "Note created successfully"}
+        message = {"success": True, "result": "Note saved successfully"}
     except IntegrityError as e:
         message = {"success": False, "error": "IntegrityError: " + str(e)}
     except OperationalError as e:
@@ -133,7 +133,7 @@ async def get_notesdatabase():
         # Functie die alle notes ophaalt uit de database
         temp_note = Note(Id=1, Name="test", SessionId=1, PatientId=1, SpecialistId=1)
         notes = [temp_note]
-        message = {"success": True, "result": "Note created successfully"}
+        message = {"success": True, "result": "Note retrieved successfully"}
     except IntegrityError as e:
         message = {"success": False, "error": "IntegrityError: " + str(e)}
     except OperationalError as e:
@@ -154,7 +154,7 @@ async def get_specificnotedatabase(note_id):
         # Functie die een specifieke note ophaalt uit de database
         print(note_id)
         note= Note(Id=1, Name="test", SessionId=1, PatientId=1, SpecialistId=1)
-        message = {"success": True, "result": "Note recieved successfully"}
+        message = {"success": True, "result": "Note retrieved successfully"}
     except IntegrityError as e:
         message = {"success": False, "error": "IntegrityError: " + str(e)}
     except OperationalError as e:
@@ -173,7 +173,7 @@ async def deletefrom_notesdatabase(note_id):
     try:
         # Functie die een specifieke note verwijderd uit de database
         print(note_id)
-        message = {"success": True, "result": "Note recieved successfully"}
+        message = {"success": True, "result": "Note deleted successfully"}
     except IntegrityError as e:
         message = {"success": False, "error": "IntegrityError: " + str(e)}
     except OperationalError as e:
