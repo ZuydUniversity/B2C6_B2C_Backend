@@ -34,7 +34,7 @@ def test_login_incorrect_credentials():
     '''
     Test if you won't loggin when wrong credentials are entered
     '''
-    response = client.post("api/user/login", data={
+    response = client.post("api/user/login", json={
         "personel_number": "1342341245", 
         "email": "wrong@example.com",
         "password": "wrongpassword"
