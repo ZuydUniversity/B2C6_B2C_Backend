@@ -42,21 +42,20 @@ async def patch_note(request: Request, note_id: int):
     data = await request.json()
     response =  await get_specificnotedatabase(note_id)
     message = response["message"]
-    note = response["note"]	
+    note = response["note"]
     succes_message = {"success": True, "result": "Note retrieved successfully"}
     if message is not succes_message or note is not type(Note):
         if message is succes_message:
             return {"success": False, "result": "note is not type Note"}
+        note.Name = data.get('name')
+        note.SessionId = data.get('sessionId')
+        note.PatientId = data.get('patientId')
+        note.SpecialistId = data.get('specialistId')
+        if data.get('debug') is False or data.get('debug') is None:
+            save = await save_notesdatabase(note)
         else:
-            note.Name = data.get('name')
-            note.SessionId = data.get('sessionId')
-            note.PatientId = data.get('patientId')
-            note.SpecialistId = data.get('specialistId')
-            if data.get('debug') is False or data.get('debug') is None:
-                save = await save_notesdatabase(note)
-            else:
-                save = {"success": True, "result": "Note patched successfully"}
-            return {"note": note, "message": save}
+            save = {"success": True, "result": "Note patched successfully"}
+        return {"note": note, "message": save}
 
 @router.get('/notes')
 async def get_notes():
