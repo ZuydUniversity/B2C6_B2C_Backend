@@ -10,7 +10,7 @@ client = TestClient(app)
 # Test data
 test_user = {
     "personel_number": "1234567890",
-    "username": "test@example.com",
+    "email": "test@example.com",
     "password": "testpassword"
 }
 
