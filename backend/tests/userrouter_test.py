@@ -9,12 +9,14 @@ client = TestClient(app)
 
 # Test data
 test_user = {
-    "username": "test@example.com",
+    "personel_number": "1234567890",
+    "email": "test@example.com",
     "password": "testpassword"
 }
 
-fake_users_db[test_user["username"]] = {
-    "email": test_user["username"],
+fake_users_db[test_user["email"]] = {
+    "personel_number": test_user["personel_number"],
+    "email": test_user["email"],
     "hashed_password": pwd_context.hash(test_user["password"])
 }
 
@@ -22,7 +24,7 @@ def test_login_successful():
     '''
     Test if logging in works 
     '''
-    response = client.post("/api/user/login", data=test_user)
+    response = client.post("/api/user/login", json=test_user)
 
     assert response.status_code == 200
     assert "session_token" in response.cookies
@@ -32,8 +34,9 @@ def test_login_incorrect_credentials():
     '''
     Test if you won't loggin when wrong credentials are entered
     '''
-    response = client.post("api/user/login", data={
-        "username": "wrong@example.com",
+    response = client.post("api/user/login", json={
+        "personel_number": "1342341245", 
+        "email": "wrong@example.com",
         "password": "wrongpassword"
     })
 

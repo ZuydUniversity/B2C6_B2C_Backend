@@ -5,6 +5,7 @@ import secrets
 from datetime import datetime, timedelta, timezone
 from jose import jwt
 from passlib.context import CryptContext
+from pydantic import BaseModel
 from fastapi.security import OAuth2PasswordBearer
 
 SECRET_KEY = secrets.token_hex(32)
@@ -17,29 +18,44 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/user/login")
 # TEMP TEST DATABASE
 fake_users_db = {
     "johndoe@example.com": {
+        "personel_number": "1234567890",
         "email": "johndoe@example.com",
         "hashed_password": pwd_context.hash("password"),
     }
 }
 
-def authenticate_user(email: str, password: str):
+class LoginCredentials(BaseModel):
+    '''
+    Contains all credentials needed for logging in.
+
+    Attributes:
+        personel_number (string): personel number of the user
+        email (string): email of the user
+        password (string): password of the user    
+    '''
+    personel_number: str
+    email: str
+    password: str
+
+def authenticate_user(credentials: LoginCredentials):
     '''
     Checks if user exists and if the password is correct.
 
     Args:
+        personel_number (string): the personel number of the user
         email (string): the email of the user
         password (string): the password of the user
 
     Returns:
-        Uxser if successfully logged in and false if not successfully
+        User if successfully logged in and false if not successfully
         logged in.
     '''
-    user = fake_users_db.get(email)
+    user = fake_users_db.get(credentials.email)
 
-    if not user:
+    if not user or user["personel_number"] != credentials.personel_number:
         return False
 
-    if not pwd_context.verify(password, user["hashed_password"]):
+    if not pwd_context.verify(credentials.password, user["hashed_password"]):
         return False
 
     return user
