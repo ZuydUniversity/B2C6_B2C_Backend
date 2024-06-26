@@ -14,11 +14,6 @@ ENV PYTHONUNBUFFERED=1
 COPY requirements.txt .
 RUN python -m pip install -r requirements.txt
 
-# Create directories for certificates and copy them
-RUN mkdir -p /app/certificates
-COPY cert.pem /app/certificates/
-COPY key.pem /app/certificates/
-
 # Set working directory
 WORKDIR /app
 
@@ -26,4 +21,4 @@ WORKDIR /app
 COPY . .
 
 # During debugging, this entry point will be overridden
-CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000", "--ssl-keyfile", "/app/certificates/key.pem", "--ssl-certfile", "/app/certificates/cert.pem"]
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
