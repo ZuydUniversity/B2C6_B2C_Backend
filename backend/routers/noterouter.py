@@ -23,10 +23,7 @@ async def create_note(request: Request):
         PatientId=data.get('patientId'),
         SpecialistId=data.get('specialistId')
     )
-    if bool(data.get('debug')) is False or bool(data.get('debug')) is None:
-        save = save_notesdatabase(note)
-    else:
-        save = {"message": {"success": True, "result": "Note created successfully"}, "note": note}
+    save = save_notesdatabase(note, debug=data.get('debug'))
     return save
 
 @router.patch("/notes/{note_id}")
@@ -50,10 +47,7 @@ async def patch_note(request: Request, note_id: int):
         note.SessionId = data.get('sessionId')
         note.PatientId = data.get('patientId')
         note.SpecialistId = data.get('specialistId')
-        if data.get('debug') is False or data.get('debug') is None:
-            save = await save_notesdatabase(note)
-        else:
-            save = {"success": True, "result": "Note patched successfully"}
+        save = await save_notesdatabase(note, data.get('debug'))
         return {"note": note, "message": save}
 
 @router.get('/notes')
@@ -94,14 +88,15 @@ async def delete_note(note_id: int):
     message = await deletefrom_notesdatabase(note_id)
     return {"message": message}
 
-async def save_notesdatabase(data):
+async def save_notesdatabase(data, debug = False):
     '''
     Saves a note to the database
     '''
     message =  {"success": False, "error": "An unexpected error occurred"}
     try:
-        # Functie die notes opslaat naar de database
-        print(data) # This is temporary to satisfy PyLint
+        if bool(debug) is False:
+            # Functie die notes opslaat naar de database
+            print(data) # This is temporary to satisfy PyLint
         message = {"success": True, "result": "Note saved successfully"}
     except Exception as e:
         message = {"success": False, "error": f"Database Error: {e}"}

@@ -41,7 +41,7 @@ def test_patch_note():
     }
     response = client.patch("/api/notes/1", json=test_note)
     assert response.status_code == 200
-    assert response.json()["message"] == {"success": True, "result": "Note patched successfully"}
+    assert response.json()["message"] == {"success": True, "result": "Note saved successfully"}
     assert response.json()["note"]["Name"] == "Test Note"
 
 def test_get_notes():
