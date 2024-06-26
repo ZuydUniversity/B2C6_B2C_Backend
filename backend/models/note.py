@@ -13,7 +13,7 @@ class Note(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(50))
-    Description = Column(String(200))
+    description = Column(String(200))
 
 specialists = relationship("Specialist", back_populates="note")
 

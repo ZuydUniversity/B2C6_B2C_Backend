@@ -16,16 +16,18 @@ def test_create_note():
     test_note = {
         "id": 1,
         "name": "Test Note",
-        "sessionId": 1,
-        "patientId": 1,
-        "specialistId": 1,
+        "description": "Test Note",
+        "sessions": 1,
+        "patients": 1,
+        "specialists": 1,
         "debug": True
     }
 
     response = client.post("/api/notes", json=test_note)
     assert response.status_code == 200
-    assert response.json()["message"] == {"success": True, "result": "Note created successfully"}
-    assert response.json()["note"]["Name"] == "Test Note"
+    print(response.json())
+    assert response.json()["message"] == {"success": True, "result": "Note saved successfully"}
+    assert response.json()["note"]["name"] == "Test Note"
 
 def test_patch_note():
     '''
@@ -34,6 +36,7 @@ def test_patch_note():
     test_note = {
         "id": 1,
         "name": "Test Note",
+        "description": "Test Note",
         "sessionId": 1,
         "patientId": 1,
         "specialistId": 1,
@@ -42,13 +45,14 @@ def test_patch_note():
     response = client.patch("/api/notes/1", json=test_note)
     assert response.status_code == 200
     assert response.json()["message"] == {"success": True, "result": "Note saved successfully"}
-    assert response.json()["note"]["Name"] == "Test Note"
+    assert response.json()["note"]["name"] == "Test Note"
 
 def test_get_notes():
     '''
     Test if the getting of the notes works.
     '''
     response = client.get("/api/notes")
+    print(response.json())
     assert response.status_code == 200
     assert response.json()["message"] == {"success": True, "result": "Note retrieved successfully"}
 

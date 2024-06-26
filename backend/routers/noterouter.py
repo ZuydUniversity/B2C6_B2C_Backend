@@ -3,7 +3,7 @@ The router for the notes wich allows the user to create, read, update and delete
 '''
 from fastapi import Request
 from ..common import create_router
-from ..models.notemodel import Note
+from ..models.note import Note
 
 router = create_router()
 
@@ -16,15 +16,19 @@ async def create_note(request: Request):
     It returns an message with success or failure.
     '''
     data = await request.json()
+    ## Note to self, this needs to be for each loop because of the fact you can have multiple sessions, patients and specialists (Discuss with levi)
+    session = await getsessionfrom_database(data.get('sessionId'))
+    patient = await getpatientfrom_database(data.get('patientId'))
+    specialist = await get_specificnotedatabase(data.get('specialistId'))
     note = Note(
-        Id=data.get('id'),
-        Name=data.get('name'),
-        SessionId=data.get('sessionId'),
-        PatientId=data.get('patientId'),
-        SpecialistId=data.get('specialistId')
+        name=data.get('name'),
+        description=data.get('description'),
     )
-    save = save_notesdatabase(note, debug=data.get('debug'))
-    return save
+    note.sessions = [session]
+    note.patients = [patient]
+    note.specialists = [specialist]
+    message = await save_notesdatabase(note, debug=data.get('debug'))
+    return {"note": note, "message": message}
 
 @router.patch("/notes/{note_id}")
 async def patch_note(request: Request, note_id: int):
@@ -37,16 +41,16 @@ async def patch_note(request: Request, note_id: int):
     # This is temporary to satisfy PyLint
     data = await request.json()
     response =  await get_specificnotedatabase(note_id)
+
     message = response["message"]
     note = response["note"]
     succes_message = {"success": True, "result": "Note retrieved successfully"}
     if message is not succes_message or note is not type(Note):
         if message is succes_message:
             return {"success": False, "result": "note is not type Note"}
-        note.Name = data.get('name')
-        note.SessionId = data.get('sessionId')
-        note.PatientId = data.get('patientId')
-        note.SpecialistId = data.get('specialistId')
+        note.name = data.get('name')
+        note.description = data.get('description')
+
         save = await save_notesdatabase(note, data.get('debug'))
         return {"note": note, "message": save}
 
@@ -110,7 +114,7 @@ async def get_notesdatabase():
     message =  {"success": False, "error": "An unexpected error occurred"}
     try:
         # Functie die alle notes ophaalt uit de database
-        temp_note = Note(Id=1, Name="test", SessionId=1, PatientId=1, SpecialistId=1)
+        temp_note = Note(id=1, name="test", description="test", sessions=1, patients=1, specialists=1)
         notes = []
         notes.append(temp_note)
         message = {"success": True, "result": "Note retrieved successfully"}
@@ -126,8 +130,7 @@ async def get_specificnotedatabase(note_id):
     message =  {"success": False, "error": "An unexpected error occurred"}
     try:
         # Functie die een specifieke note ophaalt uit de database
-        print(note_id)
-        note= Note(Id=1, Name="test", SessionId=1, PatientId=1, SpecialistId=1)
+        note = Note(id=1, name="test", description="test", sessions=1, patients=1, specialists=1)
         message = {"success": True, "result": "Note retrieved successfully"}
     except Exception as e:
         message = {"success": False, "error": f"Database Error: {e}"}
@@ -146,3 +149,48 @@ async def deletefrom_notesdatabase(note_id):
     except Exception as e:
         message = {"success": False, "error": f"Database Error: {e}"}
     return message
+
+async def getsessionfrom_database(session_id):
+    '''
+    Gets all sessions from the database
+    '''
+    # Code here that gets all sessions from the database
+    message =  {"success": False, "error": "An unexpected error occurred"}
+    try:
+        print(session_id)
+        # Code to get session from database by ID
+        session = 1
+        message = {"success": True, "result": "Session retrieved successfully"}
+    except Exception as e:
+        message = {"success": False, "error": f"Database Error: {e}"}
+    return {"session": session, "message": message}
+
+async def getpatientfrom_database(patient_id):
+    '''
+    Geta patient from the database
+    '''
+    # Code here that gets all sessions from the database
+    message =  {"success": False, "error": "An unexpected error occurred"}
+    try:
+        print(patient_id)
+        # Code to get session from database by ID
+        patient = 1
+        message = {"success": True, "result": "Patient retrieved successfully"}
+    except Exception as e:
+        message = {"success": False, "error": f"Database Error: {e}"}
+    return {"patient": patient, "message": message}
+
+async def getspecialistfrom_database(specialist_id):
+    '''
+    Get a specialist from the database
+    '''
+    # Code here that gets all sessions from the database
+    message =  {"success": False, "error": "An unexpected error occurred"}
+    try:
+        print(specialist_id)
+        # Code to get session from database by ID
+        specialist = 1
+        message = {"success": True, "result": "Specialist retrieved successfully"}
+    except Exception as e:
+        message = {"success": False, "error": f"Database Error: {e}"}
+    return {"specialist": specialist, "message": message}
