@@ -2,7 +2,6 @@
 The router for the notes wich allows the user to create, read, update and delete notes
 '''
 from fastapi import Request
-from sqlalchemy.exc import IntegrityError, OperationalError, DataError, DatabaseError
 from ..common import create_router
 from ..models.notemodel import Note
 
@@ -104,14 +103,8 @@ async def save_notesdatabase(data):
         # Functie die notes opslaat naar de database
         print(data) # This is temporary to satisfy PyLint
         message = {"success": True, "result": "Note saved successfully"}
-    except IntegrityError as e:
-        message = {"success": False, "error": "IntegrityError: " + str(e)}
-    except OperationalError as e:
-        message = {"success": False, "error": "OperationalError: " + str(e)}
-    except DataError as e:
-        message = {"success": False, "error": "DataError: " + str(e)}
-    except DatabaseError as e:
-        message = {"success": False, "error": "DatabaseError: " + str(e)}
+    except Exception as e:
+        message = {"success": False, "error": f"Database Error: {e}"}
     return message
 
 async def get_notesdatabase():
@@ -126,14 +119,8 @@ async def get_notesdatabase():
         notes = []
         notes.append(temp_note)
         message = {"success": True, "result": "Note retrieved successfully"}
-    except IntegrityError as e:
-        message = {"success": False, "error": "IntegrityError: " + str(e)}
-    except OperationalError as e:
-        message = {"success": False, "error": "OperationalError: " + str(e)}
-    except DataError as e:
-        message = {"success": False, "error": "DataError: " + str(e)}
-    except DatabaseError as e:
-        message = {"success": False, "error": "DatabaseError: " + str(e)}
+    except Exception as e:
+        message = {"success": False, "error": f"Database Error: {e}"}
     return {"notes": notes, "message": message}
 
 async def get_specificnotedatabase(note_id):
@@ -147,14 +134,8 @@ async def get_specificnotedatabase(note_id):
         print(note_id)
         note= Note(Id=1, Name="test", SessionId=1, PatientId=1, SpecialistId=1)
         message = {"success": True, "result": "Note retrieved successfully"}
-    except IntegrityError as e:
-        message = {"success": False, "error": "IntegrityError: " + str(e)}
-    except OperationalError as e:
-        message = {"success": False, "error": "OperationalError: " + str(e)}
-    except DataError as e:
-        message = {"success": False, "error": "DataError: " + str(e)}
-    except DatabaseError as e:
-        message = {"success": False, "error": "DatabaseError: " + str(e)}
+    except Exception as e:
+        message = {"success": False, "error": f"Database Error: {e}"}
     return {"note": note, "message": message}
 
 
@@ -167,12 +148,6 @@ async def deletefrom_notesdatabase(note_id):
         # Functie die een specifieke note verwijderd uit de database
         print(note_id)
         message = {"success": True, "result": "Note deleted successfully"}
-    except IntegrityError as e:
-        message = {"success": False, "error": "IntegrityError: " + str(e)}
-    except OperationalError as e:
-        message = {"success": False, "error": "OperationalError: " + str(e)}
-    except DataError as e:
-        message = {"success": False, "error": "DataError: " + str(e)}
-    except DatabaseError as e:
-        message = {"success": False, "error": "DatabaseError: " + str(e)}
+    except Exception as e:
+        message = {"success": False, "error": f"Database Error: {e}"}
     return message
