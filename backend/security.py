@@ -24,7 +24,7 @@ fake_users_db = {
     }
 }
 
-class loginCredentials(BaseModel):
+class LoginCredentials(BaseModel):
     '''
     Contains all credentials needed for logging in.
 
@@ -37,7 +37,7 @@ class loginCredentials(BaseModel):
     email: str
     password: str
 
-def authenticate_user(personel_number: str, email: str, password: str):
+def authenticate_user(credentials: LoginCredentials):
     '''
     Checks if user exists and if the password is correct.
 
@@ -50,12 +50,12 @@ def authenticate_user(personel_number: str, email: str, password: str):
         User if successfully logged in and false if not successfully
         logged in.
     '''
-    user = fake_users_db.get(email)
+    user = fake_users_db.get(credentials.email)
 
-    if not user or user["personel_number"] != personel_number:
+    if not user or user["personel_number"] != credentials.personel_number:
         return False
 
-    if not pwd_context.verify(password, user["hashed_password"]):
+    if not pwd_context.verify(credentials.password, user["hashed_password"]):
         return False
 
     return user

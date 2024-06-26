@@ -4,17 +4,17 @@ login, logout and forgotpassword functionalities
 '''
 from typing import Optional
 from fastapi import Response, HTTPException, status, Cookie
-from ..security import authenticate_user, create_access_token, loginCredentials
+from ..security import authenticate_user, create_access_token, LoginCredentials
 from ..common import create_router
 
 router = create_router()
 
 @router.post("/user/login")
-async def login(response: Response, credentials: loginCredentials):
+async def login(response: Response, credentials: LoginCredentials):
     '''
     Returns session token after user logged in
     '''
-    authentication_user = authenticate_user(credentials.personel_number, credentials.email, credentials.password)
+    authentication_user = authenticate_user(credentials)
 
     if not authentication_user:
         raise HTTPException(
