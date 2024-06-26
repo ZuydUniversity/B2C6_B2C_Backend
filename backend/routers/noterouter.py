@@ -100,7 +100,7 @@ async def delete_note(note_id: int):
     Then it deletes a note from the database
     It returns an message with success or failure.
     '''
-    save = await Note.deletefrom_notesdatabase(note_id)
+    save = await deletefrom_notesdatabase(note_id)
     return {"message": save}
 
 async def save_notesdatabase(data):
