@@ -2,6 +2,7 @@
 The router for the notes wich allows the user to create, read, update and delete notes
 '''
 from fastapi import Request
+from sqlalchemy.exc import IntegrityError, OperationalError, DataError, DatabaseError
 from ..common import create_router
 from ..models.notemodel import Note
 
@@ -24,7 +25,7 @@ async def create_note(request: Request):
         SpecialistId=data.get('specialistId')
     )
     if bool(data.get('debug')) is False or bool(data.get('debug')) is None:
-        save = Note.save_notesdatabase(note)
+        save = save_notesdatabase(note)
     else:
         save = {"message": {"success": True, "result": "Note created successfully"}, "note": note}
     return save
@@ -39,7 +40,7 @@ async def patch_note(request: Request, note_id: int):
     '''
     # This is temporary to satisfy PyLint
     data = await request.json()
-    response =  await Note.get_specificnotedatabase(note_id)
+    response =  await get_specificnotedatabase(note_id)
     message = response["message"]
     note = response["note"]	
     succes_message = {"success": True, "result": "Note retrieved successfully"}
@@ -52,7 +53,7 @@ async def patch_note(request: Request, note_id: int):
             note.PatientId = data.get('patientId')
             note.SpecialistId = data.get('specialistId')
             if data.get('debug') is False or data.get('debug') is None:
-                save = await Note.save_notesdatabase(note)
+                save = await save_notesdatabase(note)
             else:
                 save = {"success": True, "result": "Note patched successfully"}
             return {"note": note, "message": save}
@@ -66,7 +67,7 @@ async def get_notes():
     It returns an message with success or failure.
     '''
     # Code here that gets all notes
-    response = await Note.get_notesdatabase()
+    response = await get_notesdatabase()
     notes = response["notes"]
     message = response["message"]
     return {"notes": notes, "message": message}
@@ -79,7 +80,7 @@ async def get_note(note_id: int):
     Then it gets a note from the database
     It returns an message with success or failure.
     '''
-    response = await Note.get_specificnotedatabase(note_id)
+    response = await get_specificnotedatabase(note_id)
     message = response["message"]
     note = response["note"]
     succes_message = {"success": True, "result": "Note retrieved successfully"}
@@ -88,7 +89,7 @@ async def get_note(note_id: int):
             return {"success": False, "result": "note is not type Note"}
         else:
             return message
-    save = Note.save_notesdatabase(note)
+    save = save_notesdatabase(note)
     return {"note": note, "message": save}
 
 @router.delete('/notes/{note_id}')
@@ -101,3 +102,85 @@ async def delete_note(note_id: int):
     '''
     save = await Note.deletefrom_notesdatabase(note_id)
     return {"message": save}
+
+async def save_notesdatabase(data):
+    '''
+    Saves a note to the database
+    '''
+    message =  {"success": False, "error": "An unexpected error occurred"}
+    try:
+        # Functie die notes opslaat naar de database
+        print(data) # This is temporary to satisfy PyLint
+        message = {"success": True, "result": "Note saved successfully"}
+    except IntegrityError as e:
+        message = {"success": False, "error": "IntegrityError: " + str(e)}
+    except OperationalError as e:
+        message = {"success": False, "error": "OperationalError: " + str(e)}
+    except DataError as e:
+        message = {"success": False, "error": "DataError: " + str(e)}
+    except DatabaseError as e:
+        message = {"success": False, "error": "DatabaseError: " + str(e)}
+    return message
+
+async def get_notesdatabase():
+    '''
+    Gets all notes
+    '''
+    # Code here that gets all notes from the database
+    message =  {"success": False, "error": "An unexpected error occurred"}
+    try:
+        # Functie die alle notes ophaalt uit de database
+        temp_note = Note(Id=1, Name="test", SessionId=1, PatientId=1, SpecialistId=1)
+        notes = []
+        notes.append(temp_note)
+        message = {"success": True, "result": "Note retrieved successfully"}
+    except IntegrityError as e:
+        message = {"success": False, "error": "IntegrityError: " + str(e)}
+    except OperationalError as e:
+        message = {"success": False, "error": "OperationalError: " + str(e)}
+    except DataError as e:
+        message = {"success": False, "error": "DataError: " + str(e)}
+    except DatabaseError as e:
+        message = {"success": False, "error": "DatabaseError: " + str(e)}
+    return {"notes": notes, "message": message}
+
+async def get_specificnotedatabase(note_id):
+    '''
+    Gets one specific note from the database
+    '''
+    # Code here that gets all notes from the database
+    message =  {"success": False, "error": "An unexpected error occurred"}
+    try:
+        # Functie die een specifieke note ophaalt uit de database
+        print(note_id)
+        note= Note(Id=1, Name="test", SessionId=1, PatientId=1, SpecialistId=1)
+        message = {"success": True, "result": "Note retrieved successfully"}
+    except IntegrityError as e:
+        message = {"success": False, "error": "IntegrityError: " + str(e)}
+    except OperationalError as e:
+        message = {"success": False, "error": "OperationalError: " + str(e)}
+    except DataError as e:
+        message = {"success": False, "error": "DataError: " + str(e)}
+    except DatabaseError as e:
+        message = {"success": False, "error": "DatabaseError: " + str(e)}
+    return {"note": note, "message": message}
+
+
+async def deletefrom_notesdatabase(note_id):
+    '''
+    Deletes a note
+    '''
+    message =  {"success": False, "error": "An unexpected error occurred"}
+    try:
+        # Functie die een specifieke note verwijderd uit de database
+        print(note_id)
+        message = {"success": True, "result": "Note deleted successfully"}
+    except IntegrityError as e:
+        message = {"success": False, "error": "IntegrityError: " + str(e)}
+    except OperationalError as e:
+        message = {"success": False, "error": "OperationalError: " + str(e)}
+    except DataError as e:
+        message = {"success": False, "error": "DataError: " + str(e)}
+    except DatabaseError as e:
+        message = {"success": False, "error": "DatabaseError: " + str(e)}
+    return message
