@@ -14,9 +14,9 @@ test_user = {
     "password": "testpassword"
 }
 
-fake_users_db[test_user["username"]] = {
+fake_users_db[test_user["email"]] = {
     "personel_number": test_user["personel_number"],
-    "email": test_user["username"],
+    "email": test_user["email"],
     "hashed_password": pwd_context.hash(test_user["password"])
 }
 
