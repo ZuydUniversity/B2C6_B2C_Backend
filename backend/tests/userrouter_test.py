@@ -24,7 +24,7 @@ def test_login_successful():
     '''
     Test if logging in works 
     '''
-    response = client.post("/api/user/login", data=test_user)
+    response = client.post("/api/user/login", json=test_user)
 
     assert response.status_code == 200
     assert "session_token" in response.cookies
