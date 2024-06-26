@@ -83,14 +83,7 @@ async def get_note(note_id: int):
     response = await get_specificnotedatabase(note_id)
     message = response["message"]
     note = response["note"]
-    succes_message = {"success": True, "result": "Note retrieved successfully"}
-    if message is not succes_message or note is not type(Note):
-        if message is succes_message:
-            return {"success": False, "result": "note is not type Note"}
-        else:
-            return message
-    save = save_notesdatabase(note)
-    return {"note": note, "message": save}
+    return {"note": note, "message": message}
 
 @router.delete('/notes/{note_id}')
 async def delete_note(note_id: int):
@@ -100,8 +93,8 @@ async def delete_note(note_id: int):
     Then it deletes a note from the database
     It returns an message with success or failure.
     '''
-    save = await deletefrom_notesdatabase(note_id)
-    return {"message": save}
+    message = await deletefrom_notesdatabase(note_id)
+    return {"message": message}
 
 async def save_notesdatabase(data):
     '''

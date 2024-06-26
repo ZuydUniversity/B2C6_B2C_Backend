@@ -57,7 +57,7 @@ def test_get_note():
     '''
     Test if the getting of the note works.
     '''
-    response = client.get("/api/notes?note_id=1")
+    response = client.get("/api/notes/1")
     assert response.status_code == 200
     assert response.json()["message"] == {"success": True, "result": "Note retrieved successfully"}
 
