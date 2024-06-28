@@ -68,6 +68,9 @@ def test_delete_note():
     '''
     Test if the deleting of the notes works.
     '''
-    response = client.delete("/api/notes/1")
+    debugjson = {
+        "debug": True
+    }
+    response = client.delete("/api/notes/1", json=debugjson)
     assert response.status_code == 200
     assert response.json()["message"] == {"success": True, "result": "Note deleted successfully"}

@@ -98,14 +98,16 @@ async def get_note(note_id: int):
     return {"note": note, "message": message}
 
 @router.delete('/notes/{note_id}')
-async def delete_note(note_id: int):
+async def delete_note(requets: Request, note_id: int):
     '''
     Delete router, call it with "api/notes/{note_id}".
     Make sure to specify the request type!
     Then it deletes a note from the database
     It returns an message with success or failure.
     '''
-    message = await deletefrom_notesdatabase(note_id)
+    debug = await requets.json()
+    debug = debug.get('debug') or False
+    message = await deletefrom_notesdatabase(note_id, debug)
     return {"message": message}
 
 async def save_notesdatabase(data, debug = False, db: Session = Depends(get_db)):
@@ -150,15 +152,18 @@ async def get_specificnotedatabase(note_id, db: Session = Depends(get_db)):
         message = {"success": False, "error": f"Database Error: {e}"}
     return {"note": note, "message": message}
 
-
-async def deletefrom_notesdatabase(note_id, db: Session = Depends(get_db)):
+async def deletefrom_notesdatabase(note_id, debug = False, db: Session = Depends(get_db)):
     '''
     Deletes a note
     '''
     message =  {"success": False, "error": "An unexpected error occurred"}
     try:
-        # Functie die een specifieke note verwijderd uit de database
-        print(note_id)
+        if debug is False:
+          # Functie die een specifieke note verwijderd uit de database
+          print(note_id)
+          db_user = db.query(Note).filter(Note.id == note_id).first()
+          db.delete(db_user)
+          db.commit()
         message = {"success": True, "result": "Note deleted successfully"}
     except Exception as e:
         message = {"success": False, "error": f"Database Error: {e}"}
