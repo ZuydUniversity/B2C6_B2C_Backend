@@ -108,7 +108,7 @@ async def delete_note(note_id: int):
     message = await deletefrom_notesdatabase(note_id)
     return {"message": message}
 
-async def save_notesdatabase(data, debug = False):
+async def save_notesdatabase(data, debug = False, db: Session = Depends(get_db)):
     '''
     Saves a note to the database
     '''
@@ -136,7 +136,7 @@ async def get_notesdatabase(db: Session = Depends(get_db)):
         message = {"success": False, "error": f"Database Error: {e}"}
     return {"notes": notes, "message": message}
 
-async def get_specificnotedatabase(note_id):
+async def get_specificnotedatabase(note_id, db: Session = Depends(get_db)):
     '''
     Gets one specific note from the database
     '''
@@ -151,7 +151,7 @@ async def get_specificnotedatabase(note_id):
     return {"note": note, "message": message}
 
 
-async def deletefrom_notesdatabase(note_id):
+async def deletefrom_notesdatabase(note_id, db: Session = Depends(get_db)):
     '''
     Deletes a note
     '''
@@ -164,7 +164,7 @@ async def deletefrom_notesdatabase(note_id):
         message = {"success": False, "error": f"Database Error: {e}"}
     return message
 
-async def getsessionfrom_database(session_id):
+async def getsessionfrom_database(session_id, db: Session = Depends(get_db)):
     '''
     Gets all sessions from the database
     '''
@@ -179,7 +179,7 @@ async def getsessionfrom_database(session_id):
         message = {"success": False, "error": f"Database Error: {e}"}
     return {"session": session, "message": message}
 
-async def getpatientfrom_database(patient_id):
+async def getpatientfrom_database(patient_id, db: Session = Depends(get_db)):
     '''
     Geta patient from the database
     '''
@@ -194,7 +194,7 @@ async def getpatientfrom_database(patient_id):
         message = {"success": False, "error": f"Database Error: {e}"}
     return {"patient": patient, "message": message}
 
-async def getspecialistfrom_database(specialist_id):
+async def getspecialistfrom_database(specialist_id, db: Session = Depends(get_db)):
     '''
     Get a specialist from the database
     '''
