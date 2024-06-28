@@ -1,11 +1,22 @@
 '''
 The router for the notes wich allows the user to create, read, update and delete notes
 '''
-from fastapi import Request
+from fastapi import Depends, Request
+
 from ..common import create_router
 from ..models.note import Note
+from ..models.specialist import Specialist
+from sqlalchemy.orm import Session
+from backend.database import create_database_session
 
 router = create_router()
+
+def get_db():
+    db = create_database_session("")
+    try:
+        yield db
+    finally:
+        db.close()
 
 @router.post("/notes")
 async def create_note(request: Request):
@@ -16,18 +27,17 @@ async def create_note(request: Request):
     It returns an message with success or failure.
     '''
     data = await request.json()
-    ## Note to self, this needs to be for each loop because of the fact you can have multiple sessions, patients and specialists (Discuss with levi)
-    session = await getsessionfrom_database(data.get('sessionId'))
-    patient = await getpatientfrom_database(data.get('patientId'))
-    specialist = await get_specificnotedatabase(data.get('specialistId'))
     note = Note(
         name=data.get('name'),
         description=data.get('description'),
+        session = await getsessionfrom_database(data.get('sessionId')) or None,
+        patient = await getpatientfrom_database(data.get('patientId')) or None,
+        specialist = await getspecialistfrom_database(data.get('specialistId')) or None,
     )
-    note.sessions = [session]
-    note.patients = [patient]
-    note.specialists = [specialist]
-    message = await save_notesdatabase(note, debug=data.get('debug'))
+
+    debug = data.get('debug') or False
+    message = await save_notesdatabase(note, debug)
+    
     return {"note": note, "message": message}
 
 @router.patch("/notes/{note_id}")
@@ -41,7 +51,10 @@ async def patch_note(request: Request, note_id: int):
     # This is temporary to satisfy PyLint
     data = await request.json()
     response =  await get_specificnotedatabase(note_id)
-
+    session = await getsessionfrom_database(data.get('sessionId'))
+    patient = await getpatientfrom_database(data.get('patientId'))
+    specialist = await getspecialistfrom_database(data.get('specialistId'))
+    debug = data.get('debug') or False
     message = response["message"]
     note = response["note"]
     succes_message = {"success": True, "result": "Note retrieved successfully"}
@@ -50,8 +63,11 @@ async def patch_note(request: Request, note_id: int):
             return {"success": False, "result": "note is not type Note"}
         note.name = data.get('name')
         note.description = data.get('description')
+        note.session = session
+        note.patient = patient
+        note.specialist = specialist
 
-        save = await save_notesdatabase(note, data.get('debug'))
+        save = await save_notesdatabase(note, debug)
         return {"note": note, "message": save}
 
 @router.get('/notes')
@@ -106,7 +122,7 @@ async def save_notesdatabase(data, debug = False):
         message = {"success": False, "error": f"Database Error: {e}"}
     return message
 
-async def get_notesdatabase():
+async def get_notesdatabase(db: Session = Depends(get_db)):
     '''
     Gets all notes
     '''
@@ -114,9 +130,7 @@ async def get_notesdatabase():
     message =  {"success": False, "error": "An unexpected error occurred"}
     try:
         # Functie die alle notes ophaalt uit de database
-        temp_note = Note(id=1, name="test", description="test", sessions=1, patients=1, specialists=1)
-        notes = []
-        notes.append(temp_note)
+        notes = {"id":1, "name":"test", "description":"test", "sessions":1, "patients":1, "specialists":1}
         message = {"success": True, "result": "Note retrieved successfully"}
     except Exception as e:
         message = {"success": False, "error": f"Database Error: {e}"}
@@ -189,7 +203,19 @@ async def getspecialistfrom_database(specialist_id):
     try:
         print(specialist_id)
         # Code to get session from database by ID
-        specialist = 1
+        specialist = Specialist(
+            1,
+            "John",
+            "doe",
+            "eh",
+            "EH",
+            12,
+            "BOE",
+            None,
+            None,
+            None,
+            None,
+            )
         message = {"success": True, "result": "Specialist retrieved successfully"}
     except Exception as e:
         message = {"success": False, "error": f"Database Error: {e}"}

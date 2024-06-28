@@ -17,9 +17,9 @@ def test_create_note():
         "id": 1,
         "name": "Test Note",
         "description": "Test Note",
-        "sessions": 1,
-        "patients": 1,
-        "specialists": 1,
+        "sessionId": 1,
+        "patientId": 1,
+        "specialistId": 1,
         "debug": True
     }
 
