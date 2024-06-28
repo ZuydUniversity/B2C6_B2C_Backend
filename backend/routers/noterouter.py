@@ -119,6 +119,20 @@ async def save_notesdatabase(data, debug = False, db: Session = Depends(get_db))
         if bool(debug) is False:
             # Functie die notes opslaat naar de database
             print(data) # This is temporary to satisfy PyLint
+            db_note = Note(
+                id=0,
+                name=data["name"],
+                description=data["description"],
+                specialist=data["specialist"],
+                specialist_id=data["specialist"]["id"],
+                session=data["session"],
+                session_id=data["session"]["id"],
+                patient=data["patient"],
+                patient_id=data["patient"]["id"],
+            )
+            db.add(db_note)
+            db.commit()
+            db.refresh(db_note)
         message = {"success": True, "result": "Note saved successfully"}
     except Exception as e:
         message = {"success": False, "error": f"Database Error: {e}"}
