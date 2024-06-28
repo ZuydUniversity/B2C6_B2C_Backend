@@ -16,10 +16,7 @@ class Session(Base):
     endDate = Column(DateTime)
     name = Column(String(50))
 
-specialists = relationship("Specialist", back_populates="sessions")
-
-patient = relationship("Patient", back_populates="sessions")
-
-appointments = relationship("Appointment", back_populates="session")
-
-notes = relationship("Note", back_populates="session")
+    specialists = relationship("Specialist", back_populates="sessions")
+    patient = relationship("Patient", back_populates="sessions")
+    appointments = relationship("Appointment", back_populates="session")
+    notes = relationship("Note", back_populates="session")

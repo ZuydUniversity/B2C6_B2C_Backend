@@ -1,7 +1,7 @@
 '''
 This module contains the Note model for the database.
 '''
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from backend.database import Base
 
@@ -15,8 +15,11 @@ class Note(Base):
     name = Column(String(50))
     description = Column(String(200))
 
-specialists = relationship("Specialist", back_populates="note")
+    specialist_id = Column(Integer, ForeignKey('specialists.id'))
+    specialist = relationship("Specialist", back_populates="notes")
 
-patients = relationship("Patient", back_populates="note")
+    patient_id = Column(Integer, ForeignKey('patients.id'))
+    patient = relationship("Patient", back_populates="notes")
 
-sessions = relationship("Session", back_populates="note")
+    session_id = Column(Integer, ForeignKey('sessions.id'))
+    session = relationship("Session", back_populates="notes")
