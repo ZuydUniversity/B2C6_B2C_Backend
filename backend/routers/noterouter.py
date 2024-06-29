@@ -6,6 +6,8 @@ from fastapi import Depends, Request
 from ..common import create_router
 from ..models.note import Note
 from ..models.specialist import Specialist
+from ..models.patient import Patient
+from ..models.session import Session
 from sqlalchemy.orm import Session
 from backend.database import create_database_session
 
@@ -220,7 +222,7 @@ async def getsessionfrom_database(session_id, debug=False, db: Session = Depends
         message = {"success": False, "error": f"Database Error: {e}"}
     return {"session": session, "message": message}
 
-async def getpatientfrom_database(patient_id, db: Session = Depends(get_db)):
+async def getpatientfrom_database(patient_id, debug=False, db: Session = Depends(get_db)):
     '''
     Geta patient from the database
     '''
@@ -229,13 +231,14 @@ async def getpatientfrom_database(patient_id, db: Session = Depends(get_db)):
     try:
         print(patient_id)
         # Code to get session from database by ID
-        patient = 1
+        if debug is False:
+            patient = db.query(Patient).filter(Patient.id == patient_id).first()
         message = {"success": True, "result": "Patient retrieved successfully"}
     except Exception as e:
         message = {"success": False, "error": f"Database Error: {e}"}
     return {"patient": patient, "message": message}
 
-async def getspecialistfrom_database(specialist_id, db: Session = Depends(get_db)):
+async def getspecialistfrom_database(specialist_id, debug=False, db: Session = Depends(get_db)):
     '''
     Get a specialist from the database
     '''
@@ -244,19 +247,8 @@ async def getspecialistfrom_database(specialist_id, db: Session = Depends(get_db
     try:
         print(specialist_id)
         # Code to get session from database by ID
-        specialist = Specialist(
-            1,
-            "John",
-            "doe",
-            "eh",
-            "EH",
-            12,
-            "BOE",
-            None,
-            None,
-            None,
-            None,
-            )
+        if debug is False:
+            specialist = db.query(Specialist).filter(Specialist.id == specialist_id).first()
         message = {"success": True, "result": "Specialist retrieved successfully"}
     except Exception as e:
         message = {"success": False, "error": f"Database Error: {e}"}
