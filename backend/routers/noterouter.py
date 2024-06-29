@@ -171,15 +171,17 @@ async def get_notesdatabase(skip=0, limit=0, debug=False, db: Session = Depends(
         message = {"success": False, "error": f"Database Error: {e}"}
     return {"notes": notes, "message": message}
 
-async def get_specificnotedatabase(note_id, db: Session = Depends(get_db)):
+async def get_specificnotedatabase(note_id, debug=False, db: Session = Depends(get_db)):
     '''
     Gets one specific note from the database
     '''
     # Code here that gets all notes from the database
+    note = None
     message =  {"success": False, "error": "An unexpected error occurred"}
     try:
         # Functie die een specifieke note ophaalt uit de database
-        note = Note(id=1, name="test", description="test", sessions=1, patients=1, specialists=1)
+        if debug is False:
+            note = db.query(Note).filter(Note.id == note_id).first()
         message = {"success": True, "result": "Note retrieved successfully"}
     except Exception as e:
         message = {"success": False, "error": f"Database Error: {e}"}
