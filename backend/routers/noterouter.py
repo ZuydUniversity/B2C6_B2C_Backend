@@ -28,6 +28,7 @@ async def create_note(request: Request):
     '''
     data = await request.json()
     note = Note(
+        id=None,
         name=data.get('name'),
         description=data.get('description'),
         session = await getsessionfrom_database(data.get('sessionId')) or None,
@@ -61,6 +62,7 @@ async def patch_note(request: Request, note_id: int):
     if message is not succes_message or note is not type(Note):
         if message is succes_message:
             return {"success": False, "result": "note is not type Note"}
+        note.id = data.get('id')
         note.name = data.get('name')
         note.description = data.get('description')
         note.session = session
@@ -119,6 +121,31 @@ async def save_notesdatabase(data, debug = False, db: Session = Depends(get_db))
         if bool(debug) is False:
             # Functie die notes opslaat naar de database
             print(data) # This is temporary to satisfy PyLint
+            if data["id"] is not None or data["id"] != 0 or data["id"] != "0":
+                db_note = db.query(Note).filter(Note.id == data["id"]).first()
+                db_note.name = data["name"]
+                db_note.description = data["description"]
+                db_note.specialist = data["specialist"]
+                db_note.specialist_id = data["specialist_"]["id"]
+                db_note.session = data["session"]
+                db_note.session_id = data["session"]["id"]
+                db_note.patient = data["patient"]
+                db_note.patient_id = data["patient"]["id"]
+            else:
+                db_note = Note(
+                    id=0,
+                    name=data["name"],
+                    description=data["description"],
+                    specialist=data["specialist"] if data["specialist"] is not None else None,
+                    specialist_id=data["specialist"]["id"] if data["specialist"] is not None else None,
+                    session=data["session"] if data["session"] is not None else None,
+                    session_id=data["session"]["id"] if data["session"] is not None else None,
+                    patient=data["patient"] if data["patient"] is not None else None,
+                    patient_id=data["patient"]["id"] if data["patient"] is not None else None,
+                )
+                db.add(db_note)
+            db.commit()
+            db.refresh(db_note)
         message = {"success": True, "result": "Note saved successfully"}
     except Exception as e:
         message = {"success": False, "error": f"Database Error: {e}"}
