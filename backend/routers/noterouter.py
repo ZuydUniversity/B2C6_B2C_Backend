@@ -151,16 +151,22 @@ async def save_notesdatabase(data, debug = False, db: Session = Depends(get_db))
         message = {"success": False, "error": f"Database Error: {e}"}
     return message
 
-async def get_notesdatabase(db: Session = Depends(get_db)):
+async def get_notesdatabase(skip=0, limit=0, debug=False, db: Session = Depends(get_db)):
     '''
     Gets all notes
+    Skip and Limit can be used to get a specific amount of notes instead of all for better performance
     '''
     # Code here that gets all notes from the database
     message =  {"success": False, "error": "An unexpected error occurred"}
     try:
-        # Functie die alle notes ophaalt uit de database
-        notes = {"id":1, "name":"test", "description":"test", "sessions":1, "patients":1, "specialists":1}
-        message = {"success": True, "result": "Note retrieved successfully"}
+        if debug is False:
+            # Functie die alle notes ophaalt uit de database
+            notes = []
+            if limit == 0:
+                notes = db.query(Note).all()
+            else:
+                notes = db.query(Note).limit(limit).offset(skip).all()
+            message = {"success": True, "result": "Note retrieved successfully"}
     except Exception as e:
         message = {"success": False, "error": f"Database Error: {e}"}
     return {"notes": notes, "message": message}
