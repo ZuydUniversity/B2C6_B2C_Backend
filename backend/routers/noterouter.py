@@ -204,7 +204,7 @@ async def deletefrom_notesdatabase(note_id, debug = False, db: Session = Depends
         message = {"success": False, "error": f"Database Error: {e}"}
     return message
 
-async def getsessionfrom_database(session_id, db: Session = Depends(get_db)):
+async def getsessionfrom_database(session_id, debug=False, db: Session = Depends(get_db)):
     '''
     Gets all sessions from the database
     '''
@@ -213,7 +213,8 @@ async def getsessionfrom_database(session_id, db: Session = Depends(get_db)):
     try:
         print(session_id)
         # Code to get session from database by ID
-        session = 1
+        if debug is False:
+            session = db.query(Session).filter(Session.id == session_id).first()
         message = {"success": True, "result": "Session retrieved successfully"}
     except Exception as e:
         message = {"success": False, "error": f"Database Error: {e}"}
