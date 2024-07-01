@@ -28,6 +28,11 @@ fake_users_db = {
         "personel_number": "1234567890",
         "email": "johndoe@example.com",
         "hashed_password": pwd_context.hash("password"),
+    },
+    "tristanfranssen@gmail.com": {
+        "personel_number": "1234456789",
+        "email": "tristanfranssen@gmail.com",
+        "hashed_password": pwd_context.hash("MyPassword"),
     }
 }
 
