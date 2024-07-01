@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from string import Template
 from pathlib import Path
-from jose import jwt
+from jose import jwt, JWTError
 from passlib.context import CryptContext
 from pydantic import BaseModel
 from fastapi.security import OAuth2PasswordBearer
@@ -129,12 +129,15 @@ def verify_reset_token(token: str):
     Args:
         token (string): token received
     '''
-    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-    email: str = payload.get("sub")
-    if email is None:
-        return "Invalid token"
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        email = payload.get("sub")
+        if email is None:
+            return "Invalid token"
 
-    return email
+        return email
+    except JWTError:
+        return "Invalid token"
 
 def send_reset_email(email: str, token: str):
     '''
