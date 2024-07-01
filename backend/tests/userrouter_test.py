@@ -3,7 +3,7 @@ Test for user router
 '''
 from fastapi.testclient import TestClient
 from backend.main import app
-from backend.security import pwd_context, fake_users_db
+from backend.security import pwd_context, fake_users_db, create_reset_token
 
 client = TestClient(app)
 
@@ -61,3 +61,20 @@ def test_logout():
     response = client.post("/api/user/logout")
     assert response.status_code == 200
     assert response.json() == {"message": "Logged out"}
+
+def test_password_reset():
+    '''
+    Test if you can reset a password
+    '''
+    reset_token = create_reset_token("johndoe@example.com")
+    response = client.post("/api/user/reset-password", json={"token": reset_token, "new_password": "P@$$w0rD"})
+
+    assert response.status_code == 200
+    assert response.json() ==  {"message": "Password has been reset"}
+
+def test_password_invalid_token_reset():
+    '''
+    Test if you can't reset password with invalid token
+    '''
+    response = client.post("/api/user/reset-password", json={"token": "123", "new_password": "P@$$w0rD"})
+    assert response.status_code == 403
