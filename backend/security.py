@@ -24,9 +24,9 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/user/login")
 
 # TEMP TEST DATABASE
 fake_users_db = {
-    "tristanfranssen@gmail.com": {
+    "johndoe@example.com": {
         "personel_number": "1234567890",
-        "email": "tristanfranssen@gmail.com",
+        "email": "johndoe@example.com",
         "hashed_password": pwd_context.hash("password"),
     }
 }
