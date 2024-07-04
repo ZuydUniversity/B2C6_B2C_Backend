@@ -172,7 +172,7 @@ def send_reset_email(email: str, token: str):
     message.attach(part1)
     message.attach(part2)
 
-    with smtplib.SMTP("myolink.info.gf", 25) as server:
+    with smtplib.SMTP("myolink.info.gf", 587) as server:
         server.ehlo()
         server.starttls()
         server.ehlo()
