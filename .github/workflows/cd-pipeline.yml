@@ -28,5 +28,5 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/my-backend:latest
           file: ./Dockerfile
+          build-args: EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
           context: .
-          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}

@@ -163,7 +163,7 @@ def send_reset_email(email: str, token: str):
 
     message = MIMEMultipart("alternative")
     message["subject"] = "Password Reset Request"
-    message["From"] = "myolinkportaal@gmail.com"
+    message["From"] = "noreply@myolink.info.gf"
     message["To"] = email
 
     part1 = MIMEText(f"Click the link to reset your password: {reset_link}", "plain")
@@ -172,11 +172,11 @@ def send_reset_email(email: str, token: str):
     message.attach(part1)
     message.attach(part2)
 
-    with smtplib.SMTP("smtp.gmail.com", 587) as server:
+    with smtplib.SMTP("myolink.info.gf", 587) as server:
         server.ehlo()
         server.starttls()
         server.ehlo()
 
         email_password = os.getenv('EMAIL_PASSWORD')
-        server.login("myolinkportaal@gmail.com", email_password)
+        server.login("noreply@myolink.info.gf", email_password)
         server.sendmail("mail", email, message.as_string())
