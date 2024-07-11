@@ -1,0 +1,317 @@
+Author	Date	Commit Hash	Commit Message	Branch
+Norayr Gocer\t2024-07-04 11:26:16 +0200\tdf5dd51836a189a9e0e32e3b0d6448b89de40adc\tMerge pull request #132 from ZuydUniversity/email-fix\tmain
+Tristan Franssen\t2024-07-04 11:25:06 +0200\tc80d7af1e0273fcd9e64e2fbd1e4ba8267ebf095\tMerge branch 'main' into email-fix\tmain
+Norayr Gocer\t2024-07-04 11:24:52 +0200\tabd03fd8bed2f69b8ecb3252a78776622a28c197\tMerge pull request #131 from ZuydUniversity/docker-fix\tmain
+Tristan Franssen\t2024-07-04 11:24:51 +0200\t4f45ff35f1b94a0c0b115b24846ed1fec5ac8b53\tMerge branch 'email-fix' of https://github.com/ZuydUniversity/B2C6_B2C_Backend into docker-fix\tmain
+Tristan Franssen\t2024-07-04 11:24:29 +0200\tf3a6426f6148b1e928ade2b021abfb95b5616d7b\tChanged email port\tmain
+Tristan Franssen\t2024-07-04 11:22:35 +0200\t8ed13374071873fa405062c6ae3c0e058d47f780\tMerge branch 'main' into email-fix\tmain
+Tristan Franssen\t2024-07-04 11:19:58 +0200\tb5e9936def601d1952a2194c715a2473d68b88ff\tChanged email to own smtp server\tmain
+Tristan Franssen\t2024-07-01 12:07:42 +0200\tbe1bd61692258407608e84cc82e9f62b1e3fbccf\tMerge branch 'main' into docker-fix\tmain
+Tristan Franssen\t2024-07-01 12:07:20 +0200\t0105099a4069144c7f186ae009fb72c36ccbaa34\tRemoved env\tmain
+Tristan Franssen\t2024-07-01 12:01:53 +0200\tbd28c2a77aa982815aa02c7a076d9ba4d0a53261\tMerge pull request #130 from ZuydUniversity/docker-fix\tmain
+Tristan Franssen\t2024-07-01 12:01:00 +0200\t831aea6ece2be9a924ba41df14a23a6e015360f4\tMerge branch 'main' into docker-fix\tmain
+Tristan Franssen\t2024-07-01 12:00:30 +0200\tfcc701f7af2f5e7fc45fdee7ba7111245148ed78\tHopefully fixed docker\tmain
+Norayr Gocer\t2024-07-01 11:36:56 +0200\t600d14cc22acc474b0a9bf670b4c9642aa2101bd\tMerge pull request #129 from ZuydUniversity/docker-fix\tmain
+Tristan Franssen\t2024-07-01 11:33:51 +0200\t9782c1e3dee9e1d3fbb78b13345c8f8d5db351fd\tMerge branch 'main' into docker-fix\tmain
+Tristan Franssen\t2024-07-01 11:33:45 +0200\t1aed394dec5cc10cb34cbc2af91dd502094d5a3f\tMerge branch 'main' of https://github.com/ZuydUniversity/B2C6_B2C_Backend into docker-fix\tmain
+Tristan Franssen\t2024-07-01 11:33:00 +0200\ta2949617c94c8b2a433280f189337b74b0f53bf1\tHopefully fixed docker\tmain
+Norayr Gocer\t2024-07-01 11:24:54 +0200\tddec14599d1b07581cf1494fe0276ecddb36f531\tMerge pull request #128 from ZuydUniversity/docker-fix\tmain
+Tristan Franssen\t2024-07-01 11:23:32 +0200\t6b8c0bb0262c6c2bb07529b3bba26593c92d9bda\tMerge branch 'main' into docker-fix\tmain
+Tristan Franssen\t2024-07-01 11:22:57 +0200\t35e25d1eb03e26722d621b5aa3a3410bb90bdb9f\tHopefully fixed docker\tmain
+Norayr Gocer\t2024-07-01 11:07:58 +0200\t743c3bdf1745a599b2ace2aef19213fdf5c39d3f\tMerge pull request #127 from ZuydUniversity/Time-Change\tmain
+Tristan Franssen\t2024-07-01 11:06:36 +0200\tb334cdd2406bb023bf9e3103121af926f9a2db12\tMerge branch 'main' into Time-Change\tmain
+Tristan Franssen\t2024-07-01 11:06:17 +0200\t81d4dd0a5d863f51dd69ff66e04ad18371e4bfda\tFixed docker and changed expire time\tmain
+Norayr Gocer\t2024-07-01 10:48:49 +0200\t97f566687c82b01cda65471aee4f75e2c4c5ae86\tMerge pull request #126 from ZuydUniversity/docker-fix\tmain
+Tristan Franssen\t2024-07-01 10:45:01 +0200\t5a9669e06f1c4b2b51884e34fb6fe68a8865ca03\tFixed docker and changed expire time\tmain
+Norayr Gocer\t2024-07-01 10:28:25 +0200\t58d3b1607b5ccc81f43f4ff642520fd650d1d3d8\tMerge pull request #125 from ZuydUniversity/password-reset\tmain
+Tristan Franssen\t2024-07-01 10:26:36 +0200\t3e118c729640799142b0b2fdad7d0fd6db454c29\tAdded temp user\tmain
+Tristan Franssen\t2024-07-01 10:21:53 +0200\t59f77c3f91d44362ce75adf20b83e2655367b4b3\tMerge branch 'password-reset' of https://github.com/ZuydUniversity/B2C6_B2C_Backend into docker-fix\tmain
+Tristan Franssen\t2024-07-01 10:21:36 +0200\t583b43c96b72fb3251d52980b3d8c9a5187ed3cc\tTest fix\tmain
+Tristan Franssen\t2024-07-01 10:15:01 +0200\t9481e8114aaeb3a300d5005561d693929770aa03\tMerge branch 'main' into password-reset\tmain
+Tristan Franssen\t2024-07-01 10:10:52 +0200\tf8fc01ee0d574b950c4417e0cacc2a1a3766f6c2\tImplemented password reset tests\tmain
+Tristan Franssen\t2024-06-29 19:22:58 +0200\t8018eb0d5f18991b290cce2b85ad1d57db43984a\tImplemented forgot password and email sending\tmain
+Cas Olischläger\t2024-06-27 10:09:52 +0200\t5f2b9fbb7eff308522aec2958f2f7930010b0947\tMerge pull request #121 from ZuydUniversity/115-zap-pipeline-aanpassen-wanneer-het-afgaat\tmain
+XergSolana\t2024-06-27 00:05:01 +0200\t9625a5d453b373da40221cd667aa6f136a2bed22\tRuns on Schedule\tmain
+XergSolana\t2024-06-27 00:03:41 +0200\t32e6594557c6e22ec5dee5fcd71c7b2e70568ba9\tMerge branch 'main' into 115-zap-pipeline-aanpassen-wanneer-het-afgaat\tmain
+Levi Funk\t2024-06-26 13:11:06 +0200\t96bf265261704832f0026b6933e4cd7aca478875\tMerge pull request #120 from ZuydUniversity/docker-fix\tmain
+Tristan Franssen\t2024-06-26 13:08:47 +0200\t4bcdb2d0ad194957ffeb6f0e72c05220b2cf0146\tFixed dockerfile\tmain
+Levi Funk\t2024-06-26 12:56:37 +0200\t38f11a139ed71eb12d72373e9649f28b23371872\tMerge pull request #118 from ZuydUniversity/login\tmain
+Tristan Franssen\t2024-06-26 12:51:13 +0200\tffcd862cbb18a4004b10787a4827ab783af828e3\tChanged username to email\tmain
+Tristan Franssen\t2024-06-26 12:49:51 +0200\te6b52667728e91997fa967cc1c0665234dddd98e\tFinal fix tests\tmain
+Tristan Franssen\t2024-06-26 12:45:50 +0200\tb3341b32f9bf28614bae4d551550830f62d915d7\tFixed mistake in docker container\tmain
+Tristan Franssen\t2024-06-26 12:44:17 +0200\t75811785b110e927cad802fc1e718399b70b3e5e\tFixed final login test\tmain
+Tristan Franssen\t2024-06-26 12:33:00 +0200\t26f7e971b0952a05283dfd1cfd51f1b97d3f6d5d\tFixed test\tmain
+Tristan Franssen\t2024-06-26 12:28:27 +0200\t1116dc5c97c6e75a6f702495c6917d36ff0d16df\tFixed test\tmain
+Tristan Franssen\t2024-06-26 12:19:47 +0200\t4469956d2602a4ad18e7c83878ef96271a9fcc5a\tChanged login\tmain
+Tristan Franssen\t2024-06-26 12:13:39 +0200\t01a3f28a6d940f7c35342a4409a818ec97f02844\terge branch 'main' of https://github.com/ZuydUniversity/B2C6_B2C_Backend into login\tmain
+Cas Olischläger\t2024-06-26 11:16:37 +0200\t802e470140bf6a9e384e3bef620f64f8ce4957e7\tMerge pull request #117 from ZuydUniversity/87-patient-create-maken-team2\tmain
+nurulgulpen\t2024-06-25 22:13:47 +0200\t87e2ceaa5c4eca0aed327c0bbb5ef67f5b30c528\tadjusted sqlalchemy.orm.declarative_base()\tmain
+nurulgulpen\t2024-06-25 21:51:20 +0200\t8d5ad2c33f06da0fb78b414e363837186d51822c\tNew testcases for database.py\tmain
+Tristan Franssen\t2024-06-25 15:06:38 +0200\t052dd7c602ede26188c4b409749bcd2605909927\tAdded personel number\tmain
+nurulgulpen\t2024-06-25 14:54:25 +0200\t05d1f81c557ea0458333b6f0a559edb6e000c5cf\tMerge branch 'main' into 87-patient-create-maken-team2\tmain
+nurulgulpen\t2024-06-25 14:53:17 +0200\t137c8202f69e5abe91a9dc06e4168956f981a244\tremoved all hvac and hashicorp dependencies\tmain
+David Beljaars\t2024-06-25 14:43:58 +0200\t3126f9bdc5874f1bf0d66eb511843354ec6a2643\tMerge pull request #116 from ZuydUniversity/114-modellen-maken\tmain
+David Beljaars\t2024-06-25 14:38:28 +0200\t72be8215a3dd2088160b305ba91570e59a2a1913\tadded child sessions\tmain
+XergSolana\t2024-06-25 14:22:22 +0200\t89054cc27182d715bd9ce2be0c05157b6ffd7630\t14:30 test\tmain
+XergSolana\t2024-06-25 14:19:25 +0200\te876af31393310014cc4559a12fecfd7e0d907f4\t14:20 test\tmain
+Jeroen Siebers\t2024-06-25 14:15:14 +0200\t61db339d96f5719c23253343273705963e869be5\tnoah, david en jeroen be goated\tmain
+Jeroen Siebers\t2024-06-25 14:07:30 +0200\td661bed0d1054de7b8ec69a922fe62fc202df203\tNote Model\tmain
+Jeroen Siebers\t2024-06-25 13:59:41 +0200\t8f9c2a938711f590a315395438f3a75fbb32328f\tSession model\tmain
+nurulgulpen\t2024-06-25 13:59:20 +0200\t9d93b2be5f233948bb7cfe0f44b48d9fec3826cf\tnew database.py using environment variables\tmain
+Jeroen Siebers\t2024-06-25 13:54:11 +0200\ted61f9f0c2708686f88f9f27a8e5f1ef9370356b\tMedication model\tmain
+Jeroen Siebers\t2024-06-25 13:46:09 +0200\t6cfe51d8946dc7775cfbdfccde1e891343c16018\tspecialist, patient & user model\tmain
+David Beljaars\t2024-06-25 11:58:50 +0200\t7fa6814d70f02fb1e9f66c6e7d65641b668dfd00\tMerge pull request #110 from ZuydUniversity/109-hotfix-databasepy\tmain
+David Beljaars\t2024-06-25 11:55:56 +0200\tcd64f4305ecc6c609c6489a1f8cd69e13466d8e3\tquick update for database.py\tmain
+nurulgulpen\t2024-06-25 11:35:12 +0200\t237687716c842725bf171c2ab56ca0660d38729a\tMerge branch 'main' into 87-patient-create-maken-team2\tmain
+nurulgulpen\t2024-06-24 21:37:05 +0200\t646940e8333cccda45f2a71b6e26d985dc87d1b8\tadded testcases to push up code coverage in database.py file\tmain
+nurulgulpen\t2024-06-24 21:23:44 +0200\te7edc561ba5025bd35109c88cb22842e6febac19\tpylint adjustments + testcase adjustments\tmain
+nurulgulpen\t2024-06-24 20:54:13 +0200\t133563d8a34f81fd0ccdb04f74cb470651749d8a\tPylint adjustments\tmain
+nurulgulpen\t2024-06-24 13:43:12 +0200\tc9fab0e52788d4b4fd0fcc2b95ee2c62d67237f6\tadded testcases for database_test.py\tmain
+nurulgulpen\t2024-06-24 13:37:34 +0200\tc0b6798b957611846abc039e0b4bda55bddf12b0\tupdate test database_test.py 3.0\tmain
+Cas Olischläger\t2024-06-24 13:27:12 +0200\tf64e42192eec710abf0848f5b74544ac309e18b8\tMerge pull request #106 from ZuydUniversity/95-patient-model\tmain
+nurulgulpen\t2024-06-24 13:21:18 +0200\t83887030565f7187ae8971a316aa33d588ac6efd\tAdjusted database_test.py 2.0\tmain
+David Beljaars\t2024-06-24 13:14:43 +0200\tcfdba0b196cbfd4311276ca9e0fb02788c3f2083\tdeleted patient test until other objects are added\tmain
+David Beljaars\t2024-06-24 12:56:06 +0200\t976dc3ef5641ee6d07733b51f94e0ecfef63a2c8\tdeleted coverage message\tmain
+nurulgulpen\t2024-06-24 12:07:49 +0200\t9c2a2fac1d24b8970e62165d8dbd567d53d7a122\tupdated requirements.txt file\tmain
+David Beljaars\t2024-06-24 11:42:23 +0200\t259c097890b04d475e339dc233dfa52d323d88b4\tupdated pylint to fail under 9\tmain
+nurulgulpen\t2024-06-24 11:39:12 +0200\t94a6e803a4bee3d56ad4f290add0193444c3cc9f\tadded database_test.py\tmain
+David Beljaars\t2024-06-24 11:37:53 +0200\t008669521e4f0562ccd989bed9da90431fd13378\twrote test for the patient model\tmain
+David Beljaars\t2024-06-24 11:31:40 +0200\tbfb4a25ae4476b228de924667c5cabd689359fb6\tMerge branch 'main' of https://github.com/ZuydUniversity/B2C6_B2C_Backend into 95-patient-model\tmain
+nurulgulpen\t2024-06-22 12:46:58 +0200\t3615d4eae65b80a3e2d95906ded70a877f635585\tAdded python Environment Variables  + corrected mount in Hashicorp for database credentials\tmain
+David Beljaars\t2024-06-21 15:38:07 +0200\t20a1fe6c20b5ba34d63266712e4d3a93994dc597\tremoved spaces for pylint\tmain
+David Beljaars\t2024-06-21 15:33:15 +0200\t8c679e56a40bb03750b49c8b4b77be93d645659c\tattempt at getting through pylint\tmain
+David Beljaars\t2024-06-21 15:18:47 +0200\tab069d92cf44644c0438c4cba8ce045340847f42\tmade patientmodel with relationships\tmain
+nurulgulpen\t2024-06-21 15:02:17 +0200\t16a12c7f5fa127478ae19fcb98bc8c8b5f97e321\tdatabase.py version 0.1\tmain
+Rob Cilissen-Grassére\t2024-06-21 14:09:13 +0200\t37448d7b21c592648b2429c797af22127bda1590\tMerge pull request #103 from ZuydUniversity/Code_Coverage_Pipeline_Workflow_Dispatch\tmain
+Rob Cilissen-Grassére\t2024-06-21 14:08:08 +0200\t836f3a6b49417c9c54a119cf679fbc899bc8454a\tUpdate coverage.yml\tmain
+Norayr Gocer\t2024-06-21 13:52:42 +0200\t30e8be6f0a7043678e274a3fd404820266c6e75f\tMerge pull request #102 from ZuydUniversity/login\tmain
+Tristan Franssen\t2024-06-21 13:49:12 +0200\t29a4e421f45f7722c6222e04a35032e8d953d579\tFixed pylint\tmain
+Tristan Franssen\t2024-06-21 13:46:36 +0200\tf5cc6df45865aa7e7fa34064f834d31772e3dcaf\tRemoved get current user\tmain
+Tristan Franssen\t2024-06-21 13:44:54 +0200\t437a0dfd99cf14a0edfcdf98cc102361de870bf1\tRemoved https\tmain
+Tristan Franssen\t2024-06-21 13:34:56 +0200\tb597231bd9d89523b534706e8243ed9fb841d4c3\tFixed errors in tests\tmain
+Tristan Franssen\t2024-06-21 13:31:56 +0200\t6bf8175ff0b7a89365eed57940d7ef7c3dfa547f\tFixed errors in tests\tmain
+Tristan Franssen\t2024-06-21 13:27:37 +0200\tbf42c781be88735ca366f3c7c8d36372c07551ef\tFixed get current user test\tmain
+Tristan Franssen\t2024-06-21 13:23:39 +0200\t9e2de5f5b4f4e819062193cbe6ea0b058a83ec5f\tFixed test error\tmain
+Tristan Franssen\t2024-06-21 13:11:19 +0200\tf55ce2cc3fccf0efc2e32b3979120a3d8a6ce7cd\tFixed testing certificate loading\tmain
+Tristan Franssen\t2024-06-21 13:03:51 +0200\t76f43c997830ddc4cb4c1e31f68e6e6a7c70a115\tFixed writing\tmain
+Tristan Franssen\t2024-06-21 12:57:25 +0200\t226a7fb83f1ca83813df2264d5c9a7ce70e4273e\tChanged writing to file\tmain
+Tristan Franssen\t2024-06-21 12:50:36 +0200\t3a1cf746acf2fe6ad0b5e8074ed9b43a99fd4676\tTryed fixing certificates again\tmain
+Tristan Franssen\t2024-06-21 12:48:43 +0200\td808ee8f5cc866d68375dd49f630bd023c69f916\tTryed fixing main.py certificates\tmain
+Tristan Franssen\t2024-06-21 12:38:25 +0200\t18b0c0d93f7fb67538adde76515e2525948348c0\tFixed certificate issues\tmain
+Tristan Franssen\t2024-06-21 12:37:36 +0200\tc5629fe7617b7fb27c9f5612df84043ef45d5051\tFixed certificate issues\tmain
+Tristan Franssen\t2024-06-21 12:36:48 +0200\t2c6f1be29cfad9bdc076be345be626b59b14f810\tFixed certificate issues\tmain
+Tristan Franssen\t2024-06-21 12:33:10 +0200\t419a7513a588191b19aa5ca2fe8e299b849e866b\tFixed certificate issues\tmain
+Tristan Franssen\t2024-06-21 11:58:01 +0200\t50843e8721bd9b2df6cf78d699e9034d33241f44\tFixed pylint in main.py\tmain
+Tristan Franssen\t2024-06-21 11:51:30 +0200\tfcdb118107f120f97fe8042a7c57a5aa892ef9fe\tHopefully fixed main.py\tmain
+Tristan Franssen\t2024-06-21 11:44:43 +0200\t857de36343024b25e2ec89707992b5a112549ef7\tadded certificate env to test covarage\tmain
+Tristan Franssen\t2024-06-21 11:43:14 +0200\t1c45c05e0f91dc9eb17e89128e0231ac07b27d9f\tFixed main.py\tmain
+Tristan Franssen\t2024-06-21 11:42:25 +0200\t5f816db9fc03b61a7296691082feed0567706937\tFixed main.py\tmain
+Tristan Franssen\t2024-06-21 11:41:22 +0200\t0732fcd7cc436f4ec0b8f9aab0a43734d3df402d\tFixed main.py\tmain
+Tristan Franssen\t2024-06-21 11:38:16 +0200\tb340701443a93be6c7578ad1614f032cdb6ac2a5\tFixed main.py\tmain
+Tristan Franssen\t2024-06-21 11:36:16 +0200\td392562990e120f139a2b50c19b5f3a5dd26c70c\tFixed main.py\tmain
+Tristan Franssen\t2024-06-21 11:33:01 +0200\t47d0c3848c694d153b723b299a6f9fcb65b34622\tFixed test covarage\tmain
+Tristan Franssen\t2024-06-21 11:30:17 +0200\t9b25cd7626add416585e5c53a0d6082c948d122c\tFixed test covarage\tmain
+Tristan Franssen\t2024-06-21 11:23:21 +0200\ta7e0035800ddcfff54ab0fd9fc662b6cf7ef4ddf\tFixed test covarage\tmain
+Tristan Franssen\t2024-06-21 11:19:28 +0200\t7286858f98fd3b1d2fb719eb96a6d2e9ad10c292\tFixed pylint\tmain
+Tristan Franssen\t2024-06-21 11:15:41 +0200\t051ee97b5446f2c5d07388de3e4b2bdbe0963f9a\tFixed test userrouter\tmain
+Tristan Franssen\t2024-06-21 10:58:36 +0200\t4ede7ee3929d32feedfed2b5190aaaa7502db5be\tMerge branch 'main' into login\tmain
+Tristan Franssen\t2024-06-21 10:57:02 +0200\tfe138dda3b84660aa854e4b41e895b090eb4f518\tMade https work with docker\tmain
+Tristan Franssen\t2024-06-21 10:47:17 +0200\t39800545199bb95723e02da0e77797835abb7d78\tAdded https support\tmain
+Levi Funk\t2024-06-21 10:26:52 +0200\t00a8d9f5ab251a4351254e6c51b7e0e574c1a093\tMerge pull request #99 from ZuydUniversity/98-skelet-voor-patch-notes-via-github-pages-opstellen-voor-backend\tmain
+Levi Funk\t2024-06-21 10:06:43 +0200\tbef8813c6b844a922169a31272fd783814eea860\tMerge branch 'main' into 98-skelet-voor-patch-notes-via-github-pages-opstellen-voor-backend\tmain
+nurulgulpen\t2024-06-21 10:05:31 +0200\t93f3c156e966627dfeb88c0f782127e5d1b3dca9\tAdded VAULT_TOKEN\tmain
+Kelvin Wetzels\t2024-06-21 09:51:12 +0200\t088b32f33e188fa57618ea110b6d65d873d36607\tMerge pull request #97 from ZuydUniversity/96-security-pipeline-Team1\tmain
+KamikazeShot\t2024-06-21 09:47:16 +0200\t0fd3701856a43ad6234bedc3210f924f475e6f9d\tweblink update\tmain
+Levi Funk\t2024-06-20 15:43:48 +0200\tdb053a702c7050057028e514c37ece72b6c6c73d\tAdded patch note docs\tmain
+Tristan Franssen\t2024-06-20 13:51:15 +0200\t41ea0f4b43e0a0833704d54fceb1797fc366a0ee\tChanged email to username in tests\tmain
+Tristan Franssen\t2024-06-20 13:49:55 +0200\tb0a699ce38dc9cf6656535a32f0b867d3509ac5c\tChanged email to username in tests\tmain
+Tristan Franssen\t2024-06-20 13:48:05 +0200\ted205cc1a086cc34aa2b03c179d9fe099face364\tFixed pylint\tmain
+Tristan Franssen\t2024-06-20 13:46:37 +0200\tc8d3d31bc904f36b092bc404583264dccf08a42a\tChanged some tests\tmain
+Tristan Franssen\t2024-06-20 13:38:30 +0200\t308012a73ecf8af35a7813ce21b7cecd365b9a35\tChanged logout function\tmain
+Tristan Franssen\t2024-06-20 13:33:21 +0200\t9c0e2ac1dde9a91d36a05487104b63e788d50f06\tChanged pylint rules\tmain
+Tristan Franssen\t2024-06-20 13:30:53 +0200\t064ebc5241f51214fd3712a4710a05a68d5cd5e6\tChanged gitignore file\tmain
+Tristan Franssen\t2024-06-20 13:24:32 +0200\t421e3c777ca737151d79664f76f680d231c90160\tChanged pylint\tmain
+Tristan Franssen\t2024-06-20 13:23:07 +0200\tbaf5bd888d759a340dbcccbb6eddf7b0debad315\tFixed pylint errors\tmain
+Tristan Franssen\t2024-06-20 13:06:46 +0200\t41fd356bac0364c7e8c09c2009680f1c24cb41b9\tFixed pylint errors\tmain
+Tristan Franssen\t2024-06-20 12:53:04 +0200\tdaee74ae95dc6926ed163638d5adfddb97981244\tAdded logout functionality and changed login\tmain
+KamikazeShot\t2024-06-15 23:49:47 +0200\t109b25ea30bfc5649e9a770f76c83fd40c54e535\tWorking ZAP-security_scan-Team1\tmain
+KamikazeShot\t2024-06-15 17:00:24 +0200\tca8473e230144f72b3169aafcdf79992378448fa\tUpdate ZAP Pipeline\tmain
+KamikazeShot\t2024-06-15 15:52:26 +0200\t79953660c535205501e07fbd103e96bcad4556db\tUpdates ZAP pipeline\tmain
+KamikazeShot\t2024-06-15 15:07:01 +0200\t97c9efec09ff0aa2edc16624eba480917476791a\tUpdated ZAP pipeline\tmain
+KamikazeShot\t2024-06-14 15:43:29 +0200\tfde24bab42726d7743944053cdf198a62ee09eb4\tUpdate security-pipeline-team1.yml\tmain
+KamikazeShot\t2024-06-13 19:19:01 +0200\t2207118cad6a5783109bdd569f8571606ce31488\tCreated a security-pipeline\tmain
+Cas Olischläger\t2024-06-12 16:20:51 +0200\tb582dc9f1f4790e063755d111d28252d76f633b2\tMerge pull request #94 from ZuydUniversity/91-coverage-badge-fix\tmain
+David Beljaars\t2024-06-12 16:16:23 +0200\t7e729947ff88e6fcdd6aa176bd48d21f844e04e2\tMerge branch 'main' into 91-coverage-badge-fix\tmain
+David Beljaars\t2024-06-12 16:14:57 +0200\t486d890ed034eb765b610b9dfe4a0da385429890\tUpdated ReadME\tmain
+David Beljaars\t2024-06-12 16:11:07 +0200\ta65573a579541d87294d28c203e91d6380d42798\tMerge pull request #93 from ZuydUniversity/revert-92-91-coverage-badge-fix\tmain
+David Beljaars\t2024-06-12 15:43:59 +0200\t7f58efaa910df5a325cc87f3ea3cb912edce8205\tRevert "Fixed coverage badge for main"\tmain
+Cas Olischläger\t2024-06-12 15:32:21 +0200\td658902208f1f14dcde9856f0356bf21b7029de1\tMerge pull request #92 from ZuydUniversity/91-coverage-badge-fix\tmain
+David Beljaars\t2024-06-12 15:26:06 +0200\t205ceb4133b640b761be8e88717366b996c5c3b6\tMerge branch 'main' into 91-coverage-badge-fix\tmain
+Cas Olischläger\t2024-06-12 15:25:54 +0200\tc9d070b34ae0e7e433772d86432a2a6a73fb8d2a\tMerge pull request #90 from ZuydUniversity/88-owasp-dependency-check\tmain
+David Beljaars\t2024-06-12 15:18:20 +0200\tbc8e47c1b4688d3187d3e27f4d54197b9537e2a2\tchanged codecov to main\tmain
+David Beljaars\t2024-06-12 15:12:14 +0200\t6a97dcd3b9168ef5826e9579358c3f9abca56cb5\tadded codecov token\tmain
+David Beljaars\t2024-06-12 15:02:17 +0200\t164b156634aaa34b1c86f36ef5974dfac8ea1cac\tadded codecov badge to own branch\tmain
+David Beljaars\t2024-06-12 10:35:43 +0200\t0fbde4407899555b9feea7acf8097e5120170154\tmade cron job to run the workflow weekly\tmain
+David Beljaars\t2024-06-11 21:39:51 +0200\t2b9fc3038359e777aa8f53cca4b4730bbf66963e\tchanged artefact name to respective python version\tmain
+David Beljaars\t2024-06-11 21:36:35 +0200\t3bd319a171a97098a7073bfed16fe639779067f1\tchanged python versions and test build time with cached data\tmain
+David Beljaars\t2024-06-11 21:06:17 +0200\t91b0231b417e8c3180a0bbfaed27743528a0592b\tupdated path for cache data to be stored\tmain
+David Beljaars\t2024-06-11 20:38:57 +0200\tbd6df8bb4a1558d13b60608a85dad1882173cdc5\tattempt at caching to bypass the api key\tmain
+David Beljaars\t2024-06-11 20:08:32 +0200\t87fb045783a50fb5d7bc3b22c8a50f4ed4f8f398\tattempt at solving sudden build cancel\tmain
+David Beljaars\t2024-06-11 19:58:42 +0200\t94ccc40e0a9842a5406d3c15d86dd2b46254bc68\ttestbuild without api key flag\tmain
+David Beljaars\t2024-06-11 10:56:51 +0200\t9cb641d6b57cdc84d5528bf0c602488982db46f5\tfixed yet another syntax error\tmain
+David Beljaars\t2024-06-11 10:54:47 +0200\t4c8bbe606d45f7ce16595215eb9cfa742bb22006\tupdated api key syntax\tmain
+David Beljaars\t2024-06-11 10:51:50 +0200\t5324174a7f4386977efd4e4be50edbcdd272738b\tfixed syntax error\tmain
+David Beljaars\t2024-06-11 10:49:11 +0200\tdcb3ef3a33b29d7dc1e66e598bbc8cafe494ab53\tadded API key to speed up the build\tmain
+David Beljaars\t2024-06-11 10:29:25 +0200\te87b67da7ec0dedf881432df0a27ce7e7e09658a\tMade OWASP dependency yaml\tmain
+Tristan Franssen\t2024-06-08 14:57:40 +0200\tba1981f759b0ac7f0bdf28c03cab8ff5b53f4f96\tMerge pull request #81 from ZuydUniversity/Agressie-Modelbranch\tmain
+Tristan Franssen\t2024-06-08 14:51:55 +0200\t6e3bd5985b947d12aa962bf08ec3ba914d0f4351\tFixed python 3.8 problems\tmain
+Tristan Franssen\t2024-06-08 14:45:39 +0200\t84713ea4f472cc251c5d0f7549d94e34013927a8\tRemoved 3.8 from workflows\tmain
+Tristan Franssen\t2024-06-08 14:43:51 +0200\t36d3cafe71521a27228beb34bb276088411c3556\tTryed readding python 3.8\tmain
+Tristan Franssen\t2024-06-08 14:41:34 +0200\t45ad938a8660608207ada2e12df89c4af9e7c75a\tRemoved python 3.8 refrences\tmain
+Tristan Franssen\t2024-06-08 13:34:40 +0200\taf991fb329f2763ade5afb315460b0229c4da63d\tRemoved python 3.8 checks from workflows\tmain
+Tristan Franssen\t2024-06-08 13:33:21 +0200\t93eee60f003f4514a9736ec858674a0fa01f7c72\tFixed some pylint errors\tmain
+Tristan Franssen\t2024-06-08 13:01:41 +0200\td78593a50692838d744f9a901d48b197827193f0\tRemoved unused imports\tmain
+Tristan Franssen\t2024-06-08 13:00:27 +0200\t5dbdaf1858c6c95b414c92b1c570d027ffaa3a22\tRemoved repeating code\tmain
+Tristan Franssen\t2024-06-08 12:06:36 +0200\tbcc27ac627a9256d0436ebabca427ca7675f299d\tFixed failed tests\tmain
+Tristan Franssen\t2024-06-08 12:01:42 +0200\tb75de51474316bc07316f226201212208fbf5da2\tFixed error\tmain
+Tristan Franssen\t2024-06-08 11:57:38 +0200\t4887c1fb95a2e59d8493348c5bf31b7d65b05194\tAdded userrouter tests\tmain
+Tristan Franssen\t2024-06-07 17:23:22 +0200\tbc114f4d2ccd4ab0400a1a39eef0128ddcf85eac\tExcluded models from tests\tmain
+Tristan Franssen\t2024-06-07 17:20:25 +0200\t11d72d990c297f4a4efa7f86326a18d8aba18059\tExcluded models from tests\tmain
+Tristan Franssen\t2024-06-07 17:17:12 +0200\t7182c30940a3828d92d21ca7439f9751fe871f81\tMoved pragma: no cover location\tmain
+Tristan Franssen\t2024-06-07 17:14:22 +0200\t2e2c4a064a5014b71dd5b57446b78f0368630179\tRenamed file Security.py to security.py\tmain
+Tristan Franssen\t2024-06-07 17:10:56 +0200\tb58dff93a4e3efba40243861739b5f384904f27b\tUpdated comments\tmain
+Tristan Franssen\t2024-06-07 12:44:13 +0200\t526b4ceaa4a05432166694f5ff14fde687a5cbca\tAdded basic login functionality to api\tmain
+Tristan Franssen\t2024-06-07 09:39:04 +0200\t29b25a8d66b9d659165f90715226071901a35447\tMade logging in work\tmain
+Noah\t2024-06-06 22:47:35 +0200\tf91a5cdf1f170f0f50b32b4542cb99f4b92276b7\tChanged some importing things\tmain
+Noah\t2024-06-06 22:44:56 +0200\t11270601e743883751247b2276715f749ed07ebd\tChanged someshit to ints\tmain
+Noah\t2024-06-06 22:42:25 +0200\t21ea1898a8a6c19f1bcf110191c014896bb246fe\tMaby this worked\tmain
+Noah\t2024-06-06 22:38:59 +0200\t50bdec2c44b104ec23faa14ee6aa207f75c94fad\tque?\tmain
+Noah\t2024-06-06 17:50:47 +0200\t5586070797430398dfc5c72f1c379d27e48c7132\tRedid class structure and changed an import\tmain
+Noah\t2024-06-06 16:54:09 +0200\t79ff0fb3581869a935639c4bce6a50843e551d37\tRedid list structure\tmain
+Noah\t2024-06-06 16:25:17 +0200\t9406f54bf37a7b12293913aca6448aeb1d631907\tLets hope this fixed it\tmain
+Noah\t2024-06-06 12:50:00 +0200\t1043fd05e0ccef89b167035224155cec8f3eb52e\tchanged imports to comply with pylint\tmain
+Noah\t2024-06-06 11:54:32 +0200\t1ff09c62fa89c2583d9f131f65dc63266480d2a7\tI hope this fixed pylint?\tmain
+Noah\t2024-06-06 11:49:56 +0200\t4806f817f9af46ccfdab893f8714f8d0694ed370\tAdded Backend. to all model imports\tmain
+Noah\t2024-06-06 11:47:48 +0200\t8b7bd8ce6a73a869264410fc28424eaf79169463\tFixed an router issue\tmain
+Noah\t2024-06-06 11:23:14 +0200\t6562f902de3a83c16fd5926b1084d752cb71aa9e\tadded docsstring to all classes\tmain
+Noah\t2024-06-06 11:19:11 +0200\ta534511cb8743be2a097f62c253724cb6f81c271\tremoved all the templates in the models\tmain
+Noah\t2024-06-06 11:18:19 +0200\tf5d2cc3ab8bcf595a98683461827276f4e315b98\tidk what i did but it fixed something\tmain
+Noah\t2024-06-06 11:10:27 +0200\t3ac28b437bf8b907521cda85e48e3a78b30ce605\tadded User and Specialist variables\tmain
+Noah\t2024-06-06 11:06:04 +0200\t100eeab3ae8feae0f7e594afc351bdb370c4f6b8\tAdded medication variables\tmain
+Noah\t2024-06-06 11:05:17 +0200\tcbabf61e175824cee5176c907a2a343e2b9f1d4a\tAdded Session variables\tmain
+Noah\t2024-06-06 11:03:07 +0200\te46183afa5ba60d10ae4f5fa217d5910508ab257\tAdded Appointment variables\tmain
+Noah\t2024-06-06 11:01:30 +0200\t8166b71fed486bc88902b8d2e0f7b109e32db9dc\tAdded the model files\tmain
+Cas Olischläger\t2024-06-04 14:10:22 +0200\t9ea396259af7777c98ca54306921d1340bf189a7\tMerge pull request #78 from ZuydUniversity/76-code-coverage-backend-naar-minimaal-80-opkrikken\tmain
+Jeroen Siebers\t2024-06-04 14:05:27 +0200\t46a696012253bc10efd7d03ac8f34469c8bd5ce4\ttemplate test code coverage\tmain
+Tijn Mestrom\t2024-06-02 12:27:01 +0200\td28ec95fbfc42829e2835170386aa71f57063b60\tMerge pull request #72 from ZuydUniversity/70-toevoegen-van-extra-yml-file-voor-slack-feedback-voor-de-code-coverage\tmain
+Tijn Mestrom\t2024-06-02 12:24:27 +0200\te2972b215a8b1583e84f1ce854520f2f8c9cbd77\tMerge branch 'main' into 70-toevoegen-van-extra-yml-file-voor-slack-feedback-voor-de-code-coverage\tmain
+David Beljaars\t2024-05-31 16:20:08 +0200\t0fcf80854e734df685b7b396b2fa2165a987c128\tMerge pull request #75 from ZuydUniversity/dockerfile-hotfix\tmain
+Cas Olischläger\t2024-05-31 16:11:09 +0200\t8962759b7fa61e8667f0780c41bae2fb0b2c21ec\tStartup command fix\tmain
+David Beljaars\t2024-05-31 14:24:01 +0200\tf6e1b0a13f587452bb60d9cb06762b099c89060d\tMerge pull request #74 from ZuydUniversity/73-pipeline-container-backend\tmain
+Nessen03\t2024-05-31 14:20:31 +0200\t6db8f8738907707b5c2c11b8f5ba091899a32d85\tcreated yml fle cd pipeline\tmain
+David Beljaars\t2024-05-31 14:00:06 +0200\td3b944acac9181187a30fc67eedb3513de98e39e\treversed test\tmain
+David Beljaars\t2024-05-31 13:58:39 +0200\t91a82f99ebaa10d3822bdad91fe2bbb8e77b843c\tquicktest ci pipeline\tmain
+David Beljaars\t2024-05-31 13:54:51 +0200\tf0d9b93011e65b5075288cceb6710091759cb1fe\tupdated coverage to 80%\tmain
+David Beljaars\t2024-05-31 13:52:43 +0200\t9f58a1485e2667e1538ea6e886364fc6d87ead15\tadded committer name\tmain
+David Beljaars\t2024-05-31 13:50:18 +0200\t8ff4a93f3d60b30a0c7e1a866c48387877a33c85\tupdated slack message\tmain
+David Beljaars\t2024-05-31 13:46:57 +0200\tc32df14964561d25c4d2cbc2b9176852ddeeb685\tdebug message\tmain
+David Beljaars\t2024-05-31 13:34:27 +0200\t1631762a8979654508c9d608281e704fef53d89c\tdebugged pipeline files\tmain
+David Beljaars\t2024-05-31 13:25:34 +0200\t77f566d895da9aa89175d3c71f6fcd48a431abcf\tchanged threshold to 99\tmain
+David Beljaars\t2024-05-31 13:21:44 +0200\tc5b01f0f4e5ee29a086809de5ecfb7e78465bc1c\tchanged workflow run\tmain
+David Beljaars\t2024-05-31 13:10:08 +0200\t8735893e95fb2cec4fbc222ea39d06d7acca1777\tadded yml files with debug intent\tmain
+David Beljaars\t2024-05-31 12:48:54 +0200\t8883dc5dfea3d0688f326e0866e315f6c4a3b1c8\tchanged feedback-ci yml file name\tmain
+Tristan Franssen\t2024-05-30 10:30:23 +0200\t5d7c58845dd4a030fbc343b514781b193a160e0d\tMerge pull request #67 from ZuydUniversity/fix-backend\tmain
+Tristan Franssen\t2024-05-30 10:29:30 +0200\t5e67016badd0a6291473c08d3b990da275a7cf86\tMerge branch 'main' into fix-backend\tmain
+Tristan Franssen\t2024-05-30 10:27:57 +0200\t32cc67a6d024563236d4da5d33ea7d4e1afba174\tfixed linter\tmain
+bilalb41\t2024-05-29 13:54:42 +0200\t1977a6fccc61ce9ae9a11f367e2083806c18f5c6\tMerge pull request #66 from ZuydUniversity/53-feedback-pipeline-naar-slack\tmain
+Cas Olischläger\t2024-05-29 13:53:02 +0200\ta61645fe563aea7ff56027ca36859486e7b1b162\tFixed test zodat er geen errors in main zitten\tmain
+Cas Olischläger\t2024-05-29 13:51:00 +0200\t044cf34d119a387887cd16c50b6a8454fcad1723\tsecrets toegevoegd\tmain
+Cas Olischläger\t2024-05-29 13:46:35 +0200\t952cde38214a1636903375c95dc3d213987755ff\tkijken of hij nu de token pakt\tmain
+Cas Olischläger\t2024-05-29 13:37:29 +0200\t934cc3c9bff1f5f528f17eb94d3e60dff250905c\tjob herschreven\tmain
+Cas Olischläger\t2024-05-29 13:18:07 +0200\t0649544943679adee507ff18e00ab70c00d99d26\t.yml extensie weggehaald\tmain
+Cas Olischläger\t2024-05-29 13:16:07 +0200\tcae2fa79c9ff6e1bb4e7ea3661ffb07d0881ebc2\tpls work it\tmain
+Cas Olischläger\t2024-05-29 13:12:57 +0200\te6916954356a4f0f4466958603beb7dbeac50482\tkijken of dit werkt\tmain
+OFFTijn\t2024-05-29 13:11:13 +0200\t13d4f45f7aa4aae231438fd0310e6e1eaa349cdd\tDebug workflow\tmain
+OFFTijn\t2024-05-29 13:09:26 +0200\tb3725d56cd2a1651e75d23e959e57caab718d1ee\tDebug workflow\tmain
+OFFTijn\t2024-05-29 13:07:55 +0200\t4eecf0987bf8b20e77a201e90c2e48fa4ad0655d\tDebug workflow\tmain
+OFFTijn\t2024-05-29 13:07:29 +0200\td34f884538affd2090bdf718c32dc2bda201a94f\tDebug workflow\tmain
+OFFTijn\t2024-05-29 13:05:51 +0200\tff73983ec5887658279951185885e3e2ab0defa0\tDebug workflow\tmain
+OFFTijn\t2024-05-29 12:59:31 +0200\t48ee3f8e98252ecd48d25a8024d2dc5a36f6198e\tDebug workflow\tmain
+OFFTijn\t2024-05-29 12:58:52 +0200\tdf18befd1fa08124ffbc850dbc4e65b803943cbd\tDebug workflow\tmain
+OFFTijn\t2024-05-29 12:57:31 +0200\t78de24399643f2eaab8707c9ceb8d88b2d6a4cb2\tDebug workflow\tmain
+OFFTijn\t2024-05-29 12:56:15 +0200\tf65cff33b210c3d43e3bd533f58b5493a290cb36\tDebug workflow\tmain
+OFFTijn\t2024-05-29 12:55:20 +0200\t6edc8e91a97dc5f149e3c1a02d6ffda16e09bb60\tDebug workflow\tmain
+OFFTijn\t2024-05-29 12:52:27 +0200\td0641a147137180a126d17d802f5c916a031f651\tDebug workflow\tmain
+OFFTijn\t2024-05-29 12:48:23 +0200\tfeb0bee4aee4224e0c5c27cd2ce8048c17054adf\tDebug workflow\tmain
+OFFTijn\t2024-05-29 12:39:09 +0200\t3b70e08e858e11bb183880be60dd7066504989ec\tDebug workflow\tmain
+OFFTijn\t2024-05-29 12:36:29 +0200\tea22705720a281fc39c357eccec1aebb6bd21e90\tDebug workflow\tmain
+OFFTijn\t2024-05-29 12:34:03 +0200\t61cb469c3e292c29550aee3fe15a22249351ec89\tDebug workflow\tmain
+OFFTijn\t2024-05-29 12:33:20 +0200\t1e6a052657b52c3aae6b50d7edcf7afd5066d639\tDebug workflow\tmain
+OFFTijn\t2024-05-29 12:30:18 +0200\te14b05a59a088eb5eb36a1529ade228884f82736\tUpdate op IF statement\tmain
+OFFTijn\t2024-05-29 12:29:56 +0200\tb1e1e27d8156f213070d76f827dc6f71ae4a52b5\tId toegevoegd aan ci-pipeline\tmain
+OFFTijn\t2024-05-29 12:28:27 +0200\t0895b3deba41ed123767327ee0fdf83acf8c6d3f\tId toegevoegd aan ci-pipeline\tmain
+OFFTijn\t2024-05-29 12:22:45 +0200\t11bc7ff4a8d5c9a9c81599d10e74ef2510ca70d3\tUpdate op IF statement\tmain
+OFFTijn\t2024-05-29 12:17:03 +0200\tc3552f44cbe5ad32c684e394076679623344fd62\ttest op pull request\tmain
+OFFTijn\t2024-05-29 12:14:32 +0200\t62df546d0cefa7d710c1bf23986eda14fa855f88\tFailure op CI-pipeline\tmain
+OFFTijn\t2024-05-29 12:09:41 +0200\tc74f3651c7828628fc10928046d5e7602639f2db\tUpdate Test voor CI pipeline\tmain
+OFFTijn\t2024-05-29 12:06:26 +0200\t85e3b94f3054399d0c56acaab6adc56f532008c3\tUpdate url slack message\tmain
+OFFTijn\t2024-05-29 12:03:33 +0200\t67f56b098e68b48246803d88b5d134b24b05f860\tUpdate slack message\tmain
+OFFTijn\t2024-05-29 11:48:28 +0200\t34c4e7ec08d7cb6fdbe812897e4938509176c1a8\tUpdate slack message\tmain
+OFFTijn\t2024-05-29 11:45:31 +0200\te406a7edbb7c6ea42fed14263ff2af43d09ff6ff\tUpdate slack message\tmain
+OFFTijn\t2024-05-29 11:41:36 +0200\t531115070ede0d5b1cac253ae9a869ed91d6d702\ttest feedback message\tmain
+OFFTijn\t2024-05-29 11:40:51 +0200\tb686a352ef9a4d6b5dd5f97a725010d718c7a9ad\ttest feedback message\tmain
+OFFTijn\t2024-05-29 11:37:24 +0200\t1609e8d8a9ac62e387eb1cc7fb716229db8359af\tDebug github variables\tmain
+OFFTijn\t2024-05-29 11:34:08 +0200\t9fb5c367877def45dcd6df8e8fee1f2938ff4cbe\tupdate\tmain
+OFFTijn\t2024-05-29 11:33:55 +0200\tebcfee5ca8989a7abcb5e98337447800d023f7f0\tUpdate to execute on pull request\tmain
+OFFTijn\t2024-05-29 11:29:12 +0200\t7cc55ea05265194e07473eac5f9c83b67b36f801\ttest op feedback message\tmain
+OFFTijn\t2024-05-29 11:25:46 +0200\t386d7bee408c7076a959236603e0eec144920966\tTest voor meer informatie op slack\tmain
+OFFTijn\t2024-05-29 11:20:32 +0200\t809c37111015385102dd4f74f6414276b5291463\tUpdate voor pull request\tmain
+bilalb41\t2024-05-29 11:13:08 +0200\tff56941ea1a61ae02a8d24b92f9c59d677491a8a\tadded main as a branch for notifications\tmain
+bilalb41\t2024-05-29 11:08:07 +0200\ta95269bd3d24cf2f37d94ab49ca3691c63f944d1\tchanged if statements to always\tmain
+bilalb41\t2024-05-29 11:07:16 +0200\t1b4c40b034d63280acb7e03953e7fd89dc2f3aa3\tadded echo commands\tmain
+bilalb41\t2024-05-29 10:52:19 +0200\t58b30fffde2e41784c48e321eb9db5057c31ac3a\tadded notification merge failure\tmain
+OFFTijn\t2024-05-29 10:38:38 +0200\t71048ee9aa7110d8a314eb68b62fe3031fd83f61\tSlack message update\tmain
+OFFTijn\t2024-05-29 10:24:40 +0200\t1d992b81d235bc799798fcf22981b9630442c2ec\tChannel ID update\tmain
+OFFTijn\t2024-05-29 10:18:04 +0200\t54d27fa1cc4d928387883d9adb1a535b43e295a6\tFeedback pipeline channel-id update\tmain
+OFFTijn\t2024-05-29 10:11:43 +0200\t63b0bea34dcc790b14ead356d8179e8709bc664e\tfeedback pipeline update\tmain
+Tristan Franssen\t2024-05-28 18:08:20 +0200\ted43fc24bfde830fa36909704481d0b2a3822c87\tMerge pull request #60 from ZuydUniversity/55-opzetten-workflow-codeyml-coveragebackend-team2\tmain
+David Beljaars\t2024-05-28 17:55:17 +0200\t014903a0b5db35bffdff1c432219e82ea92d7965\tadded more python versions\tmain
+David Beljaars\t2024-05-28 17:50:35 +0200\t78e8319e077de1e3b9f8b0c816d1ba42b3d591e6\tUpdated workflow file\tmain
+David Beljaars\t2024-05-28 17:49:16 +0200\t0967c1edd41005ede12ce64167e821fda196d9d9\tCreated workflow file coverage\tmain
+jouryl00\t2024-05-28 17:40:30 +0200\t916f4836279b4323905a955bfb455a17d4617b43\tcreated coverage file (#57)\tmain
+Tristan Franssen\t2024-05-28 14:58:21 +0200\t3db1b92725c176bc6479787f5b1e0c4232af367a\tMerge pull request #56 from ZuydUniversity/test-backend\tmain
+OFFTijn\t2024-05-28 14:56:41 +0200\tb8be32219fb92ba9854b1350148fed6e2b276a48\tfeedback-slack test\tmain
+Tristan Franssen\t2024-05-28 14:56:33 +0200\t244dbad38c33857471558afd3944b399b84166dd\tTesting the pylint\tmain
+OFFTijn\t2024-05-28 14:55:05 +0200\td3be76c8136ad19c7fcfbfb73a8dfc7bc1fee497\ttest feedback-slack\tmain
+OFFTijn\t2024-05-28 14:52:06 +0200\t35b765224dde71a0604085bb1e543c2cd83b26f8\tFeedback-slack error fix\tmain
+OFFTijn\t2024-05-28 14:49:44 +0200\tab1bec8afc2aeb1e245d1478baeb4b5daf893454\tfeedback-slack uitvoeren op commit\tmain
+OFFTijn\t2024-05-28 14:45:48 +0200\tb9bf03fc11d0639e8758405622f25175742ea261\tworkflow_dispatch toegevoegd\tmain
+OFFTijn\t2024-05-28 14:43:33 +0200\tc869eddde9df04db48d561f4586c8003cadd65f6\tFeedback-slack\tmain
+Cas Olischläger\t2024-05-27 13:13:42 +0200\t66cb884db61b8da7d87d4daf200ef2dca70336d5\tMerge pull request #52 from ZuydUniversity/30-maak-de-eerste-ci-pipeline-voor-backend-poging-2\tmain
+Cas Olischläger\t2024-05-27 12:56:31 +0200\t1fc9102c08e1231b0a255e0b0997c07dc92fba99\ttypo fix\tmain
+Cas Olischläger\t2024-05-27 12:54:43 +0200\tf5ee687f4d29c3a54cbc17ed7f7e17f1b12f7b82\tWorkflow toegevoegd\tmain
+Tristan Franssen\t2024-05-27 12:53:24 +0200\tf9331e99b700349ab039b5ff96b22bb98d680aab\tMerge pull request #51 from ZuydUniversity/pylint-Team5\tmain
+Tristan Franssen\t2024-05-27 12:51:59 +0200\t41700d64be542bc0abd65cb2276bf7dc30e4abd9\tCreate pylint.yml\tmain
+Tristan Franssen\t2024-05-27 12:50:06 +0200\te347565cdbdd0bdb385cd4a043a6b1753c1bfd46\tMerge pull request #50 from ZuydUniversity/pylint-fixes\tmain
+Tristan Franssen\t2024-05-27 12:48:19 +0200\t7dc8a65f980f63abc4d6d9ded6d9748c3d73c819\tFinaly changed folder name\tmain
+Tristan Franssen\t2024-05-27 12:42:50 +0200\t1ae1d1995b5a6f9636083e448cd7814bdd817c84\tMerge pull request #44 from ZuydUniversity/pylint-fixes\tmain
+Tristan Franssen\t2024-05-27 12:40:22 +0200\t77b4b2d2902c62fbd3fbd42ba11258e3de0fb93b\tMerge branch 'main' of https://github.com/ZuydUniversity/B2C6_B2C_Backend\tmain
+Tristan Franssen\t2024-05-27 12:39:22 +0200\tac2c7aa1acb5238fc0a2e626499dd366abdde0b2\tFixed import\tmain
+Tristan Franssen\t2024-05-27 12:33:38 +0200\tf08a8f6ed4bc7e85cadd68c093579dfe886b9dae\tMerge pull request #38 from ZuydUniversity/pylint-code-fix-again\tmain
+Tristan Franssen\t2024-05-27 12:30:38 +0200\t5ed4e4e6c01831f0da0d76bda367bbc08319d647\tRemoved even more pylint errors\tmain
+Tristan Franssen\t2024-05-27 12:21:35 +0200\t479888af8dca33badbd8b4af1d915e85dad5ed31\tMerge pull request #37 from ZuydUniversity/pylint-code-fix\tmain
+Tristan Franssen\t2024-05-27 12:17:03 +0200\td22cdb96d8914e918b94cd6ad1bf27be91fc8779\tFixed pylint errors\tmain
+David Beljaars\t2024-05-27 10:03:50 +0200\tbfa5ed409a46796985090011fb8810a43d11e648\tMerge pull request #33 from ZuydUniversity/32-code-linter-op-backend-geautomatiseerd-Team-5\tmain
+Tristan Franssen\t2024-05-27 09:34:46 +0200\t84c8179890eca1346c9811f005db2eea58a3fb05\tMerge branch 'main' into 32-code-linter-op-backend-geautomatiseerd-Team-5\tmain
+Levi Funk\t2024-05-25 20:17:34 +0200\tcbde266928525a4b09061af953c48540aaef13b4\tMerge pull request #34 from ZuydUniversity/BasicBackend-DevBranch\tmain
+Cas\t2024-05-24 15:24:27 +0200\t23a5673cd51d217260c6e177de4d600d468943f6\tRename TemplateRouter.py to templaterouter.py\tmain
+Cas\t2024-05-24 15:24:12 +0200\tc6b4a31a8ffd218669d6abb116af08d87ea3d9be\tRename HomeRouter.py to homerouter.py\tmain
+Cas\t2024-05-24 15:23:55 +0200\tb78f33f6c15785298f596b3b55423ee0acda5a52\tRename TemplateModel.py to templatemodel.py\tmain
+Cas Olischläger\t2024-05-24 15:19:42 +0200\te9a047a231641527e8e71908cd8bce6df24fca4c\tProposed fixes - Bestandsnamen met hoofdletters zijn aangepast naar de PEP8 standaard. - De zijn testen aangepast zodat de ingebouwde testclient gebruikt kan worden. - requirements.txt is aangepast zodat niet gebruikte/  dubbele imports verwijderd zijn via pipreqs. - Pydantic BaseModel wordt nu gebruikt zodat Swagger de models zelf kan herkennen.\tmain
+Megalomizer\t2024-05-24 12:12:13 +0200\t39ef0d497cfd9b34f34db95c53404cab9569f5f0\tAdded docker files\tmain
+Noah\t2024-05-24 10:50:48 +0200\t5c5bcf54a1a0bc130f5b47203d43ec3f6e86281a\tAdded all the Unittest code\tmain
+Agressie\t2024-05-23 13:19:17 +0200\ta386a728e1d099428ec035703dd25b385c7f646f\tAdded Models and routers\tmain
+Agressie\t2024-05-23 12:24:29 +0200\tf6e8c44a6aff9bf114a801b8b7e5ec9819df7832\tRenamed folders and added test files\tmain
+Agressie\t2024-05-23 12:02:30 +0200\t794f29a375657c9b91a51281e7cf73ec8f2ac77e\tBasicfile Setup\tmain
+Tristan Franssen\t2024-05-22 14:32:24 +0200\tadbb3e745184c4f09871764dc79a3af472cf92b6\tAdded requirements.txt for all packages that need to be installed for the project\tmain
+Rob Cilissen-Grassére\t2024-04-30 12:10:56 +0200\tb15db7dd3a84c076db0371acd64c0097c655826d\tInitial commit\tmain
